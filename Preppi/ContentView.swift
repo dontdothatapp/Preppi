@@ -8,14 +8,34 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var pageIndex = 0
+    private let pages: [Page] = Page.samplePages
+    private let dotAppearance = UIPageControl.appearance()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        TabView(selection: $pageIndex) {
+            ForEach(pages) { page in
+                VStack {
+                    Spacer()
+                    OnboardingPageView(page: page)
+                    Spacer()
+                    if page == pages.last {
+                        Button("Start practicing", action: goToZero)
+                            .buttonStyle(.bordered)
+                    } else {
+                        Button("Next", action: incrementPage)
+                    }
+                }
+            }
         }
-        .padding()
+    }
+    
+    func incrementPage() {
+        pageIndex += 1
+    }
+    
+    func goToZero() {
+        pageIndex = 0
     }
 }
 
@@ -24,3 +44,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
