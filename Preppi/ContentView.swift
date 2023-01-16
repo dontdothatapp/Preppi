@@ -16,7 +16,6 @@ struct ContentView: View {
         TabView(selection: $pageIndex) {
             ForEach(pages) { page in
                 VStack {
-                    //Spacer()
                     OnboardingPageView(page: page)
                     Spacer()
                     if page == pages.last {
@@ -24,7 +23,6 @@ struct ContentView: View {
                             .buttonStyle(.bordered)
                     } else {
                         Button("Next", action: incrementPage)
-                            .buttonStyle(.bordered)
                     }
                     Spacer()
                 }

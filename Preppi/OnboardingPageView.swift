@@ -17,10 +17,14 @@ struct OnboardingPageView: View {
                 .scaledToFit()
             Text(page.name)
                 .font(.title)
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
             
             Text(page.description)
                 .font(.subheadline)
-                .frame(width: 400)
+                //.frame(width: 400)
+                .padding(.leading, 20)
+                .padding(.trailing, 20)
         }
     }
 }
