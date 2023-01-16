@@ -16,7 +16,7 @@ struct ContentView: View {
         TabView(selection: $pageIndex) {
             ForEach(pages) { page in
                 VStack {
-                    Spacer()
+                    //Spacer()
                     OnboardingPageView(page: page)
                     Spacer()
                     if page == pages.last {
@@ -24,9 +24,19 @@ struct ContentView: View {
                             .buttonStyle(.bordered)
                     } else {
                         Button("Next", action: incrementPage)
+                            .buttonStyle(.bordered)
                     }
+                    Spacer()
                 }
+                .tag(page.tag)
             }
+        }
+        .animation(.easeInOut, value: pageIndex)
+        .tabViewStyle(.page)
+        .indexViewStyle(.page(backgroundDisplayMode: .interactive))
+        .onAppear{
+            dotAppearance.currentPageIndicatorTintColor = .black
+            dotAppearance.pageIndicatorTintColor = .gray
         }
     }
     
