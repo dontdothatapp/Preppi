@@ -14,7 +14,7 @@ struct Page: Identifiable, Equatable {
     var imageUrl: String
     var tag: Int
     
-    static var samplePage = Page (name: "Title Example", description: "Sample description for the purpose of debugging, and it might be a very long description to check all the spacings", imageUrl: "onboarding_3", tag: 0)
+    static var samplePage = Page (name: "Want to rock the interview?", description: "With our app, you can practice answering common interview questions at your own pace. Simply open the app and get a randomly selected question to start practicing", imageUrl: "onboarding_3", tag: 0)
     
     static var samplePages: [Page] = [
     Page(name: "Want to rock the interview?", description: "Our app will give you the tools you need to succeed in your next interview", imageUrl: "onboarding_1", tag: 0),

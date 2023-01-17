@@ -11,20 +11,33 @@ struct OnboardingPageView: View {
     var page: Page
     
     var body: some View {
-        VStack(spacing: 20) {
+        VStack (alignment: .leading){
             Image("\(page.imageUrl)")
                 .resizable()
                 .scaledToFit()
-            Text(page.name)
-                .font(.title)
-                .padding(.leading, 20)
-                .padding(.trailing, 20)
+                .ignoresSafeArea(.all, edges: .top)
+            HStack {
+                Text(page.name)
+                    .foregroundColor(.text_900)
+                    .font(.system(size: 40))
+                    .fontWeight(.medium)
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading, 20)
+                    //.frame(width: 400)
+                    //.padding(.trailing, 20)
+                Spacer()
+            }
+            .padding(.bottom, 24)
             
-            Text(page.description)
-                .font(.subheadline)
-                //.frame(width: 400)
-                .padding(.leading, 20)
-                .padding(.trailing, 20)
+            HStack {
+                Text(page.description)
+                    .foregroundColor(.text_900)
+                    .font(.headline)
+                    .fontWeight(.medium)
+                    .padding(.leading, 20)
+                Spacer()
+            }
+            Spacer()
         }
     }
 }
