@@ -75,7 +75,7 @@ struct ContentView: View {
             .indexViewStyle(.page(backgroundDisplayMode: .interactive))
             .onAppear{
                 dotAppearance.currentPageIndicatorTintColor = UIColor(Color.primary_900)
-                dotAppearance.pageIndicatorTintColor = .gray
+                dotAppearance.pageIndicatorTintColor = UIColor(Color.text_300)
         }
         }
     }

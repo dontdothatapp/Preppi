@@ -16,11 +16,13 @@ struct OnboardingPageView: View {
                 .resizable()
                 .scaledToFit()
                 .ignoresSafeArea(.all, edges: .top)
+                .padding(.horizontal, 10)
             HStack {
                 Text(page.name)
                     .foregroundColor(.text_900)
-                    .font(.system(size: 40))
+                    .font(.system(size: 40, design: .rounded))
                     .fontWeight(.medium)
+                    .kerning(3.0)
                     .multilineTextAlignment(.leading)
                     .padding(.leading, 20)
                     //.frame(width: 400)
@@ -32,8 +34,10 @@ struct OnboardingPageView: View {
             HStack {
                 Text(page.description)
                     .foregroundColor(.text_900)
-                    .font(.headline)
+                    //.font(.headline)
+                    .font(.system(size: 17, design: .rounded))
                     .fontWeight(.medium)
+                    .baselineOffset(3)
                     .padding(.leading, 20)
                 Spacer()
             }
