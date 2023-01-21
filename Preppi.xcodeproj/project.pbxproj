@@ -17,6 +17,7 @@
 		7FB5E4B0297BF32500A2482B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4AF297BF32500A2482B /* SignupView.swift */; };
 		7FB5E4B2297C022100A2482B /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */; };
 		7FB5E4B4297C098300A2482B /* TestGPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4B3297C098300A2482B /* TestGPT.swift */; };
+		7FB5E4B6297C18AD00A2482B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4B5297C18AD00A2482B /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		7FB5E4AF297BF32500A2482B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
 		7FB5E4B3297C098300A2482B /* TestGPT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGPT.swift; sourceTree = "<group>"; };
+		7FB5E4B5297C18AD00A2482B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,8 +73,7 @@
 				7F6F76CB2975E68D00FF7871 /* ContentView.swift */,
 				7F6F76D92975F09E00FF7871 /* OnboardingPageView.swift */,
 				7F6F76D72975EF1900FF7871 /* OnboardingPageModel.swift */,
-				7FB5E4AF297BF32500A2482B /* SignupView.swift */,
-				7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */,
+				7FB5E4B7297C19DB00A2482B /* Auth */,
 				7F6F76CD2975E68E00FF7871 /* Assets.xcassets */,
 				7F6F76CF2975E68E00FF7871 /* Preview Content */,
 			);
@@ -85,6 +86,16 @@
 				7F6F76D02975E68E00FF7871 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7FB5E4B7297C19DB00A2482B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				7FB5E4AF297BF32500A2482B /* SignupView.swift */,
+				7FB5E4B5297C18AD00A2482B /* LoginView.swift */,
+				7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */,
+			);
+			path = Auth;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,6 +170,7 @@
 			files = (
 				7FB5E4B0297BF32500A2482B /* SignupView.swift in Sources */,
 				7F6F76CC2975E68D00FF7871 /* ContentView.swift in Sources */,
+				7FB5E4B6297C18AD00A2482B /* LoginView.swift in Sources */,
 				7F0F85232977411E00C787A7 /* Colors.swift in Sources */,
 				7FB5E4B4297C098300A2482B /* TestGPT.swift in Sources */,
 				7F6F76CA2975E68D00FF7871 /* PreppiApp.swift in Sources */,
