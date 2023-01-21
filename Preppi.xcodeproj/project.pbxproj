@@ -18,6 +18,11 @@
 		7FB5E4B2297C022100A2482B /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */; };
 		7FB5E4B4297C098300A2482B /* TestGPT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4B3297C098300A2482B /* TestGPT.swift */; };
 		7FB5E4B6297C18AD00A2482B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4B5297C18AD00A2482B /* LoginView.swift */; };
+		7FB5E4BD297C2CA900A2482B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4BC297C2CA900A2482B /* HomeView.swift */; };
+		7FB5E4BF297C2EF800A2482B /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4BE297C2EF800A2482B /* CardView.swift */; };
+		7FB5E4C2297C33E900A2482B /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4C1297C33E900A2482B /* AnalyticsView.swift */; };
+		7FB5E4C6297C340D00A2482B /* SavedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4C5297C340D00A2482B /* SavedView.swift */; };
+		7FB5E4C8297C456700A2482B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7FB5E4C7297C456700A2482B /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +39,11 @@
 		7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
 		7FB5E4B3297C098300A2482B /* TestGPT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestGPT.swift; sourceTree = "<group>"; };
 		7FB5E4B5297C18AD00A2482B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7FB5E4BC297C2CA900A2482B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		7FB5E4BE297C2EF800A2482B /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		7FB5E4C1297C33E900A2482B /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		7FB5E4C5297C340D00A2482B /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
+		7FB5E4C7297C456700A2482B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,10 +79,14 @@
 			children = (
 				7F6F76C92975E68D00FF7871 /* PreppiApp.swift */,
 				7F6F76CB2975E68D00FF7871 /* ContentView.swift */,
+				7FB5E4C1297C33E900A2482B /* AnalyticsView.swift */,
+				7FB5E4C5297C340D00A2482B /* SavedView.swift */,
+				7FB5E4C0297C329900A2482B /* Home */,
 				7FB5E4B9297C1D9400A2482B /* Onboarding */,
 				7FB5E4B7297C19DB00A2482B /* Auth */,
 				7FB5E4B8297C1D8900A2482B /* Helpers */,
 				7F6F76CD2975E68E00FF7871 /* Assets.xcassets */,
+				7FB5E4C7297C456700A2482B /* GoogleService-Info.plist */,
 				7F6F76DB2975F59A00FF7871 /* Info.plist */,
 				7F6F76CF2975E68E00FF7871 /* Preview Content */,
 			);
@@ -112,6 +126,15 @@
 				7F6F76D72975EF1900FF7871 /* OnboardingPageModel.swift */,
 			);
 			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		7FB5E4C0297C329900A2482B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				7FB5E4BC297C2CA900A2482B /* HomeView.swift */,
+				7FB5E4BE297C2EF800A2482B /* CardView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -174,6 +197,7 @@
 			files = (
 				7F6F76D12975E68E00FF7871 /* Preview Assets.xcassets in Resources */,
 				7F6F76CE2975E68E00FF7871 /* Assets.xcassets in Resources */,
+				7FB5E4C8297C456700A2482B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,11 +211,15 @@
 				7FB5E4B0297BF32500A2482B /* SignupView.swift in Sources */,
 				7F6F76CC2975E68D00FF7871 /* ContentView.swift in Sources */,
 				7FB5E4B6297C18AD00A2482B /* LoginView.swift in Sources */,
+				7FB5E4BD297C2CA900A2482B /* HomeView.swift in Sources */,
 				7F0F85232977411E00C787A7 /* Colors.swift in Sources */,
 				7FB5E4B4297C098300A2482B /* TestGPT.swift in Sources */,
+				7FB5E4C6297C340D00A2482B /* SavedView.swift in Sources */,
 				7F6F76CA2975E68D00FF7871 /* PreppiApp.swift in Sources */,
 				7F6F76DA2975F09E00FF7871 /* OnboardingPageView.swift in Sources */,
 				7F6F76D82975EF1900FF7871 /* OnboardingPageModel.swift in Sources */,
+				7FB5E4C2297C33E900A2482B /* AnalyticsView.swift in Sources */,
+				7FB5E4BF297C2EF800A2482B /* CardView.swift in Sources */,
 				7FB5E4B2297C022100A2482B /* SignInWithAppleButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

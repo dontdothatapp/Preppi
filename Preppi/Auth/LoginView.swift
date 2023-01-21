@@ -14,111 +14,118 @@ struct LoginView: View {
 
     var body: some View {
         NavigationView {
-            VStack {
-                Image("signup_reg")
-                    .resizable()
-                    .scaledToFit()
-                    .ignoresSafeArea(.all, edges: .top)
-                    .padding(.horizontal, 10)
+            ZStack {
+                //Background color
+                Color.additional_50
+                    .ignoresSafeArea(.all)
                 
-                HStack {
-                    Text("Welcome back")
-                        .foregroundColor(.text_900)
-                        .font(.system(size: 40, design: .rounded))
-                        .fontWeight(.medium)
-                        .kerning(3.0)
-                        .multilineTextAlignment(.leading)
-                        .padding(.leading, 20)
-                    Spacer()
-                }
-                .padding(.bottom, 24)
-
-                VStack(alignment: .leading) {
+                VStack {
+                    Image("signup_reg")
+                        .resizable()
+                        .scaledToFit()
+                        .ignoresSafeArea(.all, edges: .top)
+                        .padding(.horizontal, 10)
                     
-                    TextField("Email", text: $email)
-                        .foregroundColor(.text_900)
-                        .textFieldStyle(.plain)
-                        .placeholder(when: email.isEmpty) {
-                            Text("Email")
-                                .foregroundColor(.text_500)
-                        }
-                    Rectangle()
-                        .frame(width: 350, height: 1)
-                        .foregroundColor(.text_300)
-                        .padding(.bottom, 20)
-
-                    SecureField("Password", text: $password)
-                        .foregroundColor(.text_900)
-                        .textFieldStyle(.plain)
-                        .placeholder(when: password.isEmpty) {
-                            Text("Password")
-                                .foregroundColor(.text_300)
-                        }
-                    Rectangle()
-                        .frame(width: 350, height: 1)
-                        .foregroundColor(.text_300)
-                    
-                    }
-                    .padding(.horizontal, 20)
-
-                Spacer()
-                
-                
-                //Create account button - Sign up
-                Button {
-                    //sign up
-                } label: {
                     HStack {
-                        Text("Log in")
-                            .foregroundColor(.white)
+                        Text("Welcome back")
+                            .foregroundColor(.text_900)
+                            .font(.system(size: 40, design: .rounded))
+                            .fontWeight(.medium)
+                            .kerning(3.0)
+                            .multilineTextAlignment(.leading)
+                            .padding(.leading, 20)
+                        Spacer()
                     }
-                    .frame(width: 350, height: 50)
-                    .background(
-                        Color.primary_900
-                            .cornerRadius(8)
-                        )
-                }
+                    .padding(.bottom, 24)
 
-                //Sign in with Apple button
-                Rectangle()
-                    .frame(height: 1)
-                    .foregroundColor(.white.opacity(0.1))
-                
-                /*
-                Button {
-                    print("Sign in with Apple")
-                } label: {
-                    SignInWithAppleButton()
-                        .frame(width: 250, height: 50)
-                        .cornerRadius(8)
-                        .foregroundColor(.black)
-                }
-                */
-                 
-                NavigationLink {
-                    ContentView()
-                        .navigationBarHidden(true)
-                } label: {
-                    SignInWithAppleButton()
-                        .frame(width: 250, height: 50)
-                        .cornerRadius(8)
-                        .foregroundColor(.black)
-                }
-
-                NavigationLink {
-                    SignupView()
-                        .navigationBarHidden(true)
-                } label: {
-                    HStack{
-                        Text("Already have an account?")
-                            .font(.subheadline)
-                            .foregroundColor(Color.text_700)
+                    VStack(alignment: .leading) {
                         
-                        Text("Sign up")
-                            .font(.subheadline)
+                        TextField("Email", text: $email)
+                            .foregroundColor(.text_900)
+                            .textFieldStyle(.plain)
+                            .placeholder(when: email.isEmpty) {
+                                Text("Email")
+                                    .foregroundColor(.text_500)
+                            }
+                        Rectangle()
+                            .frame(width: 350, height: 1)
+                            .foregroundColor(.text_300)
+                            .padding(.bottom, 20)
+
+                        SecureField("Password", text: $password)
+                            .foregroundColor(.text_900)
+                            .textFieldStyle(.plain)
+                            .placeholder(when: password.isEmpty) {
+                                Text("Password")
+                                    .foregroundColor(.text_300)
+                            }
+                        Rectangle()
+                            .frame(width: 350, height: 1)
+                            .foregroundColor(.text_300)
+                        
+                        }
+                        .padding(.horizontal, 20)
+
+                    Spacer()
+                    
+                    
+                    //Create account button - Sign up
+                    NavigationLink {
+                        HomeView()
+                            .navigationBarHidden(true)
+                    } label: {
+                        HStack {
+                            Text("Log in")
+                                .foregroundColor(.white)
+                        }
+                        .frame(width: 350, height: 50)
+                        .background(
+                            Color.primary_900
+                                .cornerRadius(8)
+                            )
                     }
+
+                    //Sign in with Apple button
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(.white.opacity(0.1))
+                    
+                    /*
+                    Button {
+                        print("Sign in with Apple")
+                    } label: {
+                        SignInWithAppleButton()
+                            .frame(width: 250, height: 50)
+                            .cornerRadius(8)
+                            .foregroundColor(.black)
+                    }
+                    */
+                     
+                    NavigationLink {
+                        ContentView()
+                            .navigationBarHidden(true)
+                    } label: {
+                        SignInWithAppleButton()
+                            .frame(width: 250, height: 50)
+                            .cornerRadius(8)
+                            .foregroundColor(.black)
+                    }
+
+                    NavigationLink {
+                        SignupView()
+                            .navigationBarHidden(true)
+                    } label: {
+                        HStack{
+                            Text("Already have an account?")
+                                .font(.subheadline)
+                                .foregroundColor(Color.text_700)
+                            
+                            Text("Sign up")
+                                .font(.subheadline)
+                        }
+                    }
+                    .padding(.top, 80)
                 }
-                .padding(.top, 80)
             }
         }
         .navigationBarHidden(true)
