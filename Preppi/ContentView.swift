@@ -29,7 +29,10 @@ struct ContentView: View {
                             if page == pages.last {
                                 
                                 //Rectangle Button on the final step
-                                NavigationLink(destination: SignupView()) {
+                                NavigationLink {
+                                    SignupView()
+                                        .navigationBarHidden(true)
+                                } label: {
                                     HStack {
                                         Spacer()
                                         Text("Start practicing")
@@ -46,6 +49,7 @@ struct ContentView: View {
                                             .cornerRadius(8)
                                         )
                                 }
+                                
                                 /*
                                 Button {
                                     //goToZero()
@@ -100,7 +104,6 @@ struct ContentView: View {
             }
             }
         }
-        .navigationBarHidden(true)
     }
     
     func incrementPage() {

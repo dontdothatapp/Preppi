@@ -106,7 +106,10 @@ struct SignupView: View {
                 }
                 */
                  
-                NavigationLink(destination: ContentView()) {
+                NavigationLink {
+                    ContentView()
+                        .navigationBarHidden(true)
+                } label: {
                     SignInWithAppleButton()
                         .frame(width: 250, height: 50)
                         .cornerRadius(8)
@@ -129,7 +132,6 @@ struct SignupView: View {
                 .padding(.top, 20)
             }
         }
-        .navigationBarHidden(true)
     }
 }
 
