@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct LoginView: View {
     @State private var name: String = ""
@@ -69,10 +70,9 @@ struct LoginView: View {
                     Spacer()
                     
                     
-                    //Create account button - Sign up
-                    NavigationLink {
-                        HomeView()
-                            .navigationBarHidden(true)
+                    //Login - Log in button
+                    Button{
+                        login()
                     } label: {
                         HStack {
                             Text("Log in")
@@ -130,6 +130,15 @@ struct LoginView: View {
         }
         .navigationBarHidden(true)
     }
+    
+    func login() {
+        Auth.auth().signIn(withEmail: email, password: password) { result, error in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+        }
+    }
+    
 }
 
 struct SigninView_Previews: PreviewProvider {

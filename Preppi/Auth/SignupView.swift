@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct SignupView: View {
     @State private var name: String = ""
@@ -82,7 +83,7 @@ struct SignupView: View {
                     
                     //Create account button - Sign up
                     Button {
-                        //sign up
+                        register()
                     } label: {
                         HStack {
                             Text("Create account")
@@ -136,6 +137,14 @@ struct SignupView: View {
                     }
                     .padding(.top, 80)
                 }
+            }
+        }
+    }
+    
+    func register() {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if error != nil {
+                print(error!.localizedDescription)
             }
         }
     }

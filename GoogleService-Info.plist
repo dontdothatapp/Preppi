@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>48329002426-d2vva89j6r74gntran2ujku421mh13su.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.48329002426-d2vva89j6r74gntran2ujku421mh13su</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBjYE2jgz_8q7PqPuigoiTaIqhW3YSG_jY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>48329002426</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>velichko.stepan.making.a.unicorn.Preppi</string>
+	<key>PROJECT_ID</key>
+	<string>preppi-6c9c9</string>
+	<key>STORAGE_BUCKET</key>
+	<string>preppi-6c9c9.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:48329002426:ios:e232f54be0bff836072183</string>
+</dict>
+</plist>
