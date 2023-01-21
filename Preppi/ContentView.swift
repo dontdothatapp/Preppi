@@ -76,7 +76,7 @@ struct ContentView: View {
                                 } label: {
                                         Circle()
                                             .frame(width: 68)
-                                            .shadow(color: Color.black.opacity(0.3), radius: 10)
+                                            .shadow(color: Color.black.opacity(0.2), radius: 8, x: 2, y:4)
                                             .overlay(
                                                 Image(systemName: "arrow.right")
                                                     .font(.title2)
