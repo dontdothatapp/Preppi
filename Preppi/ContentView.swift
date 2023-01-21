@@ -13,71 +13,94 @@ struct ContentView: View {
     private let dotAppearance = UIPageControl.appearance()
     
     var body: some View {
-        ZStack {
-            //Background color
-            Color.additional_50
-                .ignoresSafeArea(.all)
-            
-            //Page content
-            TabView(selection: $pageIndex) {
-                ForEach(pages) { page in
-                    VStack {
-                        OnboardingPageView(page: page)
-                        Spacer()
-                        if page == pages.last {
-                            
-                            //Rectangle Button on the final step
-                            Button {
-                                goToZero()
-                            } label: {
-                                HStack {
-                                    Spacer()
-                                    Text("Start practicing")
-                                        .foregroundColor(.white)
-                                        .padding(.trailing, 50)
-                                    Image(systemName: "arrow.right")
-                                        .font(.title2)
-                                        .foregroundColor(.white)
-                                        .padding(.horizontal, 20)
-                                }
-                                .frame(width: 350, height: 50)
-                                .background(
-                                    Color.primary_900
-                                        .cornerRadius(8)
-                                    )
-                            }
-                            .padding(.bottom, 50)
-                        } else {
-                            
-                            //Circle Button on the first two steps
-                            Button {
-                                incrementPage()
-                            } label: {
-                                    Circle()
-                                        .frame(width: 68)
-                                        .shadow(color: Color.black.opacity(0.3), radius: 10)
-                                        .overlay(
-                                            Image(systemName: "arrow.right")
-                                                .font(.title2)
-                                                .foregroundColor(.white)
+        NavigationView {
+            ZStack {
+                
+                //Background color
+                Color.additional_50
+                    .ignoresSafeArea(.all)
+                
+                //Onboarding page content
+                TabView(selection: $pageIndex) {
+                    ForEach(pages) { page in
+                        VStack {
+                            OnboardingPageView(page: page)
+                            Spacer()
+                            if page == pages.last {
+                                
+                                //Rectangle Button on the final step
+                                NavigationLink(destination: SignupView()) {
+                                    HStack {
+                                        Spacer()
+                                        Text("Start practicing")
+                                            .foregroundColor(.white)
+                                            .padding(.trailing, 50)
+                                        Image(systemName: "arrow.right")
+                                            .font(.title2)
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal, 20)
+                                    }
+                                    .frame(width: 350, height: 50)
+                                    .background(
+                                        Color.primary_900
+                                            .cornerRadius(8)
                                         )
+                                }
+                                /*
+                                Button {
+                                    //goToZero()
+                                    //SignupView()
+                                } label: {
+                                    HStack {
+                                        Spacer()
+                                        Text("Start practicing")
+                                            .foregroundColor(.white)
+                                            .padding(.trailing, 50)
+                                        Image(systemName: "arrow.right")
+                                            .font(.title2)
+                                            .foregroundColor(.white)
+                                            .padding(.horizontal, 20)
+                                    }
+                                    .frame(width: 350, height: 50)
+                                    .background(
+                                        Color.primary_900
+                                            .cornerRadius(8)
+                                        )
+                                } */
+                                .padding(.bottom, 50)
+                            } else {
+                                
+                                //Circle Button on the first two steps
+                                Button {
+                                    incrementPage()
+                                } label: {
+                                        Circle()
+                                            .frame(width: 68)
+                                            .shadow(color: Color.black.opacity(0.3), radius: 10)
+                                            .overlay(
+                                                Image(systemName: "arrow.right")
+                                                    .font(.title2)
+                                                    .foregroundColor(.white)
+                                            )
+                                }
+                                .padding(.bottom, 50)
                             }
-                            .padding(.bottom, 50)
+                            //Spacer()
                         }
-                        //Spacer()
+                        //.ignoresSafeArea(.)
+                        .tag(page.tag)
                     }
-                    //.ignoresSafeArea(.)
-                    .tag(page.tag)
                 }
+                .animation(.easeInOut, value: pageIndex)
+                .tabViewStyle(PageTabViewStyle())
+                .indexViewStyle(.page(backgroundDisplayMode: .interactive))
+                .onAppear{
+                    dotAppearance.currentPageIndicatorTintColor = UIColor(Color.primary_900)
+                    dotAppearance.pageIndicatorTintColor = UIColor(Color.text_300)
             }
-            .animation(.easeInOut, value: pageIndex)
-            .tabViewStyle(PageTabViewStyle())
-            .indexViewStyle(.page(backgroundDisplayMode: .interactive))
-            .onAppear{
-                dotAppearance.currentPageIndicatorTintColor = UIColor(Color.primary_900)
-                dotAppearance.pageIndicatorTintColor = UIColor(Color.text_300)
+            }
         }
-        }
+        .navigationBarHidden(true)
     }
     
     func incrementPage() {
