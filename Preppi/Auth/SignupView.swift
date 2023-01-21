@@ -116,20 +116,20 @@ struct SignupView: View {
                         .foregroundColor(.black)
                 }
 
-                Spacer()
-                HStack {
-                    Text("Already have an account? ")
-                        .font(.subheadline)
-
-                    Button(action: {
-                        // handle sign in page navigation
-                    }) {
+                NavigationLink {
+                    LoginView()
+                        .navigationBarHidden(true)
+                } label: {
+                    HStack{
+                        Text("Already have an account?")
+                            .font(.subheadline)
+                            .foregroundColor(Color.text_700)
+                        
                         Text("Sign in")
                             .font(.subheadline)
-                            .foregroundColor(.blue)
                     }
                 }
-                .padding(.top, 20)
+                .padding(.top, 80)
             }
         }
     }

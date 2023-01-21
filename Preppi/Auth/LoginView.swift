@@ -95,27 +95,30 @@ struct LoginView: View {
                 }
                 */
                  
-                NavigationLink(destination: ContentView()) {
+                NavigationLink {
+                    ContentView()
+                        .navigationBarHidden(true)
+                } label: {
                     SignInWithAppleButton()
                         .frame(width: 250, height: 50)
                         .cornerRadius(8)
                         .foregroundColor(.black)
                 }
 
-                Spacer()
-                HStack {
-                    Text("Don't have account yet? ")
-                        .font(.subheadline)
-
-                    Button(action: {
-                        // handle sign in page navigation
-                    }) {
+                NavigationLink {
+                    SignupView()
+                        .navigationBarHidden(true)
+                } label: {
+                    HStack{
+                        Text("Already have an account?")
+                            .font(.subheadline)
+                            .foregroundColor(Color.text_700)
+                        
                         Text("Sign up")
                             .font(.subheadline)
-                            .foregroundColor(.blue)
                     }
                 }
-                .padding(.top, 20)
+                .padding(.top, 80)
             }
         }
         .navigationBarHidden(true)
