@@ -117,10 +117,10 @@
 		7FB5E4B7297C19DB00A2482B /* Auth */ = {
 			isa = PBXGroup;
 			children = (
+				7FD872D42981C72F00A3A33C /* AuthViewModel.swift */,
 				7FB5E4AF297BF32500A2482B /* SignupView.swift */,
 				7FB5E4B5297C18AD00A2482B /* LoginView.swift */,
 				7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */,
-				7FD872D42981C72F00A3A33C /* AuthViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";

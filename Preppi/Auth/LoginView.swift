@@ -12,6 +12,7 @@ struct LoginView: View {
     @State private var name: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
+    @EnvironmentObject var viewModel: AuthViewModel
 
     var body: some View {
         NavigationView {
@@ -72,7 +73,7 @@ struct LoginView: View {
                     
                     //Login - Log in button
                     Button{
-                        login()
+                        viewModel.login(withEmail: email, password: password)
                     } label: {
                         HStack {
                             Text("Log in")
@@ -130,15 +131,6 @@ struct LoginView: View {
         }
         .navigationBarHidden(true)
     }
-    
-    func login() {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            if error != nil {
-                print(error!.localizedDescription)
-            }
-        }
-    }
-    
 }
 
 struct SigninView_Previews: PreviewProvider {

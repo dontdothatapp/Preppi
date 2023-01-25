@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
     @State private var pageIndex = 0
     private let pages: [Page] = Page.samplePages
     private let dotAppearance = UIPageControl.appearance()
@@ -16,15 +17,15 @@ struct ContentView: View {
     @State private var userIsLoggedIn = false
     
     var body: some View {
-        if userIsLoggedIn {
-            //open the main screen
-            HomeView()
+        if viewModel.userSession == nil {
+            //open the onboarding
+            unloginView
         } else {
-            content
+            HomeView()
         }
     }
     
-    var content: some View {
+    var unloginView: some View {
         NavigationView {
             ZStack {
                 

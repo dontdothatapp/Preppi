@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @EnvironmentObject var viewModel: AuthViewModel
+    
     var body: some View {
         Button {
-            //
+            viewModel.signOut()
         } label: {
             HStack {
                 Text("Log out")
