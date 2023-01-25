@@ -28,6 +28,7 @@
 		7FB5E4CF297C472100A2482B /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7FB5E4CE297C472100A2482B /* FirebaseFirestoreSwift */; };
 		7FB5E4D1297C472100A2482B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7FB5E4D0297C472100A2482B /* FirebaseStorage */; };
 		7FB5E4D32981BEDF00A2482B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4D22981BEDF00A2482B /* SettingsView.swift */; };
+		7FD872D52981C72F00A3A33C /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD872D42981C72F00A3A33C /* AuthViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		7FB5E4C5297C340D00A2482B /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		7FB5E4C7297C456700A2482B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		7FB5E4D22981BEDF00A2482B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		7FD872D42981C72F00A3A33C /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				7FB5E4AF297BF32500A2482B /* SignupView.swift */,
 				7FB5E4B5297C18AD00A2482B /* LoginView.swift */,
 				7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */,
+				7FD872D42981C72F00A3A33C /* AuthViewModel.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				7FB5E4B6297C18AD00A2482B /* LoginView.swift in Sources */,
 				7FB5E4BD297C2CA900A2482B /* HomeView.swift in Sources */,
 				7F0F85232977411E00C787A7 /* Colors.swift in Sources */,
+				7FD872D52981C72F00A3A33C /* AuthViewModel.swift in Sources */,
 				7FB5E4B4297C098300A2482B /* TestGPT.swift in Sources */,
 				7FB5E4C6297C340D00A2482B /* SavedView.swift in Sources */,
 				7FB5E4D32981BEDF00A2482B /* SettingsView.swift in Sources */,

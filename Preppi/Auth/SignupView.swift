@@ -144,12 +144,23 @@ struct SignupView: View {
     }
     
     
-    func register(withEmail email: String, password: String, name: String) { result, error in
-        if error != nil {
-            print("DEBUG: Registration error: \(error.localizedDescription)")
+    func register(withEmail email: String, password: String, name: String) {
+        Auth.auth().createUser(withEmail: email, password: password) { result, error in
+            if error != nil {
+                print("DEBUG: Registration error: \(error!.localizedDescription)")
+                return
+            }
+            
+            let data = ["email": email,
+                        "name": name, "uid": user.uid]
+            
+            Firestore.firestore().collection("users")
+                .document()
+            
         }
-        
     }
+    
+    
     /* func register() {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if error != nil {
