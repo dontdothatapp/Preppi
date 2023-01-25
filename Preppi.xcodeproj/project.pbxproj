@@ -27,6 +27,7 @@
 		7FB5E4CD297C472100A2482B /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7FB5E4CC297C472100A2482B /* FirebaseFirestore */; };
 		7FB5E4CF297C472100A2482B /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7FB5E4CE297C472100A2482B /* FirebaseFirestoreSwift */; };
 		7FB5E4D1297C472100A2482B /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 7FB5E4D0297C472100A2482B /* FirebaseStorage */; };
+		7FB5E4D32981BEDF00A2482B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4D22981BEDF00A2482B /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		7FB5E4C1297C33E900A2482B /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		7FB5E4C5297C340D00A2482B /* SavedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedView.swift; sourceTree = "<group>"; };
 		7FB5E4C7297C456700A2482B /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		7FB5E4D22981BEDF00A2482B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				7F6F76CB2975E68D00FF7871 /* ContentView.swift */,
 				7FB5E4C1297C33E900A2482B /* AnalyticsView.swift */,
 				7FB5E4C5297C340D00A2482B /* SavedView.swift */,
+				7FB5E4D22981BEDF00A2482B /* SettingsView.swift */,
 				7FB5E4C0297C329900A2482B /* Home */,
 				7FB5E4B9297C1D9400A2482B /* Onboarding */,
 				7FB5E4B7297C19DB00A2482B /* Auth */,
@@ -232,6 +235,7 @@
 				7F0F85232977411E00C787A7 /* Colors.swift in Sources */,
 				7FB5E4B4297C098300A2482B /* TestGPT.swift in Sources */,
 				7FB5E4C6297C340D00A2482B /* SavedView.swift in Sources */,
+				7FB5E4D32981BEDF00A2482B /* SettingsView.swift in Sources */,
 				7F6F76CA2975E68D00FF7871 /* PreppiApp.swift in Sources */,
 				7F6F76DA2975F09E00FF7871 /* OnboardingPageView.swift in Sources */,
 				7F6F76D82975EF1900FF7871 /* OnboardingPageModel.swift in Sources */,

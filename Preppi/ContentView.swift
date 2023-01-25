@@ -6,13 +6,25 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct ContentView: View {
     @State private var pageIndex = 0
     private let pages: [Page] = Page.samplePages
     private let dotAppearance = UIPageControl.appearance()
     
+    @State private var userIsLoggedIn = false
+    
     var body: some View {
+        if userIsLoggedIn {
+            //open the main screen
+            HomeView()
+        } else {
+            content
+        }
+    }
+    
+    var content: some View {
         NavigationView {
             ZStack {
                 
@@ -102,6 +114,13 @@ struct ContentView: View {
                     dotAppearance.currentPageIndicatorTintColor = UIColor(Color.primary_900)
                     dotAppearance.pageIndicatorTintColor = UIColor(Color.text_300)
             }
+            }
+        }
+        .onAppear{
+            Auth.auth().addStateDidChangeListener {  auth, user in
+                if user != nil {
+                    userIsLoggedIn.toggle()
+                }
             }
         }
     }

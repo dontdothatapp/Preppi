@@ -83,7 +83,9 @@ struct SignupView: View {
                     
                     //Create account button - Sign up
                     Button {
-                        register()
+                        register(withEmail: email,
+                                 password: password,
+                                 name: name)
                     } label: {
                         HStack {
                             Text("Create account")
@@ -141,13 +143,20 @@ struct SignupView: View {
         }
     }
     
-    func register() {
+    
+    func register(withEmail email: String, password: String, name: String) { result, error in
+        if error != nil {
+            print("DEBUG: Registration error: \(error.localizedDescription)")
+        }
+        
+    }
+    /* func register() {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if error != nil {
                 print(error!.localizedDescription)
             }
         }
-    }
+    } */
 }
 
 
