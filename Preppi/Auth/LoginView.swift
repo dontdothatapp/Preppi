@@ -13,7 +13,7 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @EnvironmentObject var viewModel: AuthViewModel
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -39,7 +39,7 @@ struct LoginView: View {
                         Spacer()
                     }
                     .padding(.bottom, 24)
-
+                    
                     VStack(alignment: .leading) {
                         
                         TextField("Email", text: $email)
@@ -53,7 +53,7 @@ struct LoginView: View {
                             .frame(width: 350, height: 1)
                             .foregroundColor(.text_300)
                             .padding(.bottom, 20)
-
+                        
                         SecureField("Password", text: $password)
                             .foregroundColor(.text_900)
                             .textFieldStyle(.plain)
@@ -65,9 +65,9 @@ struct LoginView: View {
                             .frame(width: 350, height: 1)
                             .foregroundColor(.text_300)
                         
-                        }
-                        .padding(.horizontal, 20)
-
+                    }
+                    .padding(.horizontal, 20)
+                    
                     Spacer()
                     
                     
@@ -83,25 +83,25 @@ struct LoginView: View {
                         .background(
                             Color.primary_900
                                 .cornerRadius(8)
-                            )
+                        )
                     }
-
+                    
                     //Sign in with Apple button
                     Rectangle()
                         .frame(height: 1)
                         .foregroundColor(.white.opacity(0.1))
                     
                     /*
-                    Button {
-                        print("Sign in with Apple")
-                    } label: {
-                        SignInWithAppleButton()
-                            .frame(width: 250, height: 50)
-                            .cornerRadius(8)
-                            .foregroundColor(.black)
-                    }
-                    */
-                     
+                     Button {
+                     print("Sign in with Apple")
+                     } label: {
+                     SignInWithAppleButton()
+                     .frame(width: 250, height: 50)
+                     .cornerRadius(8)
+                     .foregroundColor(.black)
+                     }
+                     */
+                    
                     NavigationLink {
                         ContentView()
                             .navigationBarHidden(true)
@@ -111,7 +111,7 @@ struct LoginView: View {
                             .cornerRadius(8)
                             .foregroundColor(.black)
                     }
-
+                    
                     NavigationLink {
                         SignupView()
                             .navigationBarHidden(true)

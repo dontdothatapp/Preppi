@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 
 struct ContentView: View {
+    @State var selectedTab: Tabs = .home
     @EnvironmentObject var viewModel: AuthViewModel
     @State private var pageIndex = 0
     private let pages: [Page] = Page.samplePages
@@ -22,6 +23,7 @@ struct ContentView: View {
             unloginView
         } else {
             HomeView()
+            CustomTabBar(selectedTab: $selectedTab)
         }
     }
     
