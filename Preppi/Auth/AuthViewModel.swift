@@ -13,7 +13,7 @@ class AuthViewModel: ObservableObject {
     
     init() {
         self.userSession = Auth.auth().currentUser
-        print("DEBUG: User session is: \(self.userSession?.uid)")
+        print("DEBUG: User session is: \(String(describing: self.userSession?.uid))")
     }
     
     func login(withEmail email: String, password: String) {
@@ -56,6 +56,6 @@ class AuthViewModel: ObservableObject {
     func signOut() {
         userSession = nil
         try? Auth.auth().signOut()
-        print("DEBUG: User session: \(self.userSession)")
+        print("DEBUG: User session: \(String(describing: self.userSession))")
     }
 }

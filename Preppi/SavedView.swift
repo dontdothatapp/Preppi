@@ -9,7 +9,18 @@ import SwiftUI
 
 struct SavedView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.additional_50
+                .ignoresSafeArea(.all)
+            
+            Text("Saved screen")
+                .foregroundColor(.text_900)
+                .font(.system(size: 40, design: .rounded))
+                .fontWeight(.medium)
+                .kerning(3.0)
+                .multilineTextAlignment(.leading)
+                .padding(.leading, 20)
+        }
     }
 }
 

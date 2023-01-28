@@ -21,10 +21,11 @@ struct TabBarButton: View {
                 .frame(width: geo.size.width/2, height: 2)
                 .padding(.leading, geo.size.width/4)
                 
-                Image(systemName: imageName)
+                Image(systemName: imageName + ".fill")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 34, height: 22)
+                    .scaleEffect(1.15)
                 .foregroundColor(Color.primary_700)
                 .frame(width: geo.size.width, height: geo.size.height)
                 
@@ -43,6 +44,6 @@ struct TabBarButton: View {
 
 struct TabBarButton_Previews: PreviewProvider {
     static var previews: some View {
-        TabBarButton(imageName: "bookmark.fill", isActive: true)
+        TabBarButton(imageName: "bookmark.fill", isActive: false)
     }
 }

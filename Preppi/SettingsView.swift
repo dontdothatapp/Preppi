@@ -11,20 +11,36 @@ struct SettingsView: View {
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
-        Button {
-            viewModel.signOut()
-        } label: {
-            HStack {
-                Text("Log out")
+        ZStack{
+            Color.additional_50
+                .ignoresSafeArea(.all)
+            
+            VStack{
+                Text("Saved screen")
+                    .foregroundColor(.text_900)
+                    .font(.system(size: 40, design: .rounded))
+                    .fontWeight(.medium)
+                    .kerning(3.0)
+                    .multilineTextAlignment(.leading)
+                    .padding(.leading, 20)
+                    .padding(.bottom, 100)
+                
+                Button {
+                    viewModel.signOut()
+                } label: {
+                    HStack {
+                        Text("Log out")
+                    }
+                    .foregroundColor(Color.text_50)
+                    .frame(width: 350, height: 50)
+                    .background(
+                        Color.primary_900
+                            .cornerRadius(8)
+                    )
+                }
             }
-            .foregroundColor(Color.text_50)
-            .frame(width: 350, height: 50)
-            .background(
-                Color.primary_900
-                    .cornerRadius(8)
-                )
         }
-
+        
     }
 }
 
