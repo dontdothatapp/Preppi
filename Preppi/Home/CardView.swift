@@ -38,15 +38,29 @@ struct CardView: View {
                 //Save & Mastered buttons
                 HStack{
                     Spacer()
-                    HStack{
-                        Image(systemName: "bookmark")
-                        Text("Save")
+                    
+                    //Save button
+                    Button {
+                        //
+                    } label: {
+                        HStack{
+                            Image(systemName: "bookmark")
+                            Text("Save")
+                            
+                        } .foregroundColor(.text_900)
                     }
                     Spacer()
-                    HStack{
-                        Image(systemName: "wand.and.stars")
-                        Text("Mastered")
+                    
+                    //Mastered button
+                    Button {
+                        //
+                    } label: {
+                        HStack{
+                            Image(systemName: "wand.and.stars")
+                            Text("Mastered")
+                        } .foregroundColor(.text_900)
                     }
+                    
                     Spacer()
                 }
                 .padding(.bottom, 30)
