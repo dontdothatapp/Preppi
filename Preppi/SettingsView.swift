@@ -16,7 +16,7 @@ struct SettingsView: View {
                 .ignoresSafeArea(.all)
             
             VStack{
-                Text("Saved screen")
+                Text("Settings")
                     .foregroundColor(.text_900)
                     .font(.system(size: 40, design: .rounded))
                     .fontWeight(.medium)
