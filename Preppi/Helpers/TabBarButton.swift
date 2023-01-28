@@ -25,8 +25,7 @@ struct TabBarButton: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 34, height: 22)
-                    .scaleEffect(1.15)
-                .foregroundColor(Color.primary_700)
+                .foregroundColor(Color.primary_900)
                 .frame(width: geo.size.width, height: geo.size.height)
                 
             } else {
