@@ -17,7 +17,7 @@ extension Color{
     public static let text_50: Color = Color(UIColor(red: 235/255, green: 235/255, blue: 235/255, alpha: 1.0))
     
     //primary colors
-    public static let primary_900: Color = Color(UIColor(red: 106/255, green: 42/255, blue: 255/255, alpha: 1.0))
+    public static let primary_900: Color = Color(UIColor(red: 157/255, green: 115/255, blue: 255/255, alpha: 1.0))
     public static let primary_700: Color = Color(UIColor(red: 130/255, green: 77/255, blue: 255/255, alpha: 1.0))
     public static let primary_500: Color = Color(UIColor(red: 157/255, green: 115/255, blue: 255/255, alpha: 1.0))
     public static let primary_300: Color = Color(UIColor(red: 191/255, green: 170/255, blue: 242/255, alpha: 1.0))
@@ -26,7 +26,7 @@ extension Color{
     //secondary colors
     public static let secondary_900: Color = Color(UIColor(red: 245/255, green: 29/255, blue: 44/255, alpha: 1.0))
     public static let secondary_700: Color = Color(UIColor(red: 242/255, green: 73/255, blue: 84/255, alpha: 1.0))
-    public static let secondary_500: Color = Color(UIColor(red: 235/255, green: 129/255, blue: 136/255, alpha: 1.0))
+    public static let secondary_500: Color = Color(UIColor(red: 255/255, green: 140/255, blue: 4/255, alpha: 1.0))
     public static let secondary_300: Color = Color(UIColor(red: 242/255, green: 194/255, blue: 197/255, alpha: 1.0))
     public static let secondary_50: Color = Color(UIColor(red: 247/255, green: 228/255, blue: 229/255, alpha: 1.0))
     

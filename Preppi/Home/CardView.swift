@@ -9,35 +9,44 @@ import SwiftUI
 
 struct CardView: View {
     var body: some View {
-        VStack {
+        
+        ZStack {
+            Rectangle()
+                .frame(minWidth: 320, idealWidth: 340, maxWidth: 340, minHeight: 310, idealHeight: 310, maxHeight: 350, alignment: .leading)
+                .foregroundColor(.white)
+                .cornerRadius(30)
+                .padding(.top, 24)
+                .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 0, y: 4)
+            
             VStack {
                 Spacer()
                 
                 //Tag
                 HStack {
                     Text("behavioral")
-                        .padding(.leading, 15)
-                        .padding(.top, 40)
+                    //.padding(.leading, 40)
+                    //.padding(.top, 40)
+                        .padding(.bottom, 10)
                         .underline()
                         .foregroundColor(Color.secondary_500)
                     Spacer()
                 }
+                .padding(.leading, 20)
                 
                 //Main text
                 HStack {
                     Text("Tell me about a time you had to make a decision to make short-term sacrifices for long-term gains.")
                         .font(.title)
                         .foregroundColor(.text_900)
-                        .padding(15)
-                        .padding(.bottom, 30)
                         .multilineTextAlignment(.leading)
                     Spacer()
                 }
+                .padding(.leading, 20)
+                //.offset(y: 20)
                 Spacer()
                 
                 //Save & Mastered buttons
                 HStack{
-                    Spacer()
                     
                     //Save button
                     Button {
@@ -47,9 +56,8 @@ struct CardView: View {
                             Image(systemName: "bookmark")
                             Text("Save")
                             
-                        } .foregroundColor(.text_900)
+                        } .foregroundColor(.text_900) .padding(.leading, 20) .padding(.trailing, 35)
                     }
-                    Spacer()
                     
                     //Mastered button
                     Button {
@@ -63,16 +71,12 @@ struct CardView: View {
                     
                     Spacer()
                 }
-                .padding(.bottom, 30)
-            }
-            .frame(minWidth: 320, idealWidth: 340, maxWidth: 340, minHeight: 350, idealHeight: 350, maxHeight: 400, alignment: .leading)
-            .background{
-                Color.primary_50
-            }
-            .cornerRadius(30)
+                .padding(.bottom, 20)
+            } .frame(minWidth: 320, idealWidth: 340, maxWidth: 340, minHeight: 310, idealHeight: 310, maxHeight: 350, alignment: .leading)
         }
     }
 }
+
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {

@@ -39,11 +39,12 @@ struct HomeView: View {
                         Image(systemName: "arrow.triangle.2.circlepath")
                         Text("New question")
                     }
-                    .foregroundColor(Color.text_50)
+                    .foregroundColor(Color.text_900)
                     .frame(width: 350, height: 50)
                     .background(
-                        Color.primary_900
-                            .cornerRadius(8)
+                        Color.white
+                            .cornerRadius(30)
+                            .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 0, y: 4)
                     )
                 }
                 Spacer()
