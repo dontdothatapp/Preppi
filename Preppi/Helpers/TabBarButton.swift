@@ -17,14 +17,14 @@ struct TabBarButton: View {
             if isActive {
             Rectangle()
                 .cornerRadius(4)
-                .foregroundColor(Color.primary_700)
+                .foregroundColor(Color.primary_900)
                 .frame(width: geo.size.width/2, height: 2)
                 .padding(.leading, geo.size.width/4)
                 
                 Image(systemName: imageName + ".fill")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 34, height: 22)
+                    .frame(width: 34, height: 20)
                 .foregroundColor(Color.primary_900)
                 .frame(width: geo.size.width, height: geo.size.height)
                 
@@ -32,7 +32,7 @@ struct TabBarButton: View {
             Image(systemName: imageName)
                 .resizable()
                 .scaledToFit()
-                .frame(width: 34, height: 22)
+                .frame(width: 34, height: 20)
             .foregroundColor(Color.text_500)
             .frame(width: geo.size.width, height: geo.size.height)
                 

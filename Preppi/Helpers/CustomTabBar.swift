@@ -26,7 +26,7 @@ struct CustomTabBar: View {
                 Button {
                     selectedTab = .stats
                 } label: {
-                    TabBarButton(imageName: "chart.bar",
+                    TabBarButton(imageName: "chart.pie",
                                  isActive: selectedTab == .stats)
                 }
                 
@@ -46,7 +46,7 @@ struct CustomTabBar: View {
                 }
                 
             }
-            .frame(height: 64)
+            .frame(height: 54)
             .background(Color.additional_50)
         }
 }

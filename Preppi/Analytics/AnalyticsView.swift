@@ -23,15 +23,15 @@ struct AnalyticsView: View {
                     .ignoresSafeArea(.all)
                 
                 //Content
-                ScrollView {
+                ScrollView(.vertical, showsIndicators: false) {
                     VStack {
                         ZStack {
                             Rectangle()
                                 .frame(width: 350, height: 210)
-                                .foregroundColor(.white)
+                                .foregroundColor(.additional_50)
                                 .cornerRadius(30)
                                 .padding(.top, 24)
-                                .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 0, y: 4)
+                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
                             
                             VStack{
                                 
@@ -80,14 +80,14 @@ struct AnalyticsView: View {
                             }
                         }
                         
-                        //behavioral blcok
+                        //behavioral block
                         ZStack {
                             Rectangle()
                                 .frame(width: 350, height: 90)
-                                .foregroundColor(.white)
+                                .foregroundColor(.additional_50)
                                 .cornerRadius(30)
                                 .padding(.top, 24)
-                                .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 0, y: 4)
+                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
                             
                             VStack {
                                 HStack{
@@ -119,7 +119,7 @@ struct AnalyticsView: View {
                         ZStack {
                             Rectangle()
                                 .frame(width: 350, height: 90)
-                                .foregroundColor(.white)
+                                .foregroundColor(.additional_50)
                                 .cornerRadius(30)
                                 .padding(.top, 24)
                                 .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
@@ -154,9 +154,10 @@ struct AnalyticsView: View {
                         ZStack {
                             Rectangle()
                                 .frame(width: 350, height: 90)
-                                .foregroundColor(.white)
+                                .foregroundColor(.additional_50)
                                 .cornerRadius(30)
                                 .padding(.top, 24)
+                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
                             
                             VStack {
                                 HStack{
@@ -188,9 +189,10 @@ struct AnalyticsView: View {
                         ZStack {
                             Rectangle()
                                 .frame(width: 350, height: 90)
-                                .foregroundColor(.white)
+                                .foregroundColor(.additional_50)
                                 .cornerRadius(30)
                                 .padding(.top, 24)
+                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
                             
                             VStack {
                                 HStack{
@@ -222,9 +224,10 @@ struct AnalyticsView: View {
                         ZStack {
                             Rectangle()
                                 .frame(width: 350, height: 90)
-                                .foregroundColor(.white)
+                                .foregroundColor(.additional_50)
                                 .cornerRadius(30)
                                 .padding(.top, 24)
+                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
                             
                             VStack {
                                 HStack{

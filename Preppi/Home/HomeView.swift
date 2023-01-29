@@ -24,29 +24,30 @@ struct HomeView: View {
                             .padding(.trailing, 27)
                             .foregroundColor(Color.text_900)
                     }
-                }.padding(.top, 20)
-                Spacer()
+                }.padding(.top, 60).padding(.bottom, 10)
+                //Spacer()
                 
                 CardView()
                 Spacer()
                 
                 //New Question button
-                NavigationLink {
-                    ContentView()
-                        .navigationBarHidden(true)
+                Button {
+                    //
                 } label: {
                     HStack {
                         Image(systemName: "arrow.triangle.2.circlepath")
+                            .foregroundColor(.primary_900)
                         Text("New question")
                     }
                     .foregroundColor(Color.text_900)
                     .frame(width: 350, height: 50)
                     .background(
-                        Color.white
-                            .cornerRadius(30)
-                            .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 0, y: 4)
+                        Color.additional_50
+                            .cornerRadius(16)
+                            .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
                     )
                 }
+                
                 Spacer()
                 
             }

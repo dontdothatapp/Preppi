@@ -13,10 +13,10 @@ struct CardView: View {
         ZStack {
             Rectangle()
                 .frame(minWidth: 320, idealWidth: 340, maxWidth: 340, minHeight: 310, idealHeight: 310, maxHeight: 350, alignment: .leading)
-                .foregroundColor(.white)
-                .cornerRadius(30)
+                .foregroundColor(.additional_50)
+                .cornerRadius(16)
                 .padding(.top, 24)
-                .shadow(color: Color.gray.opacity(0.1), radius: 10, x: 0, y: 4)
+                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
             
             VStack {
                 Spacer()
@@ -28,7 +28,7 @@ struct CardView: View {
                     //.padding(.top, 40)
                         .padding(.bottom, 10)
                         .underline()
-                        .foregroundColor(Color.secondary_500)
+                        .foregroundColor(Color.text_500)
                     Spacer()
                 }
                 .padding(.leading, 20)
@@ -54,9 +54,11 @@ struct CardView: View {
                     } label: {
                         HStack{
                             Image(systemName: "bookmark")
+                                .foregroundColor(.primary_900)
                             Text("Save")
+                                .foregroundColor(.text_900)
                             
-                        } .foregroundColor(.text_900) .padding(.leading, 20) .padding(.trailing, 35)
+                        }  .padding(.leading, 20) .padding(.trailing, 35)
                     }
                     
                     //Mastered button
@@ -65,8 +67,10 @@ struct CardView: View {
                     } label: {
                         HStack{
                             Image(systemName: "wand.and.stars")
+                                .foregroundColor(.primary_900)
                             Text("Mastered")
-                        } .foregroundColor(.text_900)
+                                .foregroundColor(.text_900)
+                        }
                     }
                     
                     Spacer()

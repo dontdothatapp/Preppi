@@ -27,7 +27,7 @@ extension Color{
     public static let secondary_900: Color = Color(UIColor(red: 245/255, green: 29/255, blue: 44/255, alpha: 1.0))
     public static let secondary_700: Color = Color(UIColor(red: 242/255, green: 73/255, blue: 84/255, alpha: 1.0))
     public static let secondary_500: Color = Color(UIColor(red: 255/255, green: 140/255, blue: 4/255, alpha: 1.0))
-    public static let secondary_300: Color = Color(UIColor(red: 242/255, green: 194/255, blue: 197/255, alpha: 1.0))
+    public static let secondary_300: Color = Color(UIColor(red: 255/255, green: 140/255, blue: 4/255, alpha: 0.4))
     public static let secondary_50: Color = Color(UIColor(red: 247/255, green: 228/255, blue: 229/255, alpha: 1.0))
     
     //Additional
