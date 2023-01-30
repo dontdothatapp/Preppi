@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7F0F85232977411E00C787A7 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F85222977411E00C787A7 /* Colors.swift */; };
+		7F250E8A2988547000D84AD0 /* TempView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F250E892988547000D84AD0 /* TempView.swift */; };
+		7F250E8C298854A000D84AD0 /* TempModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F250E8B298854A000D84AD0 /* TempModel.swift */; };
+		7F250E8F2988556C00D84AD0 /* TempStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F250E8E2988556C00D84AD0 /* TempStruct.swift */; };
+		7F250E9629885F7600D84AD0 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F250E9529885F7600D84AD0 /* UserService.swift */; };
+		7F250E982988614000D84AD0 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F250E972988614000D84AD0 /* User.swift */; };
 		7F68B0D12986CD6E00F1BDBD /* Chips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68B0D02986CD6E00F1BDBD /* Chips.swift */; };
 		7F68B0D32986D24800F1BDBD /* ChipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68B0D22986D24800F1BDBD /* ChipsView.swift */; };
 		7F68B0D52986D61B00F1BDBD /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F68B0D42986D61B00F1BDBD /* Question.swift */; };
@@ -38,6 +43,11 @@
 
 /* Begin PBXFileReference section */
 		7F0F85222977411E00C787A7 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		7F250E892988547000D84AD0 /* TempView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempView.swift; sourceTree = "<group>"; };
+		7F250E8B298854A000D84AD0 /* TempModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempModel.swift; sourceTree = "<group>"; };
+		7F250E8E2988556C00D84AD0 /* TempStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempStruct.swift; sourceTree = "<group>"; };
+		7F250E9529885F7600D84AD0 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		7F250E972988614000D84AD0 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7F68B0D02986CD6E00F1BDBD /* Chips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chips.swift; sourceTree = "<group>"; };
 		7F68B0D22986D24800F1BDBD /* ChipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipsView.swift; sourceTree = "<group>"; };
 		7F68B0D42986D61B00F1BDBD /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -79,6 +89,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F250E8D2988554E00D84AD0 /* TempFolder */ = {
+			isa = PBXGroup;
+			children = (
+				7F250E892988547000D84AD0 /* TempView.swift */,
+				7F250E8B298854A000D84AD0 /* TempModel.swift */,
+				7F250E8E2988556C00D84AD0 /* TempStruct.swift */,
+			);
+			path = TempFolder;
+			sourceTree = "<group>";
+		};
+		7F250E902988594700D84AD0 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7FB5E4D22981BEDF00A2482B /* SettingsView.swift */,
+				7F250E9529885F7600D84AD0 /* UserService.swift */,
+				7F250E972988614000D84AD0 /* User.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		7F68B0CF2986CACC00F1BDBD /* Saved */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,7 +142,7 @@
 				7F6F76C92975E68D00FF7871 /* PreppiApp.swift */,
 				7F6F76CB2975E68D00FF7871 /* ContentView.swift */,
 				7F68B0CF2986CACC00F1BDBD /* Saved */,
-				7FB5E4D22981BEDF00A2482B /* SettingsView.swift */,
+				7F250E902988594700D84AD0 /* Settings */,
 				7F9BCE572985D4040073BE23 /* Analytics */,
 				7FB5E4C0297C329900A2482B /* Home */,
 				7FB5E4B9297C1D9400A2482B /* Onboarding */,
@@ -160,6 +190,7 @@
 				7F0F85222977411E00C787A7 /* Colors.swift */,
 				7FD2A28F2983128C00016281 /* CustomTabBar.swift */,
 				7FD2A291298320A600016281 /* TabBarButton.swift */,
+				7F250E8D2988554E00D84AD0 /* TempFolder */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -262,23 +293,28 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F250E8A2988547000D84AD0 /* TempView.swift in Sources */,
 				7FD2A292298320A600016281 /* TabBarButton.swift in Sources */,
 				7F68B0D12986CD6E00F1BDBD /* Chips.swift in Sources */,
+				7F250E982988614000D84AD0 /* User.swift in Sources */,
 				7FB5E4B0297BF32500A2482B /* SignupView.swift in Sources */,
 				7F6F76CC2975E68D00FF7871 /* ContentView.swift in Sources */,
 				7FB5E4B6297C18AD00A2482B /* LoginView.swift in Sources */,
 				7F68B0D52986D61B00F1BDBD /* Question.swift in Sources */,
 				7FD2A2902983128C00016281 /* CustomTabBar.swift in Sources */,
+				7F250E8F2988556C00D84AD0 /* TempStruct.swift in Sources */,
 				7FB5E4BD297C2CA900A2482B /* HomeView.swift in Sources */,
 				7F9BCE562985D3EB0073BE23 /* ProgressBarView.swift in Sources */,
 				7F0F85232977411E00C787A7 /* Colors.swift in Sources */,
 				7FD872D52981C72F00A3A33C /* AuthViewModel.swift in Sources */,
 				7F68B0D32986D24800F1BDBD /* ChipsView.swift in Sources */,
+				7F250E8C298854A000D84AD0 /* TempModel.swift in Sources */,
 				7FB5E4C6297C340D00A2482B /* SavedView.swift in Sources */,
 				7FB5E4D32981BEDF00A2482B /* SettingsView.swift in Sources */,
 				7F6F76CA2975E68D00FF7871 /* PreppiApp.swift in Sources */,
 				7F6F76DA2975F09E00FF7871 /* OnboardingPageView.swift in Sources */,
 				7F6F76D82975EF1900FF7871 /* OnboardingPageModel.swift in Sources */,
+				7F250E9629885F7600D84AD0 /* UserService.swift in Sources */,
 				7FB5E4C2297C33E900A2482B /* AnalyticsView.swift in Sources */,
 				7FB5E4BF297C2EF800A2482B /* CardView.swift in Sources */,
 				7FB5E4B2297C022100A2482B /* SignInWithAppleButton.swift in Sources */,
