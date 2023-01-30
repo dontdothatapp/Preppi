@@ -58,6 +58,7 @@ class AuthViewModel: ObservableObject {
     
     func signOut() {
         userSession = nil
+        currentUser = nil
         try? Auth.auth().signOut()
         print("DEBUG: User session: \(String(describing: self.userSession))")
     }
