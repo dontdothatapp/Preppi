@@ -6,8 +6,12 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct SavedView: View {
+    
+    @ObservedObject var questionModel = QuestionModel()
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -22,15 +26,10 @@ struct SavedView: View {
                     ScrollView(.vertical, showsIndicators: false){
                         
                         VStack{
-                            Question(category: "product strategy", question: "Amazon is launching free storage for photos. If you're a Google PM for Photos, what would you do?")
-                            Question(category: "analytical", question: "What metrics would you focus on as the PM for YouTube?")
-                            Question(category: "product strategy", question: "How would you monetize Facebook Dating?")
-                            Question(category: "product design", question: "What's your favorite product and why?")
-                            Question(category: "behavioral", question: "Tell me about a time you had a conflict with someone. How did you resolve it and what did you learn?")
-                            Question(category: "product strategy", question: "Amazon is launching free storage for photos. If you're a Google PM for Photos, what would you do?")
-                            Question(category: "analytical", question: "What metrics would you focus on as the PM for YouTube?")
-                            Question(category: "product strategy", question: "How would you monetize Facebook Dating?")
-                            Question(category: "Execution", question: "You are a PM for Instagram Stories. You are considering to increase the expiration time of Stories. What metrics would you look at to make this decision?")
+                            
+                            ForEach(questionModel.questionList) { question in
+                                QuestionView(category: question.category, question: question.question)
+                            }
                         }
                         
                     }
@@ -41,6 +40,10 @@ struct SavedView: View {
                 
             } .navigationTitle("Saved")
         }
+    }
+    
+    init() {
+        questionModel.getData()
     }
 }
 

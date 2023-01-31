@@ -49,6 +49,20 @@ struct SettingsView: View {
                     }
                     
                     Spacer()
+                } else {
+                    Button {
+                        viewModel.signOut()
+                    } label: {
+                        HStack {
+                            Text("Log out")
+                        }
+                        .foregroundColor(Color.text_50)
+                        .frame(width: 350, height: 50)
+                        .background(
+                            Color.primary_900
+                                .cornerRadius(8)
+                        )
+                    }
                 }
             }
         }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Question: View {
+struct QuestionView: View {
     
     @State var category: String
     @State var question: String
@@ -45,6 +45,6 @@ struct Question: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        Question(category: "product strategy", question: "Amazon is launching free storage for photos. If you're a Google PM for Photos, what would you do?")
+        QuestionView(category: "product strategy", question: "Amazon is launching free storage for photos. If you're a Google PM for Photos, what would you do?")
     }
 }

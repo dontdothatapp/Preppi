@@ -29,6 +29,7 @@ class AuthViewModel: ObservableObject {
             guard let user = result?.user else { return }
             self.userSession = user
             print("DEBUG: Login successful")
+            self.fetchUser()
         }
     }
     
@@ -52,6 +53,7 @@ class AuthViewModel: ObservableObject {
                 .setData(data) { _ in
                     print("DEBUG: Did upload user data")
                 }
+            self.fetchUser()
             
         }
     }
