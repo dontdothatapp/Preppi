@@ -23,13 +23,6 @@ struct Chips: View {
                 .padding(.horizontal)
                 .padding(.vertical, 8)
                 .background(Capsule().stroke(Color.secondary_300,lineWidth: 1))
-            
-//            Label("Start session", systemImage: "play.fill")
-//                .padding(.horizontal)
-//                .padding(.vertical, 10)
-//                .background(Color.primary_900)
-//                .foregroundColor(.white)
-//                .cornerRadius(14)
         }
     }
 }
