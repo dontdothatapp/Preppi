@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    let questionList: [Question]
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -27,7 +30,10 @@ struct HomeView: View {
                 }.padding(.top, 60).padding(.bottom, 10)
                 //Spacer()
                 
-                CardView()
+//                CardView(question: questionList.randomElement()!)
+                if !questionList.isEmpty, let question = questionList.randomElement() {
+                                CardView(question: question)
+                            }
                 Spacer()
                 
                 //New Question button
@@ -59,6 +65,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(questionList: [Question(id: "2", category: "Cate", question: "que"),
+                               Question(id: "55", category: "CAte2", question: "que2")])
     }
 }

@@ -12,9 +12,11 @@ import Firebase
 struct PreppiApp: App {
     
     @StateObject var viewModel = AuthViewModel()
+    @ObservedObject var questionModel = QuestionModel()
     
     init() {
         FirebaseApp.configure()
+        questionModel.getData()
     }
     
     var body: some Scene {

@@ -14,9 +14,12 @@ struct ContentView: View {
     @State private var pageIndex = 0
     private let pages: [Page] = Page.samplePages
     private let dotAppearance = UIPageControl.appearance()
+    @ObservedObject var questionModel: QuestionModel
     
     init() {
         UITabBar.appearance().isHidden = true
+        self.questionModel = QuestionModel()
+        self.questionModel.getData()
     }
     
     @State private var userIsLoggedIn = false
@@ -37,7 +40,7 @@ struct ContentView: View {
                                 Text("Analytics")
                             }
                             .tag(Tabs.stats)
-                        HomeView()
+                        HomeView(questionList: questionModel.questionList)
                             .tabItem {
                                 Text("Home")
                             }
@@ -128,8 +131,6 @@ struct ContentView: View {
             }
         }
     }
-    
-    
     
     
     func incrementPage() {

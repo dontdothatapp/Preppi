@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct CardView: View {
+    
+    //@ObservedObject var questionModel = QuestionModel()
+    
+    let question: Question
+    
     var body: some View {
-        
         ZStack {
             Rectangle()
                 .frame(minWidth: 320, idealWidth: 340, maxWidth: 340, minHeight: 310, idealHeight: 310, maxHeight: 350, alignment: .leading)
@@ -23,7 +27,7 @@ struct CardView: View {
                 
                 //Tag
                 HStack {
-                    Text("behavioral")
+                    Text(question.category)
                     //.padding(.leading, 40)
                     //.padding(.top, 40)
                         .padding(.bottom, 10)
@@ -35,7 +39,7 @@ struct CardView: View {
                 
                 //Main text
                 HStack {
-                    Text("Tell me about a time you had to make a decision to make short-term sacrifices for long-term gains.")
+                    Text(question.question)
                         .font(.title)
                         .foregroundColor(.text_900)
                         .multilineTextAlignment(.leading)
@@ -79,11 +83,16 @@ struct CardView: View {
             } .frame(minWidth: 320, idealWidth: 340, maxWidth: 340, minHeight: 310, idealHeight: 310, maxHeight: 350, alignment: .leading)
         }
     }
+    
+//    init() {
+//        questionModel.getData()
+//    }
+    
 }
 
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView()
+        CardView(question: Question(id: "1", category: "test", question: "Sample question just an exaple for a preview"))
     }
 }
