@@ -10,6 +10,8 @@ import SwiftUI
 struct HomeView: View {
     
     let questionList: [Question]
+    @State private var currentQuestion: Question?
+    @ObservedObject var questionModel = QuestionModel()
     
     var body: some View {
         NavigationView {
@@ -28,18 +30,24 @@ struct HomeView: View {
                             .foregroundColor(Color.text_900)
                     }
                 }.padding(.top, 60).padding(.bottom, 10)
-                //Spacer()
                 
-//                CardView(question: questionList.randomElement()!)
-                if !questionList.isEmpty, let question = questionList.randomElement() {
-                                CardView(question: question)
-                            }
+                //This code checks if currentQuestion is not nil, which is an optional Question value. If it's not nil, it passes question as an argument to the CardView initializer. The code unwraps the optional value of currentQuestion by using if let syntax, which is a type of optional binding. The purpose of this code is to only display the CardView if currentQuestion has a value, avoiding a runtime error.
+                if let question = currentQuestion {
+                    CardView(question: question)
+                } else {
+                    
+                    //Temp solution. Should find a way how to show the random question when the app starts
+                    CardView(question: Question(id: "asd", category: "", question: "Ready to start? Tap on the button below 👇"))
+                }
+                
                 Spacer()
                 
-                //New Question button
-                Button {
-                    //
-                } label: {
+                //New Question button. This code checks if the questionList array is not empty, meaning it has at least one element. If questionList is not empty, the code assigns a randomly selected element of questionList to currentQuestion. The .randomElement() method is called on questionList, which returns an optional value of the random element. If questionList is empty, currentQuestion will not be assigned a value.
+                Button(action: {
+                    if !questionList.isEmpty {
+                        self.currentQuestion = questionList.randomElement()
+                    }
+                }) {
                     HStack {
                         Image(systemName: "arrow.triangle.2.circlepath")
                             .foregroundColor(.primary_900)
@@ -66,6 +74,6 @@ struct HomeView: View {
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
         HomeView(questionList: [Question(id: "2", category: "Cate", question: "que"),
-                               Question(id: "55", category: "CAte2", question: "que2")])
+                                Question(id: "55", category: "CAte2", question: "que2")])
     }
 }

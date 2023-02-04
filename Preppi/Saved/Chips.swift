@@ -22,7 +22,7 @@ struct Chips: View {
             }
                 .padding(.horizontal)
                 .padding(.vertical, 8)
-                .background(Capsule().stroke(Color.secondary_300,lineWidth: 1))
+                .background(Capsule().stroke(Color.text_300,lineWidth: 1))
         }
     }
 }

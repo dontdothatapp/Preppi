@@ -49,16 +49,12 @@ class QuestionModel: ObservableObject {
     func getUniqueCategories() -> [String] {
         let uniqueCategories = Set(questionList.map { $0.category })
         return Array(uniqueCategories)
-      }
+    }
     
-//    func getUniqueCategories(b: Any) {
-//
-//        let b = questionList.self
-//        let a = Array(Set(b.map {_ in Categories(id: b.category)}))
-//
-//
-//        //var uniquechips = Array(Set(QuestionModel().questionList.map {Categories(id: $0.category)}))
-//
-//        return a
-//    }
+    //Not sure if it works, can't find a way how to call it on the HomeScreen
+    func getRandomQuestion() -> Question? {
+        guard !questionList.isEmpty else { return nil }
+        return questionList.randomElement()
+    }
+    
 }
