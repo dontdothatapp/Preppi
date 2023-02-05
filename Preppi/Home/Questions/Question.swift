@@ -11,4 +11,5 @@ struct Question: Identifiable, Hashable {
     var id: String
     var category: String
     var question: String
+    var type: String
 }

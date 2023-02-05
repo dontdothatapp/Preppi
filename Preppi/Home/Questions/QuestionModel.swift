@@ -19,7 +19,7 @@ class QuestionModel: ObservableObject {
         let db = Firestore.firestore()
         
         //Read the documents from a specific path
-        db.collection("questions_product").getDocuments { snapshot, error in
+        db.collection("questions").getDocuments { snapshot, error in
             
             //Check the errors
             if error == nil {
@@ -36,7 +36,8 @@ class QuestionModel: ObservableObject {
                             //Create a Quaetion item for each document returned
                             return Question(id: d.documentID,
                                             category: d["category"] as? String ?? "",
-                                            question: d["question"] as? String ?? "")
+                                            question: d["question"] as? String ?? "",
+                                            type: d["type"] as? String ?? "")
                         }
                     }
                 }
@@ -56,5 +57,7 @@ class QuestionModel: ObservableObject {
         guard !questionList.isEmpty else { return nil }
         return questionList.randomElement()
     }
+    
+    
     
 }

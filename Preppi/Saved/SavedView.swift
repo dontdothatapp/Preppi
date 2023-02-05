@@ -11,6 +11,7 @@ import Firebase
 struct SavedView: View {
     
     @ObservedObject var questionModel = QuestionModel()
+    @State private var questions = [Question]()
     
     var body: some View {
         NavigationView {
@@ -27,7 +28,7 @@ struct SavedView: View {
                         
                         VStack{
                             
-                            ForEach(questionModel.questionList) { question in
+                            ForEach(questions) { question in
                                 QuestionView(category: question.category, question: question.question)
                             }
                         }
@@ -36,6 +37,7 @@ struct SavedView: View {
                     
                     Spacer()
                 }
+                .onAppear(perform: fetchSavedQuestions)
                 
                 
             } .navigationTitle("Saved")
@@ -45,10 +47,19 @@ struct SavedView: View {
     init() {
         questionModel.getData()
     }
+    
+    func fetchSavedQuestions() {
+        getSavedQuestions { (questions) in
+        self.questions = questions
+      }
+    }
+    
 }
 
 struct SavedView_Previews: PreviewProvider {
     static var previews: some View {
-        SavedView()
+        SavedView().onAppear(perform: {
+              SavedView().fetchSavedQuestions()
+            })
     }
 }
