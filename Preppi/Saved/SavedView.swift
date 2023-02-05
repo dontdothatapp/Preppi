@@ -49,7 +49,7 @@ struct SavedView: View {
     }
     
     func fetchSavedQuestions() {
-        getSavedQuestions { (questions) in
+        questionModel.getSavedQuestions { (questions) in
         self.questions = questions
       }
     }

@@ -10,6 +10,7 @@ import SwiftUI
 struct CardView: View {
     
     //@ObservedObject var questionModel = QuestionModel()
+    @ObservedObject var questionModel = QuestionModel()
     
     let question: Question
     //var saveQuestion: (Question) -> ()
@@ -86,7 +87,7 @@ struct CardView: View {
     }
     
     func saveQuestionButton() {
-        saveQuestion(questionId: question.id)
+        questionModel.saveQuestion(questionId: question.id)
     }
     
 //    init() {
