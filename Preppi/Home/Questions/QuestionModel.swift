@@ -117,4 +117,12 @@ class QuestionModel: ObservableObject {
         }
     }
     
+    func getUnsavedQuestions(completion: @escaping ([Question]) -> Void) {
+        getSavedQuestions { savedQuestions in
+            let unsavedQuestions = self.questionList.filter { !savedQuestions.contains($0) }
+            completion(unsavedQuestions)
+        }
+    }
+
+    
 }

@@ -12,6 +12,7 @@ struct SavedView: View {
     
     @ObservedObject var questionModel = QuestionModel()
     @State private var questions = [Question]()
+    @State var unsavedQuestions = [Question]()
     
     var body: some View {
         NavigationView {
@@ -31,6 +32,16 @@ struct SavedView: View {
                             ForEach(questions) { question in
                                 QuestionView(category: question.category, question: question.question)
                             }
+                            
+//                            Text("Unsaved")
+//                                .font(.title)
+//
+//                            Text("\(unsavedQuestions.count)")
+//
+//                            ForEach(unsavedQuestions, id: \.id) { item in
+//                                QuestionView(category: item.category, question: item.question)
+//
+//                            }
                         }
                         
                     }
@@ -38,6 +49,11 @@ struct SavedView: View {
                     Spacer()
                 }
                 .onAppear(perform: fetchSavedQuestions)
+//                .onAppear{
+//                    self.questionModel.getUnsavedQuestions { questions in
+//                        self.unsavedQuestions = questions
+//                    }
+//                }
                 
                 
             } .navigationTitle("Saved")
