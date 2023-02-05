@@ -22,6 +22,7 @@ func getSavedQuestions(completion: @escaping ([Question]) -> Void) {
         .getDocuments { (querySnapshot, error) in
             if let error = error {
                 // handle error
+                print("DEBUG: Error \(error.localizedDescription)")
                 return
             }
             
@@ -32,6 +33,7 @@ func getSavedQuestions(completion: @escaping ([Question]) -> Void) {
                     .getDocument(completion: { (questionSnapshot, error) in
                         if let error = error {
                             // handle error
+                            print("DEBUG: Error \(error.localizedDescription)")
                             return
                         }
                         
@@ -49,3 +51,19 @@ func getSavedQuestions(completion: @escaping ([Question]) -> Void) {
             }
         }
 }
+
+func saveQuestion(questionId: String) {
+    guard let userId = Auth.auth().currentUser?.uid else { return }
+    let db = Firestore.firestore()
+    db.collection("users").document(userId).collection("saved_questions").document(questionId).setData([
+        "question_id": questionId
+        
+    ]) { (error) in
+        if let error = error {
+            print("Error writing document: \(error)")
+        } else {
+            print("Question successfully saved!")
+        }
+    }
+}
+

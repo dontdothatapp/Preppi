@@ -12,6 +12,7 @@ struct CardView: View {
     //@ObservedObject var questionModel = QuestionModel()
     
     let question: Question
+    //var saveQuestion: (Question) -> ()
     
     var body: some View {
         ZStack {
@@ -54,7 +55,7 @@ struct CardView: View {
                     
                     //Save button
                     Button {
-                        //
+                        saveQuestionButton()
                     } label: {
                         HStack{
                             Image(systemName: "bookmark")
@@ -84,6 +85,10 @@ struct CardView: View {
         }
     }
     
+    func saveQuestionButton() {
+        saveQuestion(questionId: question.id)
+    }
+    
 //    init() {
 //        questionModel.getData()
 //    }
@@ -93,6 +98,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(question: Question(id: "1", category: "test", question: "Sample question just an exaple for a preview", type: "product"))
+        CardView(question: Question(id: "1", category: "test", question: "Sample question just an example for a preview", type: "product"))
     }
 }

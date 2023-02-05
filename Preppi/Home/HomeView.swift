@@ -12,6 +12,7 @@ struct HomeView: View {
     let questionList: [Question]
     @State private var currentQuestion: Question?
     @ObservedObject var questionModel = QuestionModel()
+    var saveQuestion: (Question) -> () = { _ in }
     
     var body: some View {
         NavigationView {
