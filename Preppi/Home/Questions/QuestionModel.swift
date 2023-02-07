@@ -124,5 +124,11 @@ class QuestionModel: ObservableObject {
         }
     }
 
+    func getSavedQuestionsByCategory(category: String, completion: @escaping ([Question]) -> Void) {
+        getSavedQuestions { savedQuestions in
+            let savedQuestionsByCategory = savedQuestions.filter { $0.category == category }
+            completion(savedQuestionsByCategory)
+        }
+    }
     
 }
