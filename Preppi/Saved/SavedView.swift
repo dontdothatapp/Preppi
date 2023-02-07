@@ -36,19 +36,22 @@ struct SavedView: View {
                             }
                             
                             //Only Saved questions filtered by selected category
-                            Text("Saved by category: \(questionModel.selectedCategory)")
-                                .font(.title)
-                            Text("\(questionModel.savedByCategory.count)")
+                            Text("DEBUG: Selected category: \(questionModel.selectedCategory)")
+                                .font(.title2)
+                                .padding(.top, 40)
+                            Text("Number of questions: \(questionModel.savedByCategory.count) 👇")
                             
                             ForEach(questionModel.savedByCategory, id: \.id) { item in
                                 QuestionView(category: item.category, question: item.question)
                             }
                             
                             //All unsaved questions
-                            Text("Unsaved")
-                                .font(.title)
+                            Text("DEBUG: Unsaved questions")
+                                .font(.title2)
+                                .padding(.top, 40)
 
-                            Text("\(unsavedQuestions.count)")
+                            Text("Number of questions: \(unsavedQuestions.count) 👇")
+                                .padding(.bottom, 20)
 
                             ForEach(unsavedQuestions, id: \.id) { item in
                                 QuestionView(category: item.category, question: item.question)
