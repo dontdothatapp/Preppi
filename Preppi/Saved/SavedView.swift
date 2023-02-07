@@ -13,7 +13,7 @@ struct SavedView: View {
     @ObservedObject var questionModel = QuestionModel()
     @State private var questions = [Question]()
     @State var unsavedQuestions = [Question]()
-    @State var savedByCategory = [Question]()
+    //@State var savedByCategory = [Question]()
     
     var body: some View {
         NavigationView {
@@ -28,21 +28,23 @@ struct SavedView: View {
                     
                     ScrollView(.vertical, showsIndicators: false){
                         
-                        LazyVStack{
+                        VStack{
                             
+                            //All questions
                             ForEach(questions) { question in
                                 QuestionView(category: question.category, question: question.question)
                             }
                             
-                            Text("Saved by category")
+                            //Only Saved questions filtered by selected category
+                            Text("Saved by category: \(questionModel.selectedCategory)")
                                 .font(.title)
-                            Text("\(savedByCategory.count)")
+                            Text("\(questionModel.savedByCategory.count)")
                             
-                            ForEach(savedByCategory, id: \.id) { item in
+                            ForEach(questionModel.savedByCategory, id: \.id) { item in
                                 QuestionView(category: item.category, question: item.question)
                             }
                             
-                            
+                            //All unsaved questions
                             Text("Unsaved")
                                 .font(.title)
 
@@ -51,7 +53,7 @@ struct SavedView: View {
                             ForEach(unsavedQuestions, id: \.id) { item in
                                 QuestionView(category: item.category, question: item.question)
                             }
-                        } .padding(.bottom, 30)
+                        } //.padding(.bottom, 30)
                         
                     }
                     
@@ -63,12 +65,12 @@ struct SavedView: View {
                         self.unsavedQuestions = questions
                     }
                 }
-                .onAppear{
-                    self.questionModel.getSavedQuestionsByCategory(category: "product strategy") { items in
-                        self.savedByCategory = items
-                        
-                    }
-                }
+//                .onAppear{
+//                    self.questionModel.getSavedQuestionsByCategory(category: questionModel.selectedCategory) { items in
+//                        self.savedByCategory = items
+//
+//                    }
+//                }
                 
                 
             } .navigationTitle("Saved")

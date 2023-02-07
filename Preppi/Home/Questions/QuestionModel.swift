@@ -14,6 +14,8 @@ import FirebaseFirestoreSwift
 class QuestionModel: ObservableObject {
     
     @Published var questionList = [Question]()
+    @Published var selectedCategory: String = ""
+    @Published var savedByCategory = [Question]()
     
     func getData() {
         
