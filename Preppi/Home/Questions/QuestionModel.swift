@@ -14,7 +14,7 @@ import FirebaseFirestoreSwift
 class QuestionModel: ObservableObject {
     
     @Published var questionList = [Question]()
-    @Published var selectedCategory: String = ""
+    //@Published var selectedCategory: String = ""
     @Published var savedByCategory = [Question]()
     
     func getData() {
@@ -126,10 +126,10 @@ class QuestionModel: ObservableObject {
         }
     }
 
-    func getSavedQuestionsByCategory(completion: @escaping ([Question]) -> Void) {
+    func getSavedQuestionsByCategory(category: String, completion: @escaping ([Question]) -> Void) {
         getSavedQuestions { savedQuestions in
-            let savedQuestionsByCategory = savedQuestions.filter { $0.category == self.selectedCategory }
-            completion(savedQuestionsByCategory)
+            self.savedByCategory = savedQuestions.filter { $0.category == category }
+            completion(self.savedByCategory)
         }
     }
     

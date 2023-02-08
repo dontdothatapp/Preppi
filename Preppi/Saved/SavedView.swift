@@ -13,7 +13,7 @@ struct SavedView: View {
     @ObservedObject var questionModel = QuestionModel()
     @State private var questions = [Question]()
     @State var unsavedQuestions = [Question]()
-    //@State var savedByCategory = [Question]()
+    @ObservedObject var selectedCategory = SelectedCategory()
     
     var body: some View {
         NavigationView {
@@ -23,26 +23,24 @@ struct SavedView: View {
                 
                 VStack {
                     ChipsView()
-                    
                     Spacer()
-                    
                     ScrollView(.vertical, showsIndicators: false){
-                        
                         VStack{
-                            
-                            //All questions
-                            ForEach(questions) { question in
-                                QuestionView(category: question.category, question: question.question)
-                            }
-                            
-                            //Only Saved questions filtered by selected category
-                            Text("DEBUG: Selected category: \(questionModel.selectedCategory)")
-                                .font(.title2)
-                                .padding(.top, 40)
-                            Text("Number of questions: \(questionModel.savedByCategory.count) 👇")
-                            
-                            ForEach(questionModel.savedByCategory, id: \.id) { item in
-                                QuestionView(category: item.category, question: item.question)
+                            if selectedCategory.selectedCategory == "" {
+                                //All questions
+                                ForEach(questions) { question in
+                                    QuestionView(category: question.category, question: question.question)
+                                }
+                            } else {
+                                //Only Saved questions filtered by selected category
+                                Text("DEBUG: Selected category: \(selectedCategory.selectedCategory)")
+                                    .font(.title2)
+                                    .padding(.top, 40)
+                                Text("Number of questions: \(questionModel.savedByCategory.count) 👇")
+                                
+                                ForEach(questionModel.savedByCategory, id: \.id) { item in
+                                    QuestionView(category: item.category, question: item.question)
+                                } .onAppear(perform: fetchSavedQuestions)
                             }
                             
                             //All unsaved questions

@@ -10,18 +10,21 @@ import SwiftUI
 struct Chips: View {
     
     @State var chipsName: String
-    @State var selectedCategory: String = ""
+    //@State var selectedCategory: String = ""
     @ObservedObject var questionModel = QuestionModel()
+    @ObservedObject var selectedCategory = SelectedCategory()
     
     var body: some View {
         VStack {
             HStack{
                 
                 Button {
-                    questionModel.selectedCategory = chipsName
-                    print("DEBUG: selected category: \(questionModel.selectedCategory)")
-                    questionModel.getSavedQuestionsByCategory { items in
+                    selectedCategory.selectedCategory = chipsName
+                    print("DEBUG: selected category: \(selectedCategory.selectedCategory)")
+                    
+                    questionModel.getSavedQuestionsByCategory(category: selectedCategory.selectedCategory) { items in
                         questionModel.savedByCategory = items
+                        print("DEBUG_2: inside the func: \(questionModel.savedByCategory)")
                     }
                     print("DEBUG: saved by category items: \(questionModel.savedByCategory)")
                 } label: {
@@ -30,7 +33,10 @@ struct Chips: View {
                         .font(.system(size: 15))
                         .fontWeight(.light)
                         //.padding(.horizontal, 5)
-                }
+                } .onChange(of: selectedCategory.selectedCategory) { newValue in
+                    questionModel.getSavedQuestionsByCategory(category: newValue) { items in
+                        questionModel.savedByCategory = items
+                    }}
                 
 //                .onAppear{
 //                    self.questionModel.getSavedQuestionsByCategory(category: questionModel.selectedCategory) { items in
