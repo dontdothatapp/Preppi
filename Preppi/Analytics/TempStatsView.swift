@@ -14,27 +14,25 @@ struct TempStatsView: View {
     @State var masteredQuestions = [Question]()
     
     var body: some View {
-        ScrollView {
-            VStack{
-                
-                Text("Mastered questions")
-                    .font(.title2)
-                ForEach(masteredQuestions) { question in
-                    QuestionView(category: question.category, question: question.question)
+        NavigationView {
+            ScrollView {
+                VStack{
+                    
+//                    Text("Mastered questions")
+//                        .font(.title2)
+//                    ForEach(masteredQuestions) { question in
+//                        QuestionView(category: question.category, question: question.question)
+//                    }
+                    
+                    ForEach(statsForMasteredQuestions) { category in
+                        TempStatBlockView(category: category.category, total: category.total, mastered: category.mastered)
+                    }
+                    
                 }
-                
-                Text("List of mastered items")
-                    .font(.title2)
-                    .padding(.top, 40)
-                
-                ForEach(statsForMasteredQuestions) { category in
-                    TempStatBlockView(category: category.category, total: category.total, mastered: category.mastered)
-                }
-                
-            }
-            .onAppear(perform: getMasteredQuestionsArray)
+                .onAppear(perform: getMasteredQuestionsArray)
+                //.onAppear(perform: fetchMasteredQuestions)
+            } .navigationTitle("Mastered items")
         }
-            //.onAppear(perform: fetchMasteredQuestions)
     }
     
     init() {
@@ -44,12 +42,14 @@ struct TempStatsView: View {
     func getMasteredQuestionsArray() {
         questionModel.getMasteredQuestionsArray { (masteredQuestions) in
             self.masteredQuestions = masteredQuestions
-            print("DEBUG: Mastered questions from third func: \(self.masteredQuestions)")
+            print("DEBUG: forming array \(masteredQuestions.count)")
+            fetchMasteredQuestions()
         }
     }
     
     func fetchMasteredQuestions() {
         questionModel.getStatsObjects(masteredQuestions: masteredQuestions) { (masteredQQuestions) in
+            print("DEBUG: masteredArray: \(masteredQuestions.count)")
             self.statsForMasteredQuestions = masteredQQuestions
             //print("DEBUG: Mastered array from func: \(self.statsForMasteredQuestions)")
         }

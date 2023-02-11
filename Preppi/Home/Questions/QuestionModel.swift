@@ -187,15 +187,10 @@ class QuestionModel: ObservableObject {
                                                                    question: masteredQuestion["question"] as? String ?? "",
                                                                    type: masteredQuestion["type"] as? String ?? "")
                             masteredQuestions.append(masteredQuestionObject)
-                            print("DEBUG: Question added to Mastered array: \(masteredQuestionObject)")
-                            print("DEBUG: masteredQuestion.count: \(masteredQuestion.count)")
-                            print("DEBUG: querySnapshot!.documents.count: \(querySnapshot!.documents.count)")
                             //Hack because mastered array always have one more item
                             var snapshotPlusOne = querySnapshot!.documents.count + 1
-                            print("DEBUG: snapshotMinusOne: \(snapshotPlusOne)")
                             
                             if masteredQuestion.count == snapshotPlusOne {
-                                print("DEBUG: Mastered array returned")
                                 completion(masteredQuestions)
                             }
                         })
@@ -208,6 +203,8 @@ class QuestionModel: ObservableObject {
         var statsList = [Stats]()
         
         for category in uniqueCategories {
+            print("DEBUG: Current mastered: \(masteredQuestions.count)")
+            
             print("DEBUG: Selected category: \(category)")
             //total questions in category
             let total = questionList.filter({ $0.category == category }).count
