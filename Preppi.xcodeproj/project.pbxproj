@@ -21,6 +21,9 @@
 		7F6F76D82975EF1900FF7871 /* OnboardingPageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F76D72975EF1900FF7871 /* OnboardingPageModel.swift */; };
 		7F6F76DA2975F09E00FF7871 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F76D92975F09E00FF7871 /* OnboardingPageView.swift */; };
 		7F9BCE562985D3EB0073BE23 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9BCE552985D3EB0073BE23 /* ProgressBarView.swift */; };
+		7FA0910329943F410006F5D8 /* MasteredStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA0910229943F410006F5D8 /* MasteredStats.swift */; };
+		7FA09105299441460006F5D8 /* TempStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA09104299441460006F5D8 /* TempStatsView.swift */; };
+		7FA09107299446F20006F5D8 /* TempStatBlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA09106299446F20006F5D8 /* TempStatBlockView.swift */; };
 		7FB5E4B0297BF32500A2482B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4AF297BF32500A2482B /* SignupView.swift */; };
 		7FB5E4B2297C022100A2482B /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */; };
 		7FB5E4B6297C18AD00A2482B /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4B5297C18AD00A2482B /* LoginView.swift */; };
@@ -59,6 +62,9 @@
 		7F6F76D92975F09E00FF7871 /* OnboardingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingPageView.swift; sourceTree = "<group>"; };
 		7F6F76DB2975F59A00FF7871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7F9BCE552985D3EB0073BE23 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
+		7FA0910229943F410006F5D8 /* MasteredStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteredStats.swift; sourceTree = "<group>"; };
+		7FA09104299441460006F5D8 /* TempStatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempStatsView.swift; sourceTree = "<group>"; };
+		7FA09106299446F20006F5D8 /* TempStatBlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempStatBlockView.swift; sourceTree = "<group>"; };
 		7FB5E4AF297BF32500A2482B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
 		7FB5E4B5297C18AD00A2482B /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -162,6 +168,8 @@
 			children = (
 				7FB5E4C1297C33E900A2482B /* AnalyticsView.swift */,
 				7F9BCE552985D3EB0073BE23 /* ProgressBarView.swift */,
+				7FA09104299441460006F5D8 /* TempStatsView.swift */,
+				7FA09106299446F20006F5D8 /* TempStatBlockView.swift */,
 			);
 			path = Analytics;
 			sourceTree = "<group>";
@@ -212,6 +220,7 @@
 				7FE4832D2989AC6D0008212A /* QuestionModel.swift */,
 				7FE4832F2989AC750008212A /* Question.swift */,
 				7FE483332989B60F0008212A /* Categories.swift */,
+				7FA0910229943F410006F5D8 /* MasteredStats.swift */,
 			);
 			path = Questions;
 			sourceTree = "<group>";
@@ -299,12 +308,14 @@
 				7FD2A292298320A600016281 /* TabBarButton.swift in Sources */,
 				7F68B0D12986CD6E00F1BDBD /* Chips.swift in Sources */,
 				7F250E982988614000D84AD0 /* User.swift in Sources */,
+				7FA0910329943F410006F5D8 /* MasteredStats.swift in Sources */,
 				7FB5E4B0297BF32500A2482B /* SignupView.swift in Sources */,
 				7F6F76CC2975E68D00FF7871 /* ContentView.swift in Sources */,
 				7FB5E4B6297C18AD00A2482B /* LoginView.swift in Sources */,
 				7F68B0D52986D61B00F1BDBD /* QuestionView.swift in Sources */,
 				7FD2A2902983128C00016281 /* CustomTabBar.swift in Sources */,
 				7FB5E4BD297C2CA900A2482B /* HomeView.swift in Sources */,
+				7FA09105299441460006F5D8 /* TempStatsView.swift in Sources */,
 				7FE483302989AC750008212A /* Question.swift in Sources */,
 				7F9BCE562985D3EB0073BE23 /* ProgressBarView.swift in Sources */,
 				7F0F85232977411E00C787A7 /* Colors.swift in Sources */,
@@ -317,6 +328,7 @@
 				7F6F76D82975EF1900FF7871 /* OnboardingPageModel.swift in Sources */,
 				7FE4832E2989AC6D0008212A /* QuestionModel.swift in Sources */,
 				7F250E9629885F7600D84AD0 /* UserService.swift in Sources */,
+				7FA09107299446F20006F5D8 /* TempStatBlockView.swift in Sources */,
 				7F5EFEFE29900DF0008B35D3 /* SavedModel_DEPR.swift in Sources */,
 				7FB5E4C2297C33E900A2482B /* AnalyticsView.swift in Sources */,
 				7FB5E4BF297C2EF800A2482B /* CardView.swift in Sources */,

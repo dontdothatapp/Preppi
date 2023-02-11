@@ -69,7 +69,7 @@ struct CardView: View {
                     
                     //Mastered button
                     Button {
-                        //
+                        masterQuestionButton()
                     } label: {
                         HStack{
                             Image(systemName: "wand.and.stars")
@@ -88,6 +88,10 @@ struct CardView: View {
     
     func saveQuestionButton() {
         questionModel.saveQuestion(questionId: question.id)
+    }
+    
+    func masterQuestionButton() {
+        questionModel.masterQuestion(questionId: question.id)
     }
     
 //    init() {

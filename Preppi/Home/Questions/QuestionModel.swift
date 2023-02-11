@@ -103,7 +103,7 @@ class QuestionModel: ObservableObject {
                 }
             }
     }
-
+    
     func saveQuestion(questionId: String) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
@@ -119,13 +119,116 @@ class QuestionModel: ObservableObject {
         }
     }
     
+    func masterQuestion(questionId: String) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        db.collection("users").document(userId).collection("mastered_questions").document(questionId).setData([
+            "question_id": questionId
+            
+        ]) { (error) in
+            if let error = error {
+                print("Error writing document: \(error)")
+            } else {
+                print("Question successfully mastered!")
+            }
+        }
+    }
+    
+    func getStatsDEPR(completion: @escaping ([Stats]) -> Void) {
+        let uniqueCategories = Set(questionList.map { $0.category })
+        var statsList = [Stats]()
+        for category in uniqueCategories {
+            let total = questionList.filter({ $0.category == category }).count
+            
+            //Here is the problem: as a list of mastered questions it took the list of savedByCategory
+            let mastered = questionList.filter({ $0.category == category }).count
+            let stats = Stats(id: UUID().uuidString, category: category, mastered: mastered, total: total)
+            statsList.append(stats)
+        }
+        completion(statsList)
+    }
+    
+    
+    func getMasteredQuestionsArray(completion: @escaping ([Question]) -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            //handle error
+            return
+        }
+        //Array of mastererd questions
+        var masteredQuestions = [Question]()
+        
+        let db = Firestore.firestore()
+        
+        //get access to mastered_questions collection inside users
+        db.collection("users").document(user.uid)
+            .collection("mastered_questions")
+            .getDocuments { (querySnapshot, error) in
+                if let error = error {
+                    //handle error
+                    print("DEBUG: Error: \(error.localizedDescription)")
+                }
+                
+                //Pick each element in mastered_questions colletction and append them to masteredQuestions array
+                for document in querySnapshot!.documents {
+                    
+                    let questionId = document.data()["question_id"] as! String
+                    //Go to collection questions and take a question with question_if from users->mastered_questions–>question_id
+                    db.collection("questions").document(questionId)
+                        .getDocument(completion: { (questionSnapshot, error) in
+                            if let error = error {
+                                //handle error
+                                print("DEBUG: Error: \(error.localizedDescription)")
+                                return
+                            }
+                            
+                            let masteredQuestion = questionSnapshot!.data()!
+                            let masteredQuestionObject = Question (id: questionSnapshot!.documentID,
+                                                                   category: masteredQuestion["category"] as? String ?? "",
+                                                                   question: masteredQuestion["question"] as? String ?? "",
+                                                                   type: masteredQuestion["type"] as? String ?? "")
+                            masteredQuestions.append(masteredQuestionObject)
+                            print("DEBUG: Question added to Mastered array: \(masteredQuestionObject)")
+                            print("DEBUG: masteredQuestion.count: \(masteredQuestion.count)")
+                            print("DEBUG: querySnapshot!.documents.count: \(querySnapshot!.documents.count)")
+                            //Hack because mastered array always have one more item
+                            var snapshotPlusOne = querySnapshot!.documents.count + 1
+                            print("DEBUG: snapshotMinusOne: \(snapshotPlusOne)")
+                            
+                            if masteredQuestion.count == snapshotPlusOne {
+                                print("DEBUG: Mastered array returned")
+                                completion(masteredQuestions)
+                            }
+                        })
+                }
+            }
+    }
+    
+    func getStatsObjects(masteredQuestions: [Question], completion: @escaping ([Stats]) -> Void) {
+        let uniqueCategories = Set(questionList.map { $0.category })
+        var statsList = [Stats]()
+        
+        for category in uniqueCategories {
+            print("DEBUG: Selected category: \(category)")
+            //total questions in category
+            let total = questionList.filter({ $0.category == category }).count
+            let mastered = masteredQuestions.filter({ $0.category == category}).count
+            print("DEBUG: Mastered questions in \(category): \(mastered)")
+            let stats = Stats(id: UUID().uuidString, category: category, mastered: mastered, total: total)
+            //print("DEBUG: StatsObject: \(stats)")
+            statsList.append(stats)
+        }
+        completion(statsList)
+        
+    }
+    
+    
     func getUnsavedQuestions(completion: @escaping ([Question]) -> Void) {
         getSavedQuestions { savedQuestions in
             let unsavedQuestions = self.questionList.filter { !savedQuestions.contains($0) }
             completion(unsavedQuestions)
         }
     }
-
+    
     func getSavedQuestionsByCategory(completion: @escaping ([Question]) -> Void) {
         getSavedQuestions { savedQuestions in
             let savedQuestionsByCategory = savedQuestions.filter { $0.category == self.selectedCategory }
