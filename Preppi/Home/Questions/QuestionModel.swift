@@ -187,10 +187,8 @@ class QuestionModel: ObservableObject {
                                                                    question: masteredQuestion["question"] as? String ?? "",
                                                                    type: masteredQuestion["type"] as? String ?? "")
                             masteredQuestions.append(masteredQuestionObject)
-                            //Hack because mastered array always have one more item
-                            var snapshotPlusOne = querySnapshot!.documents.count + 1
                             
-                            if masteredQuestion.count == snapshotPlusOne {
+                            if masteredQuestions.count == querySnapshot!.documents.count {
                                 completion(masteredQuestions)
                             }
                         })
