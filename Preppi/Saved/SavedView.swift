@@ -41,7 +41,7 @@ struct SavedView: View {
                                 .padding(.top, 40)
                             Text("Number of questions: \(questionModel.savedByCategory.count) 👇")
                             
-                            ForEach(questionModel.savedByCategory, id: \.id) { item in
+                            ForEach(questionModel.savedByCategory) { item in
                                 QuestionView(category: item.category, question: item.question)
                             }
                             
@@ -68,12 +68,6 @@ struct SavedView: View {
                         self.unsavedQuestions = questions
                     }
                 }
-//                .onAppear{
-//                    self.questionModel.getSavedQuestionsByCategory(category: questionModel.selectedCategory) { items in
-//                        self.savedByCategory = items
-//
-//                    }
-//                }
                 
                 
             } .navigationTitle("Saved")
