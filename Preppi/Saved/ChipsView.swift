@@ -24,19 +24,19 @@ struct ChipsView: View {
                 //Start session
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        HStack{
-                            Image(systemName: "play.fill")
-                            Text("Start session")
-                                .foregroundColor(.text_900)
-                                .font(.system(size: 15))
-                                .fontWeight(.light)
-                            //.padding(.horizontal, 5)
-                        }
-                        .padding(.horizontal)
-                        .padding(.vertical, 8)
-                        .background(Capsule().stroke(Color.primary_900,lineWidth: 2))
-                        .padding(.vertical)
-                        .padding(.leading, 20)
+//                        HStack{
+//                            Image(systemName: "play.fill")
+//                            Text("Start session")
+//                                .foregroundColor(.text_900)
+//                                .font(.system(size: 15))
+//                                .fontWeight(.light)
+//                            //.padding(.horizontal, 5)
+//                        }
+//                        .padding(.horizontal)
+//                        .padding(.vertical, 8)
+//                        .background(Capsule().stroke(Color.primary_900,lineWidth: 2))
+//                        .padding(.vertical)
+//                        .padding(.leading, 20)
                         
                         HStack {
                             let uniqueCategories = questionModel.getUniqueCategories()

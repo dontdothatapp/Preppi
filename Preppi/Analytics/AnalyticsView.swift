@@ -153,14 +153,12 @@ struct AnalyticsView: View {
     func getMasteredQuestionsArray() {
         questionModel.getMasteredQuestionsArray { (masteredQuestions) in
             self.masteredQuestions = masteredQuestions
-            print("DEBUG: forming array \(masteredQuestions.count)")
             fetchMasteredQuestions()
         }
     }
     
     func fetchMasteredQuestions() {
         questionModel.getStatsObjects(masteredQuestions: masteredQuestions) { (masteredQQuestions) in
-            print("DEBUG: masteredArray: \(masteredQuestions.count)")
             self.statsForMasteredQuestions = masteredQQuestions
             //print("DEBUG: Mastered array from func: \(self.statsForMasteredQuestions)")
         }
@@ -170,6 +168,9 @@ struct AnalyticsView: View {
 
 struct AnalyticsView_Previews: PreviewProvider {
     static var previews: some View {
-        AnalyticsView()
+        AnalyticsView().onAppear(perform: {
+            AnalyticsView().getMasteredQuestionsArray()
+            AnalyticsView().fetchMasteredQuestions()
+        })
     }
 }

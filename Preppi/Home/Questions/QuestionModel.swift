@@ -134,21 +134,6 @@ class QuestionModel: ObservableObject {
         }
     }
     
-    func getStatsDEPR(completion: @escaping ([Stats]) -> Void) {
-        let uniqueCategories = Set(questionList.map { $0.category })
-        var statsList = [Stats]()
-        for category in uniqueCategories {
-            let total = questionList.filter({ $0.category == category }).count
-            
-            //Here is the problem: as a list of mastered questions it took the list of savedByCategory
-            let mastered = questionList.filter({ $0.category == category }).count
-            let stats = Stats(id: UUID().uuidString, category: category, mastered: mastered, total: total)
-            statsList.append(stats)
-        }
-        completion(statsList)
-    }
-    
-    
     func getMasteredQuestionsArray(completion: @escaping ([Question]) -> Void) {
         guard let user = Auth.auth().currentUser else {
             //handle error
@@ -201,13 +186,13 @@ class QuestionModel: ObservableObject {
         var statsList = [Stats]()
         
         for category in uniqueCategories {
-            print("DEBUG: Current mastered: \(masteredQuestions.count)")
+            //print("DEBUG: Current mastered: \(masteredQuestions.count)")
             
-            print("DEBUG: Selected category: \(category)")
+            //print("DEBUG: Selected category: \(category)")
             //total questions in category
             let total = questionList.filter({ $0.category == category }).count
             let mastered = masteredQuestions.filter({ $0.category == category}).count
-            print("DEBUG: Mastered questions in \(category): \(mastered)")
+            //print("DEBUG: Mastered questions in \(category): \(mastered)")
             let stats = Stats(id: UUID().uuidString, category: category, mastered: mastered, total: total)
             //print("DEBUG: StatsObject: \(stats)")
             statsList.append(stats)
@@ -215,7 +200,6 @@ class QuestionModel: ObservableObject {
         completion(statsList)
         
     }
-    
     
     func getUnsavedQuestions(completion: @escaping ([Question]) -> Void) {
         getSavedQuestions { savedQuestions in

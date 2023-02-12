@@ -36,7 +36,7 @@ struct SavedView: View {
                             }
                             
                             //Only Saved questions filtered by selected category
-                            Text("DEBUG: Selected category: \(questionModel.selectedCategory)")
+                            Text("Test: Selected category: \(questionModel.selectedCategory)")
                                 .font(.title2)
                                 .padding(.top, 40)
                             Text("Number of questions: \(questionModel.savedByCategory.count) 👇")
@@ -46,7 +46,7 @@ struct SavedView: View {
                             }
                             
                             //All unsaved questions
-                            Text("DEBUG: Unsaved questions")
+                            Text("Test: Unsaved questions")
                                 .font(.title2)
                                 .padding(.top, 40)
 
