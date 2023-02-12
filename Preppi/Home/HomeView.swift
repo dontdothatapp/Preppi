@@ -34,11 +34,11 @@ struct HomeView: View {
                 
                 //This code checks if currentQuestion is not nil, which is an optional Question value. If it's not nil, it passes question as an argument to the CardView initializer. The code unwraps the optional value of currentQuestion by using if let syntax, which is a type of optional binding. The purpose of this code is to only display the CardView if currentQuestion has a value, avoiding a runtime error.
                 if let question = currentQuestion {
-                    CardView(question: question)
+                    CardView(firstCard: false, question: question)
                 } else {
                     
                     //Temp solution. Should find a way how to show the random question when the app starts
-                    CardView(question: Question(id: "asd", category: "", question: "Ready to start? Tap on the button below 👇", type: "product"))
+                    CardView(firstCard: true, question: Question(id: "asd", category: "Ready to start?", question: "Tap on the button below to get the first question👇", type: "product"))
                 }
                 
                 Spacer()

@@ -11,6 +11,7 @@ struct CardView: View {
     
     //@ObservedObject var questionModel = QuestionModel()
     @ObservedObject var questionModel = QuestionModel()
+    @State var firstCard: Bool
     
     let question: Question
     //var saveQuestion: (Question) -> ()
@@ -33,7 +34,7 @@ struct CardView: View {
                     //.padding(.leading, 40)
                     //.padding(.top, 40)
                         .padding(.bottom, 10)
-                        .underline()
+                        //.underline()
                         .foregroundColor(Color.text_500)
                     Spacer()
                 }
@@ -51,37 +52,42 @@ struct CardView: View {
                 //.offset(y: 20)
                 Spacer()
                 
-                //Save & Mastered buttons
-                HStack{
+                if firstCard == true {
                     
-                    //Save button
-                    Button {
-                        saveQuestionButton()
-                    } label: {
-                        HStack{
-                            Image(systemName: "bookmark")
-                                .foregroundColor(.primary_900)
-                            Text("Save")
-                                .foregroundColor(.text_900)
-                            
-                        }  .padding(.leading, 20) .padding(.trailing, 35)
-                    }
-                    
-                    //Mastered button
-                    Button {
-                        masterQuestionButton()
-                    } label: {
-                        HStack{
-                            Image(systemName: "wand.and.stars")
-                                .foregroundColor(.primary_900)
-                            Text("Mastered")
-                                .foregroundColor(.text_900)
+                } else {
+                    //Save & Mastered buttons
+                    HStack{
+                        
+                        //Save button
+                        Button {
+                            saveQuestionButton()
+                        } label: {
+                            HStack{
+                                Image(systemName: "bookmark")
+                                    .foregroundColor(.primary_900)
+                                Text("Save")
+                                    .foregroundColor(.text_900)
+                                
+                            }  .padding(.leading, 20) .padding(.trailing, 35)
                         }
+                        
+                        //Mastered button
+                        Button {
+                            masterQuestionButton()
+                        } label: {
+                            HStack{
+                                Image(systemName: "wand.and.stars")
+                                    .foregroundColor(.primary_900)
+                                Text("Mastered")
+                                    .foregroundColor(.text_900)
+                            }
+                        }
+                        
+                        Spacer()
                     }
-                    
-                    Spacer()
+                    .padding(.bottom, 20)
                 }
-                .padding(.bottom, 20)
+                
             } .frame(minWidth: 320, idealWidth: 340, maxWidth: 340, minHeight: 310, idealHeight: 310, maxHeight: 350, alignment: .leading)
         }
     }
@@ -103,6 +109,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(question: Question(id: "1", category: "test", question: "Sample question just an example for a preview", type: "product"))
+        CardView(firstCard: false, question: Question(id: "1", category: "test", question: "Sample question just an example for a preview", type: "product"))
     }
 }
