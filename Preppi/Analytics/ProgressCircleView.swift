@@ -52,11 +52,16 @@ struct ProgressCircleView: View {
                             .foregroundColor(.primary_900)
                             .rotation3DEffect(Angle(degrees: 270), axis: (x: 0, y: 0, z: 1))
                             .frame(maxWidth: 60)
+                        
+                        Text("\(Int(percentage*100))%")
+                            .foregroundColor(.text_900)
+                            .font(.system(size: 17))
+                            .fontWeight(.bold)
                     } .padding(.trailing, 40)
-                }
+                } .padding(.top, 20)
             }
         }
-    }
+    } 
 }
 
 struct ProgressCircleView_Previews: PreviewProvider {
