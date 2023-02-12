@@ -34,15 +34,6 @@ struct SettingsView: View {
                     
                     Spacer()
                     
-                    NavigationLink {
-                        TempStatsView()
-                    } label: {
-                        Text("Temp stats view")
-                            .font(.title2)
-                            .padding(.trailing, 27)
-                            .foregroundColor(Color.text_900)
-                    }
-                    
                     Button {
                         viewModel.signOut()
                     } label: {

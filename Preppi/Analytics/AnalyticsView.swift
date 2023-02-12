@@ -15,6 +15,9 @@ struct AnalyticsView: View {
     @State var progressValueProductStrategy: Float = 0.0
     @State var progressValueExecution: Float = 0.0
     @State var progressValueAnalytical: Float = 0.0
+    @ObservedObject var questionModel = QuestionModel()
+    @State var statsForMasteredQuestions = [Stats]()
+    @State var masteredQuestions = [Question]()
     
     var body: some View {
         NavigationView {
@@ -25,6 +28,8 @@ struct AnalyticsView: View {
                 //Content
                 ScrollView(.vertical, showsIndicators: false) {
                     VStack {
+                        
+                        //Ovarall progress card
                         ZStack {
                             Rectangle()
                                 .frame(width: 350, height: 210)
@@ -80,6 +85,11 @@ struct AnalyticsView: View {
                             }
                         }
                         
+                        
+                        ForEach(statsForMasteredQuestions) { item in
+                            ProgressCircleView(category: item.category, mastered: item.mastered, total: item.total)
+                        }
+                        
                         //behavioral block
                         ZStack {
                             Rectangle()
@@ -88,7 +98,7 @@ struct AnalyticsView: View {
                                 .cornerRadius(30)
                                 .padding(.top, 24)
                                 .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
-                            
+
                             VStack {
                                 HStack{
                                     Text("behavioral")
@@ -96,9 +106,9 @@ struct AnalyticsView: View {
                                         .foregroundColor(.text_900)
                                         .font(.system(size: 17))
                                         .fontWeight(.bold)
-                                    
+
                                     Spacer()
-                                    
+
                                     ZStack {
                                         ProgressBarView(progress: self.$progressValueBehavioral)
                                             .frame(width: 56).onAppear() {
@@ -116,149 +126,170 @@ struct AnalyticsView: View {
                         } .frame(height: 90)
                         
                         //product design block
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 350, height: 90)
-                                .foregroundColor(.additional_50)
-                                .cornerRadius(30)
-                                .padding(.top, 24)
-                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
-                            
-                            VStack {
-                                HStack{
-                                    Text("product design")
-                                        .padding(.leading, 40)
-                                        .foregroundColor(.text_900)
-                                        .font(.system(size: 17))
-                                        .fontWeight(.bold)
-                                    
-                                    Spacer()
-                                    
-                                    ZStack {
-                                        ProgressBarView(progress: self.$progressValueProductDesign)
-                                            .frame(width: 56).onAppear() {
-                                                self.progressValueProductDesign = 0.16
-                                            }
-                                        Text("16%")
-                                            .foregroundColor(.text_900)
-                                            .font(.system(size: 17))
-                                            .fontWeight(.bold)
-                                    }
-                                    .padding(.trailing, 40)
-                                }
-                                .padding(.top, 16)
-                            }
-                        } .frame(height: 90) .padding(.top, 10)
+//                        ZStack {
+//                            Rectangle()
+//                                .frame(width: 350, height: 90)
+//                                .foregroundColor(.additional_50)
+//                                .cornerRadius(30)
+//                                .padding(.top, 24)
+//                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
+//
+//                            VStack {
+//                                HStack{
+//                                    Text("product design")
+//                                        .padding(.leading, 40)
+//                                        .foregroundColor(.text_900)
+//                                        .font(.system(size: 17))
+//                                        .fontWeight(.bold)
+//
+//                                    Spacer()
+//
+//                                    ZStack {
+//                                        ProgressBarView(progress: self.$progressValueProductDesign)
+//                                            .frame(width: 56).onAppear() {
+//                                                self.progressValueProductDesign = 0.16
+//                                            }
+//                                        Text("16%")
+//                                            .foregroundColor(.text_900)
+//                                            .font(.system(size: 17))
+//                                            .fontWeight(.bold)
+//                                    }
+//                                    .padding(.trailing, 40)
+//                                }
+//                                .padding(.top, 16)
+//                            }
+//                        } .frame(height: 90) .padding(.top, 10)
                         
                         //product strategy block
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 350, height: 90)
-                                .foregroundColor(.additional_50)
-                                .cornerRadius(30)
-                                .padding(.top, 24)
-                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
-                            
-                            VStack {
-                                HStack{
-                                    Text("product strategy")
-                                        .padding(.leading, 40)
-                                        .foregroundColor(.text_900)
-                                        .font(.system(size: 17))
-                                        .fontWeight(.bold)
-                                    
-                                    Spacer()
-                                    
-                                    ZStack {
-                                        ProgressBarView(progress: self.$progressValueProductStrategy)
-                                            .frame(width: 56).onAppear() {
-                                                self.progressValueProductStrategy = 0.39
-                                            }
-                                        Text("39%")
-                                            .foregroundColor(.text_900)
-                                            .font(.system(size: 17))
-                                            .fontWeight(.bold)
-                                    }
-                                    .padding(.trailing, 40)
-                                }
-                                .padding(.top, 16)
-                            }
-                        } .frame(height: 90) .padding(.top, 10)
+//                        ZStack {
+//                            Rectangle()
+//                                .frame(width: 350, height: 90)
+//                                .foregroundColor(.additional_50)
+//                                .cornerRadius(30)
+//                                .padding(.top, 24)
+//                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
+//
+//                            VStack {
+//                                HStack{
+//                                    Text("product strategy")
+//                                        .padding(.leading, 40)
+//                                        .foregroundColor(.text_900)
+//                                        .font(.system(size: 17))
+//                                        .fontWeight(.bold)
+//
+//                                    Spacer()
+//
+//                                    ZStack {
+//                                        ProgressBarView(progress: self.$progressValueProductStrategy)
+//                                            .frame(width: 56).onAppear() {
+//                                                self.progressValueProductStrategy = 0.39
+//                                            }
+//                                        Text("39%")
+//                                            .foregroundColor(.text_900)
+//                                            .font(.system(size: 17))
+//                                            .fontWeight(.bold)
+//                                    }
+//                                    .padding(.trailing, 40)
+//                                }
+//                                .padding(.top, 16)
+//                            }
+//                        } .frame(height: 90) .padding(.top, 10)
                         
                         //execution block
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 350, height: 90)
-                                .foregroundColor(.additional_50)
-                                .cornerRadius(30)
-                                .padding(.top, 24)
-                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
-                            
-                            VStack {
-                                HStack{
-                                    Text("execution")
-                                        .padding(.leading, 40)
-                                        .foregroundColor(.text_900)
-                                        .font(.system(size: 17))
-                                        .fontWeight(.bold)
-                                    
-                                    Spacer()
-                                    
-                                    ZStack {
-                                        ProgressBarView(progress: self.$progressValueExecution)
-                                            .frame(width: 56).onAppear() {
-                                                self.progressValueExecution = 0.26
-                                            }
-                                        Text("26%")
-                                            .foregroundColor(.text_900)
-                                            .font(.system(size: 17))
-                                            .fontWeight(.bold)
-                                    }
-                                    .padding(.trailing, 40)
-                                }
-                                .padding(.top, 16)
-                            }
-                        } .frame(height: 90) .padding(.top, 10)
+//                        ZStack {
+//                            Rectangle()
+//                                .frame(width: 350, height: 90)
+//                                .foregroundColor(.additional_50)
+//                                .cornerRadius(30)
+//                                .padding(.top, 24)
+//                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
+//
+//                            VStack {
+//                                HStack{
+//                                    Text("execution")
+//                                        .padding(.leading, 40)
+//                                        .foregroundColor(.text_900)
+//                                        .font(.system(size: 17))
+//                                        .fontWeight(.bold)
+//
+//                                    Spacer()
+//
+//                                    ZStack {
+//                                        ProgressBarView(progress: self.$progressValueExecution)
+//                                            .frame(width: 56).onAppear() {
+//                                                self.progressValueExecution = 0.26
+//                                            }
+//                                        Text("26%")
+//                                            .foregroundColor(.text_900)
+//                                            .font(.system(size: 17))
+//                                            .fontWeight(.bold)
+//                                    }
+//                                    .padding(.trailing, 40)
+//                                }
+//                                .padding(.top, 16)
+//                            }
+//                        } .frame(height: 90) .padding(.top, 10)
                         
                         //analytical block
-                        ZStack {
-                            Rectangle()
-                                .frame(width: 350, height: 90)
-                                .foregroundColor(.additional_50)
-                                .cornerRadius(30)
-                                .padding(.top, 24)
-                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
-                            
-                            VStack {
-                                HStack{
-                                    Text("analytical")
-                                        .padding(.leading, 40)
-                                        .foregroundColor(.text_900)
-                                        .font(.system(size: 17))
-                                        .fontWeight(.bold)
-                                    
-                                    Spacer()
-                                    
-                                    ZStack {
-                                        ProgressBarView(progress: self.$progressValueAnalytical)
-                                            .frame(width: 56).onAppear() {
-                                                self.progressValueAnalytical = 0.86
-                                            }
-                                        Text("86%")
-                                            .foregroundColor(.text_900)
-                                            .font(.system(size: 17))
-                                            .fontWeight(.bold)
-                                    }
-                                    .padding(.trailing, 40)
-                                }
-                                .padding(.top, 16)
-                            }
-                        } .frame(height: 90) .padding(.top, 10) .padding(.bottom, 20)
+//                        ZStack {
+//                            Rectangle()
+//                                .frame(width: 350, height: 90)
+//                                .foregroundColor(.additional_50)
+//                                .cornerRadius(30)
+//                                .padding(.top, 24)
+//                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
+//
+//                            VStack {
+//                                HStack{
+//                                    Text("analytical")
+//                                        .padding(.leading, 40)
+//                                        .foregroundColor(.text_900)
+//                                        .font(.system(size: 17))
+//                                        .fontWeight(.bold)
+//
+//                                    Spacer()
+//
+//                                    ZStack {
+//                                        ProgressBarView(progress: self.$progressValueAnalytical)
+//                                            .frame(width: 56).onAppear() {
+//                                                self.progressValueAnalytical = 0.86
+//                                            }
+//                                        Text("86%")
+//                                            .foregroundColor(.text_900)
+//                                            .font(.system(size: 17))
+//                                            .fontWeight(.bold)
+//                                    }
+//                                    .padding(.trailing, 40)
+//                                }
+//                                .padding(.top, 16)
+//                            }
+//                        } .frame(height: 90) .padding(.top, 10) .padding(.bottom, 20)
                     }
-                }
+                } .onAppear(perform: getMasteredQuestionsArray)
             } .navigationTitle("Progress")
         }
     }
+    
+    init() {
+        questionModel.getData()
+    }
+    
+    func getMasteredQuestionsArray() {
+        questionModel.getMasteredQuestionsArray { (masteredQuestions) in
+            self.masteredQuestions = masteredQuestions
+            print("DEBUG: forming array \(masteredQuestions.count)")
+            fetchMasteredQuestions()
+        }
+    }
+    
+    func fetchMasteredQuestions() {
+        questionModel.getStatsObjects(masteredQuestions: masteredQuestions) { (masteredQQuestions) in
+            print("DEBUG: masteredArray: \(masteredQuestions.count)")
+            self.statsForMasteredQuestions = masteredQQuestions
+            //print("DEBUG: Mastered array from func: \(self.statsForMasteredQuestions)")
+        }
+    }
+    
 }
 
 struct AnalyticsView_Previews: PreviewProvider {
