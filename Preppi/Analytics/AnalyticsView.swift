@@ -9,12 +9,7 @@ import SwiftUI
 
 struct AnalyticsView: View {
     
-    @State var progressValueOverall: Float = 0.0
     @State var progressValueBehavioral: Float = 0.0
-    @State var progressValueProductDesign: Float = 0.0
-    @State var progressValueProductStrategy: Float = 0.0
-    @State var progressValueExecution: Float = 0.0
-    @State var progressValueAnalytical: Float = 0.0
     @ObservedObject var questionModel = QuestionModel()
     @State var statsForMasteredQuestions = [Stats]()
     @State var masteredQuestions = [Question]()
