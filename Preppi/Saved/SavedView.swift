@@ -22,9 +22,9 @@ struct SavedView: View {
                     .ignoresSafeArea(.all)
                 
                 VStack {
-                    ChipsView()
-                    
-                    Spacer()
+//                    ChipsView()
+//
+//                    Spacer()
                     
                     ScrollView(.vertical, showsIndicators: false){
                         
@@ -35,27 +35,17 @@ struct SavedView: View {
                                 QuestionView(category: question.category, question: question.question)
                             }
                             
-                            //Only Saved questions filtered by selected category
-                            Text("Test: Selected category: \(questionModel.selectedCategory)")
-                                .font(.title2)
-                                .padding(.top, 40)
-                            Text("Number of questions: \(questionModel.savedByCategory.count) 👇")
-                            
-                            ForEach(questionModel.savedByCategory) { item in
-                                QuestionView(category: item.category, question: item.question)
-                            }
-                            
                             //All unsaved questions
-                            Text("Test: Unsaved questions")
-                                .font(.title2)
-                                .padding(.top, 40)
-
-                            Text("Number of questions: \(unsavedQuestions.count) 👇")
-                                .padding(.bottom, 20)
-
-                            ForEach(unsavedQuestions, id: \.id) { item in
-                                QuestionView(category: item.category, question: item.question)
-                            }
+//                            Text("Test: Unsaved questions")
+//                                .font(.title2)
+//                                .padding(.top, 40)
+//
+//                            Text("Number of questions: \(unsavedQuestions.count) 👇")
+//                                .padding(.bottom, 20)
+//
+//                            ForEach(unsavedQuestions, id: \.id) { item in
+//                                QuestionView(category: item.category, question: item.question)
+//                            }
                         } //.padding(.bottom, 30)
                         
                     }
