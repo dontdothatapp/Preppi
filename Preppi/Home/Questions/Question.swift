@@ -12,4 +12,5 @@ struct Question: Identifiable, Hashable {
     var category: String
     var question: String
     var type: String
+    var timestamp: Date
 }

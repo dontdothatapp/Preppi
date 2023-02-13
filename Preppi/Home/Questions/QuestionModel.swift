@@ -41,7 +41,8 @@ class QuestionModel: ObservableObject {
                             return Question(id: d.documentID,
                                             category: d["category"] as? String ?? "",
                                             question: d["question"] as? String ?? "",
-                                            type: d["type"] as? String ?? "")
+                                            type: d["type"] as? String ?? "",
+                                            timestamp: d["timestamp"] as? Date ?? Date())
                         }
                     }
                 }
@@ -70,7 +71,7 @@ class QuestionModel: ObservableObject {
         
         let db = Firestore.firestore()
         db.collection("users").document(user.uid)
-            .collection("saved_questions")
+            .collection("saved_questions").order(by: "timestamp", descending: false)
             .addSnapshotListener { (querySnapshot, error) in
                 if let error = error {
                     // handle error
@@ -93,7 +94,8 @@ class QuestionModel: ObservableObject {
                             let questionObject = Question(id: questionSnapshot!.documentID,
                                                           category: question["category"] as? String ?? "",
                                                           question: question["question"] as? String ?? "",
-                                                          type: question["type"] as? String ?? "")
+                                                          type: question["type"] as? String ?? "",
+                                                          timestamp: question["timestamp"] as? Date ?? Date())
                             questions.append(questionObject)
                             
                             if questions.count == querySnapshot!.documents.count {
@@ -107,8 +109,10 @@ class QuestionModel: ObservableObject {
     func saveQuestion(questionId: String) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
+        let timestamp = Timestamp(date: Date())
         db.collection("users").document(userId).collection("saved_questions").document(questionId).setData([
-            "question_id": questionId
+            "question_id": questionId,
+            "timestamp": timestamp
             
         ]) { (error) in
             if let error = error {
@@ -135,8 +139,10 @@ class QuestionModel: ObservableObject {
     func masterQuestion(questionId: String) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
+        let timestamp = Timestamp(date: Date())
         db.collection("users").document(userId).collection("mastered_questions").document(questionId).setData([
-            "question_id": questionId
+            "question_id": questionId,
+            "timestamp": timestamp
             
         ]) { (error) in
             if let error = error {
@@ -183,7 +189,8 @@ class QuestionModel: ObservableObject {
                             let masteredQuestionObject = Question (id: questionSnapshot!.documentID,
                                                                    category: masteredQuestion["category"] as? String ?? "",
                                                                    question: masteredQuestion["question"] as? String ?? "",
-                                                                   type: masteredQuestion["type"] as? String ?? "")
+                                                                   type: masteredQuestion["type"] as? String ?? "",
+                                                                   timestamp: masteredQuestion["timestamp"] as? Date ?? Date())
                             masteredQuestions.append(masteredQuestionObject)
                             
                             if masteredQuestions.count == querySnapshot!.documents.count {
@@ -210,7 +217,7 @@ class QuestionModel: ObservableObject {
             //print("DEBUG: StatsObject: \(stats)")
             statsList.append(stats)
         }
-        completion(statsList)
+        completion(statsList.sorted { $0.category < $1.category})
         
     }
     

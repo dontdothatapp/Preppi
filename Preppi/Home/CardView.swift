@@ -109,6 +109,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(firstCard: false, question: Question(id: "1", category: "test", question: "Sample question just an example for a preview", type: "product"))
+        CardView(firstCard: false, question: Question(id: "1", category: "test", question: "Sample question just an example for a preview", type: "product", timestamp: Date()))
     }
 }

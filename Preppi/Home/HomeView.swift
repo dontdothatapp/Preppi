@@ -38,7 +38,7 @@ struct HomeView: View {
                 } else {
                     
                     //Temp solution. Should find a way how to show the random question when the app starts
-                    CardView(firstCard: true, question: Question(id: "asd", category: "Ready to start?", question: "Tap on the button below to get the first question👇", type: "product"))
+                    CardView(firstCard: true, question: Question(id: "asd", category: "Ready to start?", question: "Tap on the button below to get the first question👇", type: "product", timestamp: Date()))
                 }
                 
                 Spacer()
@@ -74,7 +74,7 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(questionList: [Question(id: "2", category: "Cate", question: "que", type: "product"),
-                                Question(id: "55", category: "CAte2", question: "que2", type: "product")])
+        HomeView(questionList: [Question(id: "2", category: "Cate", question: "que", type: "product", timestamp: Date()),
+                                Question(id: "55", category: "CAte2", question: "que2", type: "product", timestamp: Date())])
     }
 }
