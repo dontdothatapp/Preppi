@@ -11,17 +11,26 @@ struct QuestionView: View {
     
     @State var category: String
     @State var question: String
+    @State var id: String
+    @ObservedObject var questionModel = QuestionModel()
     
     var body: some View {
         VStack {
             VStack{
                 HStack {
                     Text(category)
-                        .foregroundColor(.text_500)
-                        .font(.system(size: 15))
-                        .fontWeight(.light)
+                        
                     Spacer()
+                    
+                    Button{
+                        questionModel.deleteSavedQuestion(questionId: id)
+                    } label: {
+                        Image(systemName: "heart.fill")
+                    }
                 }
+                    .foregroundColor(.text_500)
+                    .font(.system(size: 15))
+                    .fontWeight(.light)
                 HStack {
                     Text(question)
                         .foregroundColor(.text_900)
@@ -45,6 +54,6 @@ struct QuestionView: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionView(category: "product strategy", question: "Amazon is launching free storage for photos. If you're a Google PM for Photos, what would you do?")
+        QuestionView(category: "product strategy", question: "Amazon is launching free storage for photos. If you're a Google PM for Photos, what would you do?", id: "123")
     }
 }

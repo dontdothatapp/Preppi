@@ -32,7 +32,7 @@ struct SavedView: View {
                             
                             //All questions
                             ForEach(questions) { question in
-                                QuestionView(category: question.category, question: question.question)
+                                QuestionView(category: question.category, question: question.question, id: question.id)
                             }
                             
                             //All unsaved questions
@@ -46,7 +46,7 @@ struct SavedView: View {
 //                            ForEach(unsavedQuestions, id: \.id) { item in
 //                                QuestionView(category: item.category, question: item.question)
 //                            }
-                        } //.padding(.bottom, 30)
+                        } .padding(.top, 20) //.padding(.bottom, 30)
                         
                     }
                     

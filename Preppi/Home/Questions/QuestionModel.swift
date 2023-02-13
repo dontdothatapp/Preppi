@@ -71,7 +71,7 @@ class QuestionModel: ObservableObject {
         let db = Firestore.firestore()
         db.collection("users").document(user.uid)
             .collection("saved_questions")
-            .getDocuments { (querySnapshot, error) in
+            .addSnapshotListener { (querySnapshot, error) in
                 if let error = error {
                     // handle error
                     print("DEBUG: Error \(error.localizedDescription)")
@@ -118,6 +118,19 @@ class QuestionModel: ObservableObject {
             }
         }
     }
+    
+    func deleteSavedQuestion(questionId: String) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        db.collection("users").document(userId).collection("saved_questions").document(questionId).delete { (error) in
+            if let error = error {
+                print("Error deleting document: \(error)")
+            } else {
+                print("Question successfully deleted!")
+            }
+        }
+    }
+
     
     func masterQuestion(questionId: String) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
