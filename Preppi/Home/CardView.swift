@@ -12,7 +12,7 @@ struct CardView: View {
     //@ObservedObject var questionModel = QuestionModel()
     @ObservedObject var questionModel = QuestionModel()
     @State var firstCard: Bool
-    @State var isSaved: Bool
+    @State var isSaved: Bool = false
     
     let question: Question
     //var saveQuestion: (Question) -> ()
@@ -97,6 +97,11 @@ struct CardView: View {
                 }
                 
             } .frame(minWidth: 320, idealWidth: 340, maxWidth: 340, minHeight: 310, idealHeight: 310, maxHeight: 350, alignment: .leading)
+        } .onChange(of: question.id) { newValue in
+            questionModel.checkSavedQuestion(questionID: newValue) { isSavedModel in
+                isSaved = isSavedModel
+                print("DEBUG: IsSaved value is: \(isSaved)")
+            }
         }
     }
     
@@ -107,6 +112,13 @@ struct CardView: View {
     func masterQuestionButton() {
         questionModel.masterQuestion(questionId: question.id)
     }
+    
+//    func fetchIfItsSaved() {
+//        questionModel.checkSavedQuestion(questionID: question.id) { isSavedModel in
+//            isSaved = isSavedModel
+//            print("DEBUG: IsSaved value is: \(isSaved)")
+//        }
+//    }
 }
 
 
