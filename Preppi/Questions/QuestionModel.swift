@@ -23,7 +23,8 @@ class QuestionModel: ObservableObject {
         let db = Firestore.firestore()
         
         //Read the documents from a specific path
-        db.collection("questions").getDocuments { snapshot, error in
+        db.collection("questions")
+            .addSnapshotListener { snapshot, error in
             
             //Check the errors
             if error == nil {
@@ -105,6 +106,7 @@ class QuestionModel: ObservableObject {
                 }
             }
     }
+
     
     func saveQuestion(questionId: String) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
@@ -130,7 +132,7 @@ class QuestionModel: ObservableObject {
             if let error = error {
                 print("Error deleting document: \(error)")
             } else {
-                print("Question successfully deleted!")
+                print("Question successfully deleted from saved!")
             }
         }
     }
@@ -153,6 +155,18 @@ class QuestionModel: ObservableObject {
         }
     }
     
+    func deleteMasteredQuestion(questionId: String) {
+        guard let userId = Auth.auth().currentUser?.uid else { return }
+        let db = Firestore.firestore()
+        db.collection("users").document(userId).collection("mastered_questions").document(questionId).delete { (error) in
+            if let error = error {
+                print("Error deleting from mastered: \(error)")
+            } else {
+                print("Question successfully deleted from mastered!")
+            }
+        }
+    }
+    
     func getMasteredQuestionsArray(completion: @escaping ([Question]) -> Void) {
         guard let user = Auth.auth().currentUser else {
             //handle error
@@ -166,7 +180,7 @@ class QuestionModel: ObservableObject {
         //get access to mastered_questions collection inside users
         db.collection("users").document(user.uid)
             .collection("mastered_questions")
-            .getDocuments { (querySnapshot, error) in
+            .addSnapshotListener { (querySnapshot, error) in
                 if let error = error {
                     //handle error
                     print("DEBUG: Error: \(error.localizedDescription)")
@@ -218,14 +232,6 @@ class QuestionModel: ObservableObject {
             statsList.append(stats)
         }
         completion(statsList.sorted { $0.category < $1.category})
-        
-    }
-    
-    func getUnsavedQuestions(completion: @escaping ([Question]) -> Void) {
-        getSavedQuestions { savedQuestions in
-            let unsavedQuestions = self.questionList.filter { !savedQuestions.contains($0) }
-            completion(unsavedQuestions)
-        }
     }
     
     func getSavedQuestionsByCategory(completion: @escaping ([Question]) -> Void) {

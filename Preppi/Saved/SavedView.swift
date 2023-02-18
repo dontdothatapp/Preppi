@@ -12,8 +12,6 @@ struct SavedView: View {
     
     @ObservedObject var questionModel = QuestionModel()
     @State private var questions = [Question]()
-    @State var unsavedQuestions = [Question]()
-    //@State var savedByCategory = [Question]()
     
     var body: some View {
         NavigationView {
@@ -32,7 +30,7 @@ struct SavedView: View {
                             
                             //All questions
                             ForEach(questions) { question in
-                                QuestionView(category: question.category, question: question.question, id: question.id)
+                                QuestionView(category: question.category, question: question.question, id: question.id, timestamp: question.timestamp)
                             }
                             
                             //All unsaved questions
@@ -53,19 +51,9 @@ struct SavedView: View {
                     Spacer()
                 }
                 .onAppear(perform: fetchSavedQuestions)
-                .onAppear{
-                    self.questionModel.getUnsavedQuestions { questions in
-                        self.unsavedQuestions = questions
-                    }
-                }
-                
                 
             } .navigationTitle("Saved")
         }
-    }
-    
-    init() {
-        questionModel.getData()
     }
     
     func fetchSavedQuestions() {

@@ -12,6 +12,7 @@ struct QuestionView: View {
     @State var category: String
     @State var question: String
     @State var id: String
+    @State var timestamp: Date
     @ObservedObject var questionModel = QuestionModel()
     
     var body: some View {
@@ -19,7 +20,7 @@ struct QuestionView: View {
             VStack{
                 HStack {
                     Text(category)
-                        
+                    
                     Spacer()
                     
                     Button{
@@ -31,6 +32,13 @@ struct QuestionView: View {
                     .foregroundColor(.text_500)
                     .font(.system(size: 15))
                     .fontWeight(.light)
+                //                HStack{
+                //                    Text("\(timestamp)")
+                //                        .foregroundColor(.text_500)
+                //                        .font(.system(size: 15))
+                //                        .fontWeight(.light)
+                //                    Spacer()
+                //                }
                 HStack {
                     Text(question)
                         .foregroundColor(.text_900)
@@ -42,7 +50,7 @@ struct QuestionView: View {
                 //Line divider
                 HStack {
                     Rectangle()
-                        //.padding(.leading, 20)
+                    //.padding(.leading, 20)
                         .frame(width: 300, height: 0.5)
                         .foregroundColor(.text_300)
                     Spacer()
@@ -54,6 +62,6 @@ struct QuestionView: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionView(category: "product strategy", question: "Amazon is launching free storage for photos. If you're a Google PM for Photos, what would you do?", id: "123")
+        QuestionView(category: "product strategy", question: "Amazon is launching free storage for photos. If you're a Google PM for Photos, what would you do?", id: "123", timestamp: Date())
     }
 }

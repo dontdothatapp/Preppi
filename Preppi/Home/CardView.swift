@@ -98,12 +98,7 @@ struct CardView: View {
     
     func masterQuestionButton() {
         questionModel.masterQuestion(questionId: question.id)
-    }
-    
-//    init() {
-//        questionModel.getData()
-//    }
-    
+    }    
 }
 
 
