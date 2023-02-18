@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AnalyticsView: View {
+struct StatsView: View {
     
     @State var progressValueBehavioral: Float = 0.0
     @ObservedObject var questionModel = QuestionModel()
@@ -168,9 +168,9 @@ struct AnalyticsView: View {
 
 struct AnalyticsView_Previews: PreviewProvider {
     static var previews: some View {
-        AnalyticsView().onAppear(perform: {
-            AnalyticsView().getMasteredQuestionsArray()
-            AnalyticsView().fetchMasteredQuestions()
+        StatsView().onAppear(perform: {
+            StatsView().getMasteredQuestionsArray()
+            StatsView().fetchMasteredQuestions()
         })
     }
 }

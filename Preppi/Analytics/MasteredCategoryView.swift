@@ -27,12 +27,12 @@ struct MasteredCategoryView: View {
                             QuestionForAnalyticsView(question: item.question, id: item.id)
                         }
                     }
-                }
+                } .padding(.top, 20)
                 
                 Spacer()
             } .onAppear(perform: getMasteredQuestionsArray)
             
-        }
+        } .navigationTitle(selectedCategory)
     }
     
     func getMasteredQuestionsArray() {

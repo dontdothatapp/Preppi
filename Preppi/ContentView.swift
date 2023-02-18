@@ -35,9 +35,9 @@ struct ContentView: View {
                 VStack{
                     //HomeView()
                     TabView(selection: $selectedTab) {
-                        AnalyticsView()
+                        StatsView()
                             .tabItem {
-                                Text("Analytics")
+                                Text("Progress")
                             }
                             .tag(Tabs.stats)
                         HomeView(questionList: questionModel.questionList)
