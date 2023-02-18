@@ -241,4 +241,36 @@ class QuestionModel: ObservableObject {
         }
     }
     
+    func checkSavedQuestion(questionID: String, completion: @escaping (Bool) -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            //handle error
+            completion(false)
+            return
+        }
+
+        let db = Firestore.firestore()
+
+        db.collection("users").document(user.uid)
+            .collection("saved_questions")
+            .addSnapshotListener{ (querySnapshot, error) in
+                if let error = error {
+                    print("DEBUG: Error: \(error.localizedDescription)")
+                    completion(false)
+                    return
+                }
+
+                for document in querySnapshot!.documents {
+                    let savedID = document.data()["question_id"] as! String
+                    if questionID == savedID {
+                        print("DEBUG: \(questionID) is equal \(savedID)")
+                        completion(true)
+                        return
+                    } else {
+                        print("DEBUG: \(questionID) is not equal \(savedID)")
+                    }
+                }
+                completion(false)
+            }
+    }
+    
 }

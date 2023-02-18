@@ -12,6 +12,7 @@ struct CardView: View {
     //@ObservedObject var questionModel = QuestionModel()
     @ObservedObject var questionModel = QuestionModel()
     @State var firstCard: Bool
+    @State var isSaved: Bool
     
     let question: Question
     //var saveQuestion: (Question) -> ()
@@ -63,10 +64,17 @@ struct CardView: View {
                             saveQuestionButton()
                         } label: {
                             HStack{
-                                Image(systemName: "bookmark")
-                                    .foregroundColor(.primary_900)
-                                Text("Save")
-                                    .foregroundColor(.text_900)
+                                if isSaved == true {
+                                    Image(systemName: "bookmark.fill")
+                                        .foregroundColor(.primary_900)
+                                    Text("Saved")
+                                        .foregroundColor(.text_900)
+                                } else {
+                                    Image(systemName: "bookmark")
+                                        .foregroundColor(.primary_900)
+                                    Text("Save")
+                                        .foregroundColor(.text_900)
+                                }
                                 
                             }  .padding(.leading, 20) .padding(.trailing, 35)
                         }
@@ -98,12 +106,12 @@ struct CardView: View {
     
     func masterQuestionButton() {
         questionModel.masterQuestion(questionId: question.id)
-    }    
+    }
 }
 
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(firstCard: false, question: Question(id: "1", category: "test", question: "Sample question just an example for a preview", type: "product", timestamp: Date()))
+        CardView(firstCard: false, isSaved: false, question: Question(id: "1", category: "test", question: "Sample question just an example for a preview", type: "product", timestamp: Date()))
     }
 }

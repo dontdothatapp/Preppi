@@ -13,6 +13,7 @@ struct HomeView: View {
     @State private var currentQuestion: Question?
     @ObservedObject var questionModel = QuestionModel()
     var saveQuestion: (Question) -> () = { _ in }
+    @State var IsSaved: Bool = false
     
     var body: some View {
         NavigationView {
@@ -34,11 +35,11 @@ struct HomeView: View {
                 
                 //This code checks if currentQuestion is not nil, which is an optional Question value. If it's not nil, it passes question as an argument to the CardView initializer. The code unwraps the optional value of currentQuestion by using if let syntax, which is a type of optional binding. The purpose of this code is to only display the CardView if currentQuestion has a value, avoiding a runtime error.
                 if let question = currentQuestion {
-                    CardView(firstCard: false, question: question)
+                    CardView(firstCard: false, isSaved: IsSaved, question: question)
                 } else {
                     
                     //Temp solution. Should find a way how to show the random question when the app starts
-                    CardView(firstCard: true, question: Question(id: "asd", category: "Ready to start?", question: "Tap on the button below to get the first question👇", type: "product", timestamp: Date()))
+                    CardView(firstCard: true, isSaved: false, question: Question(id: "asd", category: "Ready to start?", question: "Tap on the button below to get the first question👇", type: "product", timestamp: Date()))
                 }
                 
                 Spacer()
@@ -47,6 +48,10 @@ struct HomeView: View {
                 Button(action: {
                     if !questionList.isEmpty {
                         self.currentQuestion = questionList.randomElement()
+                        questionModel.checkSavedQuestion(questionID: currentQuestion!.id) { isSavedModel in
+                            IsSaved = isSavedModel
+                            print("DEBUG: IsSaved value is: \(IsSaved)")
+                        }
                     }
                 }) {
                     HStack {
