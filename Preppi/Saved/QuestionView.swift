@@ -62,6 +62,6 @@ struct QuestionView: View {
 
 struct Question_Previews: PreviewProvider {
     static var previews: some View {
-        QuestionView(category: "product strategy", question: "Amazon is launching free storage for photos. If you're a Google PM for Photos, what would you do?", id: "123", timestamp: Date())
+        QuestionView(category: "test category", question: "Very long text question to check how the view will work. Is it looking good?", id: "123", timestamp: Date())
     }
 }

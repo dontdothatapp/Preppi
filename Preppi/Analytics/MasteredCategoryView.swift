@@ -22,9 +22,39 @@ struct MasteredCategoryView: View {
             VStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     
-                    ForEach(masteredQuestions) {item in
-                        if item.category == selectedCategory {
-                            QuestionForAnalyticsView(question: item.question, id: item.id)
+                    if masteredQuestions.count < 1 {
+                        VStack{
+                            Spacer()
+                            Image("empty_state")
+                                .resizable()
+                                .scaledToFit()
+                                .ignoresSafeArea(.all, edges: .top)
+                                .padding(.horizontal, 30)
+                            Text("Oh damn, it's empty here")
+                                .foregroundColor(.text_900)
+                                .font(.system(size: 28, design: .rounded))
+                                .fontWeight(.medium)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 20)
+                            Text("You'll see here all mastered questions")
+                                .padding(.top, 1)
+                                .foregroundColor(.text_700)
+                                .font(.system(size: 19, design: .rounded))
+                                .fontWeight(.medium)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 20)
+                            Spacer()
+                        }
+                    } else {
+                        
+//                        ForEach(filteredArray) { item in
+//                            QuestionForAnalyticsView(question: item.question, id: item.id)
+//                        }
+                        
+                        ForEach(masteredQuestions) {item in
+                            if item.category == selectedCategory {
+                                QuestionForAnalyticsView(question: item.question, id: item.id)
+                            }
                         }
                     }
                 } .padding(.top, 20)
@@ -39,7 +69,7 @@ struct MasteredCategoryView: View {
         questionModel.getMasteredQuestionsArray { (masteredQuestions) in
             self.masteredQuestions = masteredQuestions
         }
-        print("DEBUG: \(masteredQuestions)")
+        print("DEBUG: getMasteredQuestionsArray: \(masteredQuestions)")
     }
     
 }

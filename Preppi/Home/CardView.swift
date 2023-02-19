@@ -119,12 +119,10 @@ struct CardView: View {
         } .onChange(of: question.id) { newValue in
             questionModel.checkSavedQuestion(questionID: newValue) { isSavedModel in
                 isSaved = isSavedModel
-                print("DEBUG: IsSaved value is: \(isSaved)")
             }
         } .onChange(of: question.id) { newValue in
             questionModel.checkMasteredQuestion(questionID: newValue) { isMasteredModel in
                 isMastered = isMasteredModel
-                print("DEBUG: isMastered value is: \(isMastered)")
             }
         }
     }

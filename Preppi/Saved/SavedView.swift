@@ -28,23 +28,36 @@ struct SavedView: View {
                         
                         VStack{
                             
-                            //All questions
-                            ForEach(questions) { question in
-                                QuestionView(category: question.category, question: question.question, id: question.id, timestamp: question.timestamp)
+                            if questions.count < 1 {
+                                VStack{
+                                    Spacer()
+                                    Image("empty_state")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .ignoresSafeArea(.all, edges: .top)
+                                        .padding(.horizontal, 30)
+                                    Text("Oh damn, it's empty here")
+                                        .foregroundColor(.text_900)
+                                        .font(.system(size: 28, design: .rounded))
+                                        .fontWeight(.medium)
+                                        .multilineTextAlignment(.center)
+                                        .padding(.horizontal, 20)
+                                    Text("Save the questions to practice them later")
+                                        .padding(.top, 1)
+                                        .foregroundColor(.text_700)
+                                        .font(.system(size: 19, design: .rounded))
+                                        .fontWeight(.medium)
+                                        .multilineTextAlignment(.center)
+                                        .padding(.horizontal, 20)
+                                    Spacer()
+                                }
+                            } else {
+                                //All questions
+                                ForEach(questions) { question in
+                                    QuestionView(category: question.category, question: question.question, id: question.id, timestamp: question.timestamp)
+                                }
                             }
-                            
-                            //All unsaved questions
-//                            Text("Test: Unsaved questions")
-//                                .font(.title2)
-//                                .padding(.top, 40)
-//
-//                            Text("Number of questions: \(unsavedQuestions.count) 👇")
-//                                .padding(.bottom, 20)
-//
-//                            ForEach(unsavedQuestions, id: \.id) { item in
-//                                QuestionView(category: item.category, question: item.question)
-//                            }
-                        } .padding(.top, 20) //.padding(.bottom, 30)
+                        } .padding(.top, 20)
                         
                     }
                     

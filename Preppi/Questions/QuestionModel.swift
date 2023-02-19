@@ -119,9 +119,7 @@ class QuestionModel: ObservableObject {
         ]) { (error) in
             if let error = error {
                 print("Error writing document: \(error)")
-            } else {
-                print("Question successfully saved!")
-            }
+            } else { }
         }
     }
     
@@ -131,9 +129,7 @@ class QuestionModel: ObservableObject {
         db.collection("users").document(userId).collection("saved_questions").document(questionId).delete { (error) in
             if let error = error {
                 print("Error deleting document: \(error)")
-            } else {
-                print("Question successfully deleted from saved!")
-            }
+            } else { }
         }
     }
 
@@ -149,9 +145,7 @@ class QuestionModel: ObservableObject {
         ]) { (error) in
             if let error = error {
                 print("Error writing document: \(error)")
-            } else {
-                print("Question successfully mastered!")
-            }
+            } else { }
         }
     }
     
@@ -161,9 +155,7 @@ class QuestionModel: ObservableObject {
         db.collection("users").document(userId).collection("mastered_questions").document(questionId).delete { (error) in
             if let error = error {
                 print("Error deleting from mastered: \(error)")
-            } else {
-                print("Question successfully deleted from mastered!")
-            }
+            } else { }
         }
     }
     
@@ -262,12 +254,9 @@ class QuestionModel: ObservableObject {
                 for document in querySnapshot!.documents {
                     let savedID = document.data()["question_id"] as! String
                     if questionID == savedID {
-                        print("DEBUG: \(questionID) is equal \(savedID)")
                         completion(true)
                         return
-                    } else {
-                        print("DEBUG: \(questionID) is not equal \(savedID)")
-                    }
+                    } else { }
                 }
                 completion(false)
             }
@@ -294,11 +283,10 @@ class QuestionModel: ObservableObject {
                 for document in querySnapshot!.documents {
                     let masteredID = document.data()["question_id"] as! String
                     if questionID == masteredID {
-                        print("DEBUG Mastered: \(questionID) is equal \(masteredID)")
                         completion(true)
                         return
                     } else {
-                        print("DEBUG Mastered: \(questionID) is not equal \(masteredID)")
+                        
                     }
                 }
                 completion(false)
