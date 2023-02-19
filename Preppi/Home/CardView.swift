@@ -69,14 +69,16 @@ struct CardView: View {
                                         .foregroundColor(.primary_900)
                                     Text("Saved")
                                         .foregroundColor(.text_900)
+                                    Spacer()
                                 } else {
                                     Image(systemName: "bookmark")
                                         .foregroundColor(.primary_900)
                                     Text("Save")
                                         .foregroundColor(.text_900)
+                                    Spacer()
                                 }
                                 
-                            }  .padding(.leading, 20) .padding(.trailing, 35)
+                            } .frame(width: 100) .padding(.leading, 20)
                         }
                         
                         //Mastered button
