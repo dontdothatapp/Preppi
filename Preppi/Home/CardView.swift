@@ -62,7 +62,12 @@ struct CardView: View {
                         
                         //Save button
                         Button {
-                            saveQuestionButton()
+                            
+                            if isSaved == true {
+                                deleteFromSaved()
+                            } else {
+                                saveQuestionButton()
+                            }
                         } label: {
                             HStack{
                                 if isSaved == true {
@@ -84,7 +89,11 @@ struct CardView: View {
                         
                         //Mastered button
                         Button {
-                            masterQuestionButton()
+                            if isMastered == true {
+                                deleteFromMastered()
+                            } else {
+                                masterQuestionButton()
+                            }
                         } label: {
                             HStack{
                                 if isMastered == true {
@@ -126,6 +135,14 @@ struct CardView: View {
     
     func masterQuestionButton() {
         questionModel.masterQuestion(questionId: question.id)
+    }
+    
+    func deleteFromSaved() {
+        questionModel.deleteSavedQuestion(questionId: question.id)
+    }
+    
+    func deleteFromMastered() {
+        questionModel.deleteMasteredQuestion(questionId: question.id)
     }
     
 //    func fetchIfItsSaved() {
