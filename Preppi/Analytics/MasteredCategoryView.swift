@@ -11,6 +11,7 @@ struct MasteredCategoryView: View {
     
     @ObservedObject var questionModel = QuestionModel()
     @State var masteredQuestions = [Question]()
+    @State var filteredMasteredQuestions = [Question]()
     @State var selectedCategory: String
     
     var body: some View {
@@ -22,7 +23,7 @@ struct MasteredCategoryView: View {
             VStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     
-                    if masteredQuestions.count < 1 {
+                    if filteredMasteredQuestions.count < 1 {
                         VStack{
                             Spacer()
                             Image("empty_state")
@@ -46,12 +47,7 @@ struct MasteredCategoryView: View {
                             Spacer()
                         }
                     } else {
-                        
-//                        ForEach(filteredArray) { item in
-//                            QuestionForAnalyticsView(question: item.question, id: item.id)
-//                        }
-                        
-                        ForEach(masteredQuestions) {item in
+                        ForEach(filteredMasteredQuestions) {item in
                             if item.category == selectedCategory {
                                 QuestionForAnalyticsView(question: item.question, id: item.id)
                             }
@@ -65,9 +61,21 @@ struct MasteredCategoryView: View {
         } .navigationTitle(selectedCategory)
     }
     
+    /*
+     Current state
+     When you open a catergory screen, it always show you the empty state sceeen
+     But if you'll open another tab and then open the category screen again: now it shows you the actual items, instead of empty screen
+     */
+    
     func getMasteredQuestionsArray() {
-        questionModel.getMasteredQuestionsArray { (masteredQuestions) in
-            self.masteredQuestions = masteredQuestions
+        questionModel.getMasteredQuestionsArray { (masteredItem) in
+            self.masteredQuestions = masteredItem
+        }
+        for item in self.masteredQuestions {
+            if item.category == selectedCategory {
+                filteredMasteredQuestions.append(item)
+                print("DEBUG: filteredMasteredQuestions count: \(filteredMasteredQuestions.count)")
+            } else { }
         }
         print("DEBUG: getMasteredQuestionsArray: \(masteredQuestions)")
     }
