@@ -48,10 +48,6 @@ struct HomeView: View {
                 Button(action: {
                     if !questionList.isEmpty {
                         self.currentQuestion = questionList.randomElement()
-//                        questionModel.checkSavedQuestion(questionID: currentQuestion!.id) { isSavedModel in
-//                            IsSaved = isSavedModel
-//                            print("DEBUG: IsSaved value is: \(IsSaved)")
-//                        }
                     }
                 }) {
                     HStack {

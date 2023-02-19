@@ -273,4 +273,36 @@ class QuestionModel: ObservableObject {
             }
     }
     
+    func checkMasteredQuestion(questionID: String, completion: @escaping (Bool) -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            //handle error
+            completion(false)
+            return
+        }
+
+        let db = Firestore.firestore()
+
+        db.collection("users").document(user.uid)
+            .collection("mastered_questions")
+            .addSnapshotListener{ (querySnapshot, error) in
+                if let error = error {
+                    print("DEBUG: Error: \(error.localizedDescription)")
+                    completion(false)
+                    return
+                }
+
+                for document in querySnapshot!.documents {
+                    let masteredID = document.data()["question_id"] as! String
+                    if questionID == masteredID {
+                        print("DEBUG Mastered: \(questionID) is equal \(masteredID)")
+                        completion(true)
+                        return
+                    } else {
+                        print("DEBUG Mastered: \(questionID) is not equal \(masteredID)")
+                    }
+                }
+                completion(false)
+            }
+    }
+    
 }

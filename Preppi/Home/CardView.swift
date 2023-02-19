@@ -13,6 +13,7 @@ struct CardView: View {
     @ObservedObject var questionModel = QuestionModel()
     @State var firstCard: Bool
     @State var isSaved: Bool = false
+    @State var isMastered: Bool = false
     
     let question: Question
     //var saveQuestion: (Question) -> ()
@@ -86,10 +87,17 @@ struct CardView: View {
                             masterQuestionButton()
                         } label: {
                             HStack{
-                                Image(systemName: "wand.and.stars")
-                                    .foregroundColor(.primary_900)
-                                Text("Mastered")
-                                    .foregroundColor(.text_900)
+                                if isMastered == true {
+                                    Image(systemName: "checkmark.seal.fill")
+                                        .foregroundColor(.primary_900)
+                                    Text("Mastered")
+                                        .foregroundColor(.text_900)
+                                } else {
+                                    Image(systemName: "checkmark.seal")
+                                        .foregroundColor(.primary_900)
+                                    Text("Mastered")
+                                        .foregroundColor(.text_900)
+                                }
                             }
                         }
                         
@@ -103,6 +111,11 @@ struct CardView: View {
             questionModel.checkSavedQuestion(questionID: newValue) { isSavedModel in
                 isSaved = isSavedModel
                 print("DEBUG: IsSaved value is: \(isSaved)")
+            }
+        } .onChange(of: question.id) { newValue in
+            questionModel.checkMasteredQuestion(questionID: newValue) { isMasteredModel in
+                isMastered = isMasteredModel
+                print("DEBUG: isMastered value is: \(isMastered)")
             }
         }
     }
