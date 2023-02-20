@@ -127,6 +127,9 @@ struct LoginView: View {
                     }
                     .padding(.top, 80)
                 }
+            } .alert("Whoops!", isPresented: $viewModel.hasError) {
+            } message: {
+                Text(viewModel.errorMessage)
             }
         }
         .navigationBarHidden(true)

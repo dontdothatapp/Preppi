@@ -14,6 +14,8 @@ class AuthViewModel: ObservableObject {
     @Published var userSession: FirebaseAuth.User?
     private let service = UserService()
     @Published var currentUser: User?
+    @Published var hasError = false
+    @Published var errorMessage = ""
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -24,7 +26,9 @@ class AuthViewModel: ObservableObject {
     func login(withEmail email: String, password: String) {
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             if error != nil {
-                print("DEBUG: Registration error: \(error!.localizedDescription)")
+                print("DEBUG: Auth error.localized description: \(error!.localizedDescription)")
+                self.hasError = true
+                self.errorMessage = error!.localizedDescription
                 return
             }
             
@@ -39,6 +43,8 @@ class AuthViewModel: ObservableObject {
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if error != nil {
                 print("DEBUG: Registration error: \(error!.localizedDescription)")
+                self.hasError = true
+                self.errorMessage = error!.localizedDescription
                 return
             }
             
