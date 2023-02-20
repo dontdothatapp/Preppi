@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ConfettiSwiftUI
 
 struct CardView: View {
     
@@ -14,6 +15,7 @@ struct CardView: View {
     @State var firstCard: Bool
     @State var isSaved: Bool = false
     @State var isMastered: Bool = false
+    @State private var counter: Int = 0
     
     let question: Question
     //var saveQuestion: (Question) -> ()
@@ -93,6 +95,7 @@ struct CardView: View {
                                 deleteFromMastered()
                             } else {
                                 masterQuestionButton()
+                                counter += 1
                             }
                         } label: {
                             HStack{
@@ -108,7 +111,7 @@ struct CardView: View {
                                         .foregroundColor(.text_900)
                                 }
                             }
-                        }
+                        } .confettiCannon(counter: $counter, num: 20, rainHeight: 600.0, opacity: 0.7, openingAngle: Angle.degrees(-10), closingAngle: Angle.degrees(-90), radius: 200.0)
                         
                         Spacer()
                     }
