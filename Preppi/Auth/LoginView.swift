@@ -12,6 +12,7 @@ struct LoginView: View {
     @State private var name: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
+    //@EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var viewModel: AuthViewModel
     
     var body: some View {
@@ -91,20 +92,8 @@ struct LoginView: View {
                         .frame(height: 1)
                         .foregroundColor(.white.opacity(0.1))
                     
-                    /*
-                     Button {
-                     print("Sign in with Apple")
-                     } label: {
-                     SignInWithAppleButton()
-                     .frame(width: 250, height: 50)
-                     .cornerRadius(8)
-                     .foregroundColor(.black)
-                     }
-                     */
-                    
-                    NavigationLink {
-                        ContentView()
-                            .navigationBarHidden(true)
+                    Button {
+                        viewModel.login(withEmail: email, password: password)
                     } label: {
                         SignInWithAppleButton()
                             .frame(width: 250, height: 50)

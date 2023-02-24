@@ -16,6 +16,8 @@ struct CardView: View {
     @State var isSaved: Bool = false
     @State var isMastered: Bool = false
     @State private var counter: Int = 0
+    @State var savedCounter = 0
+    @State private var showPremiumOffer = false
     
     let question: Question
     //var saveQuestion: (Question) -> ()
@@ -69,6 +71,14 @@ struct CardView: View {
                                 deleteFromSaved()
                             } else {
                                 saveQuestionButton()
+                                if savedCounter < 3 {
+                                    showPremiumOffer = false
+                                    savedCounter += 1
+                                    print("DEBUG: savedCounter = \(savedCounter)")
+                                } else {
+                                    showPremiumOffer = true
+                                    savedCounter = 0
+                                }
                             }
                         } label: {
                             HStack{
@@ -88,6 +98,7 @@ struct CardView: View {
                                 
                             } .frame(width: 100) .padding(.leading, 20)
                         }
+                        .fullScreenCover(isPresented: $showPremiumOffer, content: PremiumView.init)
                         
                         //Mastered button
                         Button {
@@ -144,6 +155,14 @@ struct CardView: View {
     
     func deleteFromMastered() {
         questionModel.deleteMasteredQuestion(questionId: question.id)
+    }
+    
+    func savedCounterUpdate() {
+        if savedCounter < 3 {
+            savedCounter += 1
+        } else {
+            savedCounter = 0
+        }
     }
     
 //    func fetchIfItsSaved() {

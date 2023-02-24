@@ -22,6 +22,9 @@
 		7F6F76DA2975F09E00FF7871 /* OnboardingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F6F76D92975F09E00FF7871 /* OnboardingPageView.swift */; };
 		7F700BBB299D734E0067252C /* MasteredCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F700BBA299D734E0067252C /* MasteredCategoryView.swift */; };
 		7F855ACB2999116100F55116 /* ProgressCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F855ACA2999116100F55116 /* ProgressCircleView.swift */; };
+		7F8BDD7C29A8D8DC00318707 /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8BDD7B29A8D8DC00318707 /* PremiumView.swift */; };
+		7F8BDD7E29A8DD5B00318707 /* PremiumLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8BDD7D29A8DD5B00318707 /* PremiumLine.swift */; };
+		7F8BDD8229A9062C00318707 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8BDD8129A9062C00318707 /* RadioButton.swift */; };
 		7F9BCE562985D3EB0073BE23 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9BCE552985D3EB0073BE23 /* ProgressBarView.swift */; };
 		7FA0910329943F410006F5D8 /* MasteredStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA0910229943F410006F5D8 /* MasteredStats.swift */; };
 		7FA5843F29A1031D00F410CE /* QuestionForAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5843E29A1031D00F410CE /* QuestionForAnalyticsView.swift */; };
@@ -65,6 +68,9 @@
 		7F6F76DB2975F59A00FF7871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		7F700BBA299D734E0067252C /* MasteredCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteredCategoryView.swift; sourceTree = "<group>"; };
 		7F855ACA2999116100F55116 /* ProgressCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressCircleView.swift; sourceTree = "<group>"; };
+		7F8BDD7B29A8D8DC00318707 /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumView.swift; sourceTree = "<group>"; };
+		7F8BDD7D29A8DD5B00318707 /* PremiumLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumLine.swift; sourceTree = "<group>"; };
+		7F8BDD8129A9062C00318707 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		7F9BCE552985D3EB0073BE23 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		7FA0910229943F410006F5D8 /* MasteredStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteredStats.swift; sourceTree = "<group>"; };
 		7FA5843E29A1031D00F410CE /* QuestionForAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionForAnalyticsView.swift; sourceTree = "<group>"; };
@@ -194,9 +200,12 @@
 		7FB5E4B8297C1D8900A2482B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				7F8BDD7B29A8D8DC00318707 /* PremiumView.swift */,
+				7F8BDD7D29A8DD5B00318707 /* PremiumLine.swift */,
 				7F0F85222977411E00C787A7 /* Colors.swift */,
 				7FD2A28F2983128C00016281 /* CustomTabBar.swift */,
 				7FD2A291298320A600016281 /* TabBarButton.swift */,
+				7F8BDD8129A9062C00318707 /* RadioButton.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -316,6 +325,7 @@
 				7F68B0D12986CD6E00F1BDBD /* Chips.swift in Sources */,
 				7F250E982988614000D84AD0 /* User.swift in Sources */,
 				7FA0910329943F410006F5D8 /* MasteredStats.swift in Sources */,
+				7F8BDD7C29A8D8DC00318707 /* PremiumView.swift in Sources */,
 				7FB5E4B0297BF32500A2482B /* SignupView.swift in Sources */,
 				7F6F76CC2975E68D00FF7871 /* ContentView.swift in Sources */,
 				7FB5E4B6297C18AD00A2482B /* LoginView.swift in Sources */,
@@ -330,12 +340,14 @@
 				7FB5E4C6297C340D00A2482B /* SavedView.swift in Sources */,
 				7F700BBB299D734E0067252C /* MasteredCategoryView.swift in Sources */,
 				7FB5E4D32981BEDF00A2482B /* SettingsView.swift in Sources */,
+				7F8BDD7E29A8DD5B00318707 /* PremiumLine.swift in Sources */,
 				7F6F76CA2975E68D00FF7871 /* PreppiApp.swift in Sources */,
 				7F6F76DA2975F09E00FF7871 /* OnboardingPageView.swift in Sources */,
 				7F855ACB2999116100F55116 /* ProgressCircleView.swift in Sources */,
 				7F6F76D82975EF1900FF7871 /* OnboardingPageModel.swift in Sources */,
 				7FE4832E2989AC6D0008212A /* QuestionModel.swift in Sources */,
 				7F250E9629885F7600D84AD0 /* UserService.swift in Sources */,
+				7F8BDD8229A9062C00318707 /* RadioButton.swift in Sources */,
 				7F5EFEFE29900DF0008B35D3 /* SavedModel_DEPR.swift in Sources */,
 				7FB5E4C2297C33E900A2482B /* StatsView.swift in Sources */,
 				7FB5E4BF297C2EF800A2482B /* CardView.swift in Sources */,

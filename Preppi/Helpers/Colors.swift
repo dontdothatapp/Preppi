@@ -32,4 +32,8 @@ extension Color{
     
     //Additional
     public static let additional_50: Color = Color(UIColor(red: 245/255, green: 247/255, blue: 249/255, alpha: 1.0))
+    
+    //Gradient white
+    public static let gradientWhite: Color = Color(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0))
+    public static let gradientWhiteOpacity: Color = Color(UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.1))
 }
