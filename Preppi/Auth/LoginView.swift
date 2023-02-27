@@ -12,8 +12,8 @@ struct LoginView: View {
     @State private var name: String = ""
     @State private var email: String = ""
     @State private var password: String = ""
-    //@EnvironmentObject var viewModel: AuthViewModel
     @EnvironmentObject var viewModel: AuthViewModel
+    @State public var showResetSheet = false
     
     var body: some View {
         NavigationView {
@@ -44,7 +44,7 @@ struct LoginView: View {
                     VStack(alignment: .leading) {
                         
                         TextField("Email", text: $email)
-                            .foregroundColor(.text_900)
+                            .foregroundColor(.text_500)
                             .textFieldStyle(.plain)
                             .placeholder(when: email.isEmpty) {
                                 Text("Email")
@@ -56,15 +56,28 @@ struct LoginView: View {
                             .padding(.bottom, 20)
                         
                         SecureField("Password", text: $password)
-                            .foregroundColor(.text_900)
+                            .foregroundColor(.text_500)
                             .textFieldStyle(.plain)
                             .placeholder(when: password.isEmpty) {
                                 Text("Password")
-                                    .foregroundColor(.text_300)
+                                    .foregroundColor(.text_500)
                             }
                         Rectangle()
                             .frame(width: 350, height: 1)
                             .foregroundColor(.text_300)
+                        
+                        HStack {
+                            Spacer()
+                            
+                            Button {
+                                viewModel.showResetScreen = true
+                            } label: {
+                                Text("Forgot password?")
+                                    .foregroundColor(.text_500)
+                                    .font(.system(size: 16))
+                                    .padding(.top, 10)
+                            }
+                        }
                         
                     }
                     .padding(.horizontal, 20)
@@ -116,6 +129,10 @@ struct LoginView: View {
                     }
                     .padding(.top, 80)
                 }
+                .sheet(isPresented: $viewModel.showResetScreen) {
+                    ResetPasswordView()
+                        .presentationDetents([.medium, .large])
+                }
             } .alert("Whoops!", isPresented: $viewModel.hasError) {
             } message: {
                 Text(viewModel.errorMessage)
@@ -128,5 +145,6 @@ struct LoginView: View {
 struct SigninView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
+            .environmentObject(AuthViewModel())
     }
 }

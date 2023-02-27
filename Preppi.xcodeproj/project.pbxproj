@@ -48,6 +48,7 @@
 		7FE4832E2989AC6D0008212A /* QuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE4832D2989AC6D0008212A /* QuestionModel.swift */; };
 		7FE483302989AC750008212A /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE4832F2989AC750008212A /* Question.swift */; };
 		7FE483342989B60F0008212A /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE483332989B60F0008212A /* Categories.swift */; };
+		7FEBF40B29AD40AD0010C338 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FEBF40A29AD40AD0010C338 /* ResetPasswordView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +90,7 @@
 		7FE4832D2989AC6D0008212A /* QuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionModel.swift; sourceTree = "<group>"; };
 		7FE4832F2989AC750008212A /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		7FE483332989B60F0008212A /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
+		7FEBF40A29AD40AD0010C338 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,6 +195,7 @@
 				7FD872D42981C72F00A3A33C /* AuthViewModel.swift */,
 				7FB5E4AF297BF32500A2482B /* SignupView.swift */,
 				7FB5E4B5297C18AD00A2482B /* LoginView.swift */,
+				7FEBF40A29AD40AD0010C338 /* ResetPasswordView.swift */,
 				7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */,
 			);
 			path = Auth;
@@ -362,6 +365,7 @@
 				7FA5843F29A1031D00F410CE /* QuestionForAnalyticsView.swift in Sources */,
 				7FB5E4B2297C022100A2482B /* SignInWithAppleButton.swift in Sources */,
 				7FE483342989B60F0008212A /* Categories.swift in Sources */,
+				7FEBF40B29AD40AD0010C338 /* ResetPasswordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

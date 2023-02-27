@@ -16,6 +16,8 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var hasError = false
     @Published var errorMessage = ""
+    @Published var showResetScreen = false
+    @Published var showResetAlert = false
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -36,6 +38,22 @@ class AuthViewModel: ObservableObject {
             self.userSession = user
             print("DEBUG: Login successful")
             self.fetchUser()
+        }
+    }
+    
+    func resetPassword(withEmail email: String) {
+        Auth.auth().sendPasswordReset(withEmail: email) { error in
+            if error != nil {
+                print("DEBUG: Auth error.localized description: \(error!.localizedDescription)")
+                self.hasError = true
+                self.errorMessage = error!.localizedDescription
+                return
+            }
+            
+            self.showResetAlert = true
+            //self.showResetScreen = false
+            print("DEBUG: Password reset success")
+            print("DEBUG: showResetAlert = \(self.showResetAlert)")
         }
     }
     

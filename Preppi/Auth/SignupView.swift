@@ -42,7 +42,7 @@ struct SignupView: View {
                     
                     VStack(alignment: .leading) {
                         TextField("Name", text: $name)
-                            .foregroundColor(.text_900)
+                            .foregroundColor(.text_500)
                             .textFieldStyle(.plain)
                             .placeholder(when: name.isEmpty) {
                                 Text("Name")
@@ -54,7 +54,7 @@ struct SignupView: View {
                             .padding(.bottom, 20)
                         
                         TextField("Email", text: $email)
-                            .foregroundColor(.text_900)
+                            .foregroundColor(.text_500)
                             .textFieldStyle(.plain)
                             .placeholder(when: email.isEmpty) {
                                 Text("Email")
@@ -66,11 +66,11 @@ struct SignupView: View {
                             .padding(.bottom, 20)
                         
                         SecureField("Password", text: $password)
-                            .foregroundColor(.text_900)
+                            .foregroundColor(.text_500)
                             .textFieldStyle(.plain)
                             .placeholder(when: password.isEmpty) {
                                 Text("Password")
-                                    .foregroundColor(.text_300)
+                                    .foregroundColor(.text_500)
                             }
                         Rectangle()
                             .frame(width: 350, height: 1)
@@ -152,6 +152,7 @@ struct SignupView: View {
 struct SignupView_Previews: PreviewProvider {
     static var previews: some View {
         SignupView()
+            .environmentObject(AuthViewModel())
     }
 }
 
