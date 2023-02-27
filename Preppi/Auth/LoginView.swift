@@ -13,7 +13,7 @@ struct LoginView: View {
     @State private var email: String = ""
     @State private var password: String = ""
     @EnvironmentObject var viewModel: AuthViewModel
-    @State public var showResetSheet = false
+    @State var showResetSheet = false
     
     var body: some View {
         NavigationView {
@@ -70,7 +70,7 @@ struct LoginView: View {
                             Spacer()
                             
                             Button {
-                                viewModel.showResetScreen = true
+                                showResetSheet = true
                             } label: {
                                 Text("Forgot password?")
                                     .foregroundColor(.text_500)
@@ -129,7 +129,7 @@ struct LoginView: View {
                     }
                     .padding(.top, 80)
                 }
-                .sheet(isPresented: $viewModel.showResetScreen) {
+                .sheet(isPresented: $showResetSheet) {
                     ResetPasswordView()
                         .presentationDetents([.medium, .large])
                 }

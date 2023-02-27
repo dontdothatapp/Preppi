@@ -16,8 +16,8 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var hasError = false
     @Published var errorMessage = ""
-    @Published var showResetScreen = false
-    @Published var showResetAlert = false
+//    @Published var showResetScreen = false
+//    @Published var showResetAlert = false
     
     init() {
         self.userSession = Auth.auth().currentUser
@@ -50,10 +50,8 @@ class AuthViewModel: ObservableObject {
                 return
             }
             
-            self.showResetAlert = true
-            //self.showResetScreen = false
-            print("DEBUG: Password reset success")
-            print("DEBUG: showResetAlert = \(self.showResetAlert)")
+            //self.showResetAlert.toggle()
+            //self.showResetScreen.toggle()
         }
     }
     
