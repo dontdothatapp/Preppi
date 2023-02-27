@@ -157,6 +157,7 @@
 				7FE4832C2989AC4C0008212A /* Questions */,
 				7FB5E4B9297C1D9400A2482B /* Onboarding */,
 				7FB5E4B7297C19DB00A2482B /* Auth */,
+				7FB9D65B29AD3A4F00F31F2D /* Premium */,
 				7FB5E4B8297C1D8900A2482B /* Helpers */,
 				7F6F76CD2975E68E00FF7871 /* Assets.xcassets */,
 				7FB5E4C7297C456700A2482B /* GoogleService-Info.plist */,
@@ -200,12 +201,9 @@
 		7FB5E4B8297C1D8900A2482B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				7F8BDD7B29A8D8DC00318707 /* PremiumView.swift */,
-				7F8BDD7D29A8DD5B00318707 /* PremiumLine.swift */,
 				7F0F85222977411E00C787A7 /* Colors.swift */,
 				7FD2A28F2983128C00016281 /* CustomTabBar.swift */,
 				7FD2A291298320A600016281 /* TabBarButton.swift */,
-				7F8BDD8129A9062C00318707 /* RadioButton.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -226,6 +224,16 @@
 				7FB5E4BE297C2EF800A2482B /* CardView.swift */,
 			);
 			path = Home;
+			sourceTree = "<group>";
+		};
+		7FB9D65B29AD3A4F00F31F2D /* Premium */ = {
+			isa = PBXGroup;
+			children = (
+				7F8BDD7B29A8D8DC00318707 /* PremiumView.swift */,
+				7F8BDD7D29A8DD5B00318707 /* PremiumLine.swift */,
+				7F8BDD8129A9062C00318707 /* RadioButton.swift */,
+			);
+			path = Premium;
 			sourceTree = "<group>";
 		};
 		7FE4832C2989AC4C0008212A /* Questions */ = {

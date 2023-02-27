@@ -90,11 +90,11 @@ struct PremiumView: View {
                                 //Premium benefits
                                 HStack{
                                     VStack(alignment: .leading, spacing: 20) {
-                                        PremiumLine(caption: "Unlimited saved")
-                                        PremiumLine(caption: "Access to all questions")
-                                        PremiumLine(caption: "Progress tracking")
-                                        PremiumLine(caption: "Tags search")
-                                    } .padding(.leading, 60)
+                                        PremiumLine(caption: "Access to all 254 questions")
+                                        PremiumLine(caption: "Unlimited saved questions")
+                                        PremiumLine(caption: "Track your progress across topics")
+                                        PremiumLine(caption: "Train questions on a specific topic")
+                                    } .padding(.leading, 60) .padding(.trailing, 40)
                                     Spacer()
                                 } .padding(.top, 40)
                             }

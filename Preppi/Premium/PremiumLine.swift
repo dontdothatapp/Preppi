@@ -17,8 +17,8 @@ struct PremiumLine: View {
                 .foregroundColor(.primary_500)
             Text(caption)
                 .foregroundColor(.text_700)
-                .font(.system(size: 19))
-                .fontWeight(.medium)
+                .font(.system(size: 16))
+                .fontWeight(.regular)
                 .padding(.leading, 10)
         }
     }
