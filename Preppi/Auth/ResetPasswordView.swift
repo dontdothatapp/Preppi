@@ -82,7 +82,6 @@ struct ResetPasswordView: View {
             .alert("Check your email", isPresented: $viewModel.showResetAlert) {
                 Button("Got it", role: .cancel) {
                     viewModel.showResetScreen = false
-                    print("DEBUG: showResetScreen = \(viewModel.showResetScreen)")
                 }
             } message: {
                 Text("We have sent a password reset instructions to your email")

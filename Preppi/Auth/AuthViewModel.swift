@@ -52,8 +52,6 @@ class AuthViewModel: ObservableObject {
             
             self.showResetAlert = true
             //self.showResetScreen = false
-            print("DEBUG: Password reset success")
-            print("DEBUG: showResetAlert = \(self.showResetAlert)")
         }
     }
     

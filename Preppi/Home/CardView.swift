@@ -15,9 +15,11 @@ struct CardView: View {
     @State var firstCard: Bool
     @State var isSaved: Bool = false
     @State var isMastered: Bool = false
-    @State private var counter: Int = 0
+    @State private var masteredCounter: Int = 0
     @State var savedCounter = 0
     @State private var showPremiumOffer = false
+    @State var masteredPerSession = 0
+    @State public var animationForSaved = false
     
     let question: Question
     //var saveQuestion: (Question) -> ()
@@ -35,7 +37,7 @@ struct CardView: View {
                 Spacer()
                 
                 //Tag
-                HStack {
+                HStack (alignment: .top) {
                     Text(question.category)
                     //.padding(.leading, 40)
                     //.padding(.top, 40)
@@ -69,12 +71,14 @@ struct CardView: View {
                             
                             if isSaved == true {
                                 deleteFromSaved()
+                                animationForSaved.toggle()
                             } else {
                                 saveQuestionButton()
                                 if savedCounter < 3 {
                                     showPremiumOffer = false
                                     savedCounter += 1
                                     print("DEBUG: savedCounter = \(savedCounter)")
+                                    animationForSaved.toggle()
                                 } else {
                                     showPremiumOffer = true
                                     savedCounter = 0
@@ -106,7 +110,8 @@ struct CardView: View {
                                 deleteFromMastered()
                             } else {
                                 masterQuestionButton()
-                                counter += 1
+                                masteredCounter += 1
+                                masteredPerSession += 1
                             }
                         } label: {
                             HStack{
@@ -122,9 +127,22 @@ struct CardView: View {
                                         .foregroundColor(.text_900)
                                 }
                             }
-                        } .confettiCannon(counter: $counter, num: 20, rainHeight: 600.0, opacity: 0.7, openingAngle: Angle.degrees(-10), closingAngle: Angle.degrees(-90), radius: 200.0)
+                        } .confettiCannon(counter: $masteredCounter, num: 20, rainHeight: 600.0, opacity: 0.7, openingAngle: Angle.degrees(-10), closingAngle: Angle.degrees(-90), radius: 200.0)
                         
                         Spacer()
+                        
+                        ShareLink(item: "How you would answer this question?",
+                                  subject: Text("How you would answer this question?"),
+                                  message: Text("How would you answer the question: \(question.question) The question from the Preppi app: https://github.com/dontdothatapp"),
+                                  preview: SharePreview("How would you answer the question?", image: Image("AppIcon"))) {
+                            HStack {
+                                Image(systemName: "square.and.arrow.up")
+                                    //.font(.system(size: 15))
+                                    .padding(.trailing, 20)
+                                    .foregroundColor(isSaved ? Color.primary_300 : Color.text_500)
+                            }
+                        }
+                        
                     }
                     .padding(.bottom, 20)
                 }
@@ -176,6 +194,6 @@ struct CardView: View {
 
 struct CardView_Previews: PreviewProvider {
     static var previews: some View {
-        CardView(firstCard: false, isSaved: false, question: Question(id: "1", category: "test", question: "Sample question just an example for a preview", type: "product", timestamp: Date()))
+        CardView(firstCard: false, isSaved: true, question: Question(id: "1", category: "test", question: "Sample question just an example for a preview", type: "product", timestamp: Date()))
     }
 }
