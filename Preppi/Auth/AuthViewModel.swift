@@ -50,8 +50,8 @@ class AuthViewModel: ObservableObject {
                 return
             }
             
-            //self.showResetAlert.toggle()
-            //self.showResetScreen.toggle()
+            self.showResetAlert = true
+            //self.showResetScreen = false
         }
     }
     

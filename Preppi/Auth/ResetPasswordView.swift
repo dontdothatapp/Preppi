@@ -79,15 +79,13 @@ struct ResetPasswordView: View {
             } message: {
                 Text(viewModel.errorMessage)
             }
-//            .alert("Check your email", isPresented: $viewModel.showResetAlert) {
-//                Button("Got it", role: .cancel) {
-////                    viewModel.showResetScreen.toggle()
-////                    viewModel.showResetAlert = false
-//                    print("DEBUG: showResetScreen = \(viewModel.showResetScreen)")
-//                }
-//            } message: {
-//                Text("We have sent a password reset instructions to your email")
-//            }
+            .alert("Check your email", isPresented: $viewModel.showResetAlert) {
+                Button("Got it", role: .cancel) {
+                    viewModel.showResetScreen = false
+                }
+            } message: {
+                Text("We have sent a password reset instructions to your email")
+            }
         }
         .navigationBarHidden(true)
     }
