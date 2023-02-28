@@ -16,8 +16,8 @@ class AuthViewModel: ObservableObject {
     @Published var currentUser: User?
     @Published var hasError = false
     @Published var errorMessage = ""
-//    @Published var showResetScreen = false
-//    @Published var showResetAlert = false
+    @Published var showResetScreen = false
+    @Published var showResetAlert = false
     
     init() {
         self.userSession = Auth.auth().currentUser
