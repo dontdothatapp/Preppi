@@ -201,7 +201,6 @@ struct CardView: View {
     func getMasteredQuestionsArray() {
         questionModel.getMasteredQuestionsArray { (masteredQuestions) in
             self.masteredQuestions = masteredQuestions
-            print("DEBUG: masteredQuestions count = \(self.masteredQuestions.count)")
         }
     }
     
