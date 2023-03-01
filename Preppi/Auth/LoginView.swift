@@ -70,7 +70,7 @@ struct LoginView: View {
                             Spacer()
                             
                             Button {
-                                showResetSheet = true
+                                viewModel.showResetScreen = true
                             } label: {
                                 Text("Forgot password?")
                                     .foregroundColor(.text_500)
@@ -129,7 +129,7 @@ struct LoginView: View {
                     }
                     .padding(.top, 80)
                 }
-                .sheet(isPresented: $showResetSheet) {
+                .sheet(isPresented: $viewModel.showResetScreen) {
                     ResetPasswordView()
                         .presentationDetents([.medium, .large])
                 }
