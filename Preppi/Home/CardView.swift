@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ConfettiSwiftUI
+import StoreKit
 
 struct CardView: View {
     
@@ -20,6 +21,9 @@ struct CardView: View {
     @State private var showPremiumOffer = false
     @State var masteredPerSession = 0
     @State public var animationForSaved = false
+    @State var masteredQuestions = [Question]()
+    @State var savedQuestions = [Question]()
+    @Environment(\.requestReview) var requestReview
     
     let question: Question
     //var saveQuestion: (Question) -> ()
@@ -74,14 +78,20 @@ struct CardView: View {
                                 animationForSaved.toggle()
                             } else {
                                 saveQuestionButton()
-                                if savedCounter < 3 {
-                                    showPremiumOffer = false
-                                    savedCounter += 1
-                                    print("DEBUG: savedCounter = \(savedCounter)")
-                                    animationForSaved.toggle()
+                                fetchSavedQuestions()
+                                
+                                if savedQuestions.count == 5 {
+                                    requestReview()
                                 } else {
-                                    showPremiumOffer = true
-                                    savedCounter = 0
+                                    if savedCounter < 3 {
+                                        showPremiumOffer = false
+                                        savedCounter += 1
+                                        print("DEBUG: savedCounter = \(savedCounter)")
+                                        animationForSaved.toggle()
+                                    } else {
+                                        showPremiumOffer = true
+                                        savedCounter = 0
+                                    }
                                 }
                             }
                         } label: {
@@ -112,6 +122,11 @@ struct CardView: View {
                                 masterQuestionButton()
                                 masteredCounter += 1
                                 masteredPerSession += 1
+                                getMasteredQuestionsArray()
+                                
+                                if masteredQuestions.count == 3 {
+                                    requestReview()
+                                }
                             }
                         } label: {
                             HStack{
@@ -183,12 +198,19 @@ struct CardView: View {
         }
     }
     
-//    func fetchIfItsSaved() {
-//        questionModel.checkSavedQuestion(questionID: question.id) { isSavedModel in
-//            isSaved = isSavedModel
-//            print("DEBUG: IsSaved value is: \(isSaved)")
-//        }
-//    }
+    func getMasteredQuestionsArray() {
+        questionModel.getMasteredQuestionsArray { (masteredQuestions) in
+            self.masteredQuestions = masteredQuestions
+            print("DEBUG: masteredQuestions count = \(self.masteredQuestions.count)")
+        }
+    }
+    
+    func fetchSavedQuestions() {
+        questionModel.getSavedQuestions { (questions) in
+        self.savedQuestions = questions
+      }
+    }
+    
 }
 
 
