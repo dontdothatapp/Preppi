@@ -44,7 +44,7 @@ struct LoginView: View {
                     VStack(alignment: .leading) {
                         
                         TextField("Email", text: $email)
-                            .foregroundColor(.text_500)
+                            .foregroundColor(.text_700)
                             .textFieldStyle(.plain)
                             .placeholder(when: email.isEmpty) {
                                 Text("Email")
@@ -56,7 +56,7 @@ struct LoginView: View {
                             .padding(.bottom, 20)
                         
                         SecureField("Password", text: $password)
-                            .foregroundColor(.text_500)
+                            .foregroundColor(.text_700)
                             .textFieldStyle(.plain)
                             .placeholder(when: password.isEmpty) {
                                 Text("Password")
