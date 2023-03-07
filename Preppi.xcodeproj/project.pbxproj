@@ -25,6 +25,8 @@
 		7F8BDD7C29A8D8DC00318707 /* PremiumView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8BDD7B29A8D8DC00318707 /* PremiumView.swift */; };
 		7F8BDD7E29A8DD5B00318707 /* PremiumLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8BDD7D29A8DD5B00318707 /* PremiumLine.swift */; };
 		7F8BDD8229A9062C00318707 /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F8BDD8129A9062C00318707 /* RadioButton.swift */; };
+		7F98333129B7CB0F00682346 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 7F98333029B7CB0F00682346 /* Mixpanel */; };
+		7F98333329B7D63700682346 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F98333229B7D63700682346 /* Config.swift */; };
 		7F9BCE562985D3EB0073BE23 /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9BCE552985D3EB0073BE23 /* ProgressBarView.swift */; };
 		7FA0910329943F410006F5D8 /* MasteredStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA0910229943F410006F5D8 /* MasteredStats.swift */; };
 		7FA5843F29A1031D00F410CE /* QuestionForAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5843E29A1031D00F410CE /* QuestionForAnalyticsView.swift */; };
@@ -72,6 +74,7 @@
 		7F8BDD7B29A8D8DC00318707 /* PremiumView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumView.swift; sourceTree = "<group>"; };
 		7F8BDD7D29A8DD5B00318707 /* PremiumLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PremiumLine.swift; sourceTree = "<group>"; };
 		7F8BDD8129A9062C00318707 /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
+		7F98333229B7D63700682346 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		7F9BCE552985D3EB0073BE23 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		7FA0910229943F410006F5D8 /* MasteredStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteredStats.swift; sourceTree = "<group>"; };
 		7FA5843E29A1031D00F410CE /* QuestionForAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionForAnalyticsView.swift; sourceTree = "<group>"; };
@@ -98,6 +101,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F98333129B7CB0F00682346 /* Mixpanel in Frameworks */,
 				7FA9FB1E29A40B9F0079059B /* ConfettiSwiftUI in Frameworks */,
 				7FB5E4CB297C472100A2482B /* FirebaseAuth in Frameworks */,
 				7FB5E4D1297C472100A2482B /* FirebaseStorage in Frameworks */,
@@ -152,6 +156,7 @@
 			children = (
 				7F6F76C92975E68D00FF7871 /* PreppiApp.swift */,
 				7F6F76CB2975E68D00FF7871 /* ContentView.swift */,
+				7F98333229B7D63700682346 /* Config.swift */,
 				7F68B0CF2986CACC00F1BDBD /* Saved */,
 				7F250E902988594700D84AD0 /* Settings */,
 				7F9BCE572985D4040073BE23 /* Analytics */,
@@ -272,6 +277,7 @@
 				7FB5E4CE297C472100A2482B /* FirebaseFirestoreSwift */,
 				7FB5E4D0297C472100A2482B /* FirebaseStorage */,
 				7FA9FB1D29A40B9F0079059B /* ConfettiSwiftUI */,
+				7F98333029B7CB0F00682346 /* Mixpanel */,
 			);
 			productName = Preppi;
 			productReference = 7F6F76C62975E68D00FF7871 /* Preppi.app */;
@@ -304,6 +310,7 @@
 			packageReferences = (
 				7FB5E4C9297C472100A2482B /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				7FA9FB1C29A40B9F0079059B /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				7F98332F29B7CB0F00682346 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 			);
 			productRefGroup = 7F6F76C72975E68D00FF7871 /* Products */;
 			projectDirPath = "";
@@ -349,6 +356,7 @@
 				7FD872D52981C72F00A3A33C /* AuthViewModel.swift in Sources */,
 				7F68B0D32986D24800F1BDBD /* ChipsView.swift in Sources */,
 				7FB5E4C6297C340D00A2482B /* SavedView.swift in Sources */,
+				7F98333329B7D63700682346 /* Config.swift in Sources */,
 				7F700BBB299D734E0067252C /* MasteredCategoryView.swift in Sources */,
 				7FB5E4D32981BEDF00A2482B /* SettingsView.swift in Sources */,
 				7F8BDD7E29A8DD5B00318707 /* PremiumLine.swift in Sources */,
@@ -568,6 +576,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		7F98332F29B7CB0F00682346 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		7FA9FB1C29A40B9F0079059B /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/simibac/ConfettiSwiftUI.git";
@@ -587,6 +603,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		7F98333029B7CB0F00682346 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7F98332F29B7CB0F00682346 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
+		};
 		7FA9FB1D29A40B9F0079059B /* ConfettiSwiftUI */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 7FA9FB1C29A40B9F0079059B /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;

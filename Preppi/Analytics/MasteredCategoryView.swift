@@ -23,7 +23,7 @@ struct MasteredCategoryView: View {
             VStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     
-                    if filteredMasteredQuestions.count < 1 {
+                    if filteredMasteredQuestions.isEmpty {
                         VStack{
                             Spacer()
                             Image("empty_state")

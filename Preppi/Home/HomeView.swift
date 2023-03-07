@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct HomeView: View {
     
@@ -48,6 +49,7 @@ struct HomeView: View {
                 Button(action: {
                     if !questionList.isEmpty {
                         self.currentQuestion = questionList.randomElement()
+                        Mixpanel.mainInstance().track(event: "New question button")
                     }
                 }) {
                     HStack {

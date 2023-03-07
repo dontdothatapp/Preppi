@@ -28,7 +28,7 @@ struct SavedView: View {
                         
                         VStack{
                             
-                            if questions.count < 1 {
+                            if questions.isEmpty {
                                 VStack{
                                     Spacer()
                                     Image("empty_state")

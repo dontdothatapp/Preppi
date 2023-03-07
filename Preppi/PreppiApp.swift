@@ -7,12 +7,14 @@
 
 import SwiftUI
 import Firebase
+import Mixpanel
 
 @main
 struct PreppiApp: App {
     
     @StateObject var viewModel = AuthViewModel()
     @ObservedObject var questionModel = QuestionModel()
+    let mixpanel = Mixpanel.initialize(token: Config.mixpanelProjectToken, trackAutomaticEvents: true)
     
     init() {
         FirebaseApp.configure()
