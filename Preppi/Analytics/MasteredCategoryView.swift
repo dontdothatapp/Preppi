@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MasteredCategoryView: View {
     
-    @ObservedObject var questionModel = QuestionModel()
+    @StateObject var questionModel = QuestionModel()
     @State var masteredQuestions = [Question]()
     @State var filteredMasteredQuestions = [Question]()
     @State var selectedCategory: String
@@ -82,10 +82,19 @@ struct MasteredCategoryView: View {
     
 }
 
+//struct MasteredCategoryView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        MasteredCategoryView(selectedCategory: "product design").onAppear(perform: {
+//            MasteredCategoryView(selectedCategory: "product design").getMasteredQuestionsArray()
+//        })
+//    }
+//}
+
 struct MasteredCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        MasteredCategoryView(selectedCategory: "product design").onAppear(perform: {
-            MasteredCategoryView(selectedCategory: "product design").getMasteredQuestionsArray()
-        })
+        let questions = [
+            Question(id: "1", category: "product design", question: "What is the question here?", type: "product", timestamp: Date())
+        ]
+        return MasteredCategoryView(filteredMasteredQuestions: questions, selectedCategory: "product design")
     }
 }

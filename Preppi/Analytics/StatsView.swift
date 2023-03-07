@@ -103,43 +103,6 @@ struct StatsView: View {
                             self.totalQuestions = self.statsForMasteredQuestions.reduce(0) { $0 + $1.total }
                             self.totalMastered = self.statsForMasteredQuestions.reduce(0) { $0 + $1.mastered }
                         } .frame(height: 100)
-                        
-                        //behavioral block
-//                        ZStack {
-//                            Rectangle()
-//                                .frame(width: 350, height: 90)
-//                                .foregroundColor(.additional_50)
-//                                .cornerRadius(30)
-//                                .padding(.top, 24)
-//                                .shadow(color: Color.gray.opacity(0.2), radius: 10, x: 0, y: 4)
-//
-//                            VStack {
-//                                HStack{
-//                                    Text("behavioral")
-//                                        .padding(.leading, 40)
-//                                        .foregroundColor(.text_900)
-//                                        .font(.system(size: 17))
-//                                        .fontWeight(.bold)
-//
-//                                    Spacer()
-//
-//                                    ZStack {
-//                                        ProgressBarView(progress: self.$progressValueBehavioral)
-//                                            .frame(width: 56).onAppear() {
-//                                                self.progressValueBehavioral = 0.72
-//                                            }
-//                                        Text("72%")
-//                                            .foregroundColor(.text_900)
-//                                            .font(.system(size: 17))
-//                                            .fontWeight(.bold)
-//                                    }
-//                                    .padding(.trailing, 40)
-//                                } //Padding to center the category and progress bar
-//                                .padding(.top, 16)
-//                            }
-//                        } .frame(height: 90)
-                        
-//                        } .frame(height: 90) .padding(.top, 10) .padding(.bottom, 20)
                     } .padding(.bottom, 20)
                 } .onAppear(perform: getMasteredQuestionsArray)
             } .navigationTitle("Progress")
@@ -170,7 +133,6 @@ struct AnalyticsView_Previews: PreviewProvider {
     static var previews: some View {
         StatsView().onAppear(perform: {
             StatsView().getMasteredQuestionsArray()
-            StatsView().fetchMasteredQuestions()
         })
     }
 }
