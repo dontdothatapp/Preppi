@@ -10,9 +10,10 @@ import SwiftUI
 struct MasteredCategoryView: View {
     
     @StateObject var questionModel = QuestionModel()
-    @State var masteredQuestions = [Question]()
+    //@State var masteredQuestions = [Question]()
     @State var filteredMasteredQuestions = [Question]()
     @State var selectedCategory: String
+    @State var tempHaveSomeItems = false
     
     var body: some View {
         ZStack {
@@ -23,7 +24,7 @@ struct MasteredCategoryView: View {
             VStack {
                 ScrollView(.vertical, showsIndicators: false) {
                     
-                    if filteredMasteredQuestions.isEmpty {
+                    if tempHaveSomeItems == false {
                         VStack{
                             Spacer()
                             Image("empty_state")
@@ -47,17 +48,20 @@ struct MasteredCategoryView: View {
                             Spacer()
                         }
                     } else {
-                        ForEach(filteredMasteredQuestions) {item in
+                        ForEach(questionModel.masteredQuestions) {item in
                             if item.category == selectedCategory {
                                 QuestionForAnalyticsView(question: item.question, id: item.id)
                             }
-                        }
+                        } 
                     }
                 } .padding(.top, 20)
                 
                 Spacer()
-            } .onAppear(perform: getMasteredQuestionsArray)
+            }
             
+        } .onAppear() {
+            tempIfMasteredIsZero()
+            questionModel.getMasteredQuestionsArray()
         } .navigationTitle(selectedCategory)
     }
     
@@ -69,15 +73,39 @@ struct MasteredCategoryView: View {
     
     func getMasteredQuestionsArray() {
         questionModel.getMasteredQuestionsArray { (masteredItem) in
-            self.masteredQuestions = masteredItem
+            questionModel.masteredQuestions = masteredItem
         }
-        for item in self.masteredQuestions {
+        for item in questionModel.masteredQuestions {
             if item.category == selectedCategory {
                 filteredMasteredQuestions.append(item)
                 print("DEBUG: filteredMasteredQuestions count: \(filteredMasteredQuestions.count)")
             } else { }
         }
-        print("DEBUG: getMasteredQuestionsArray: \(masteredQuestions)")
+        print("DEBUG: getMasteredQuestionsArray: \(questionModel.masteredQuestions)")
+    }
+    
+    func tempIfMasteredIsZero() {
+        var masteredPerCategory = 0
+        print("DEBUG: tempIfMasteredIsZero function init")
+        print("DEBUG: Mastered questions array count: \(questionModel.masteredQuestions.count)") // always show zeroes
+        
+        /*
+         Current state
+         The function is initialised but for some reason the For loop never starts (the debug message after If statement never appears)
+         */
+        
+        for item in questionModel.masteredQuestions {
+            print("DEBUG: for loop started")
+            if item.category == selectedCategory {
+                masteredPerCategory += 1
+                print("DEBUG: masteredPerCategory = \(masteredPerCategory)")
+            } else {}
+        }
+        
+        if masteredPerCategory > 0 {
+            tempHaveSomeItems = true
+            print("DEBUG: tempHaveSomeItems = \(tempHaveSomeItems)")
+        } else {}
     }
     
 }

@@ -16,6 +16,10 @@ class QuestionModel: ObservableObject {
     @Published var questionList = [Question]()
     @Published var selectedCategory: String = ""
     @Published var savedByCategory = [Question]()
+    @Published var masteredQuestions = [Question]()
+    @Published var statsForMasteredQuestions = [Stats]()
+    @Published var filteredMasteredQuestions = [Question]()
+    
     
     func getData() {
         
@@ -64,6 +68,8 @@ class QuestionModel: ObservableObject {
         return questionList.randomElement()
     }
     
+    
+    //Saved questions functions
     func getSavedQuestions(completion: @escaping ([Question]) -> Void) {
         guard let user = Auth.auth().currentUser else {
             // handle error: no user is logged in
@@ -106,7 +112,6 @@ class QuestionModel: ObservableObject {
                 }
             }
     }
-
     
     func saveQuestion(questionId: String) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
@@ -132,8 +137,37 @@ class QuestionModel: ObservableObject {
             } else { }
         }
     }
-
     
+    func checkSavedQuestion(questionID: String, completion: @escaping (Bool) -> Void) {
+        guard let user = Auth.auth().currentUser else {
+            //handle error
+            completion(false)
+            return
+        }
+
+        let db = Firestore.firestore()
+
+        db.collection("users").document(user.uid)
+            .collection("saved_questions")
+            .addSnapshotListener{ (querySnapshot, error) in
+                if let error = error {
+                    print("DEBUG: Error: \(error.localizedDescription)")
+                    completion(false)
+                    return
+                }
+
+                for document in querySnapshot!.documents {
+                    let savedID = document.data()["question_id"] as! String
+                    if questionID == savedID {
+                        completion(true)
+                        return
+                    } else { }
+                }
+                completion(false)
+            }
+    }
+    
+    //Mastered questions functions
     func masterQuestion(questionId: String) {
         guard let userId = Auth.auth().currentUser?.uid else { return }
         let db = Firestore.firestore()
@@ -233,34 +267,21 @@ class QuestionModel: ObservableObject {
         }
     }
     
-    func checkSavedQuestion(questionID: String, completion: @escaping (Bool) -> Void) {
-        guard let user = Auth.auth().currentUser else {
-            //handle error
-            completion(false)
-            return
+    func getMasteredQuestionsArray() {
+        self.getMasteredQuestionsArray { (masteredQuestions) in
+            self.masteredQuestions = masteredQuestions
+            self.fetchMasteredQuestions()
         }
-
-        let db = Firestore.firestore()
-
-        db.collection("users").document(user.uid)
-            .collection("saved_questions")
-            .addSnapshotListener{ (querySnapshot, error) in
-                if let error = error {
-                    print("DEBUG: Error: \(error.localizedDescription)")
-                    completion(false)
-                    return
-                }
-
-                for document in querySnapshot!.documents {
-                    let savedID = document.data()["question_id"] as! String
-                    if questionID == savedID {
-                        completion(true)
-                        return
-                    } else { }
-                }
-                completion(false)
-            }
     }
+    
+    func fetchMasteredQuestions() {
+        self.getStatsObjects(masteredQuestions: self.masteredQuestions) { (masteredQQuestions) in
+            self.statsForMasteredQuestions = masteredQQuestions
+            //print("DEBUG: Mastered array from func: \(self.statsForMasteredQuestions)")
+        }
+    }
+    
+    
     
     func checkMasteredQuestion(questionID: String, completion: @escaping (Bool) -> Void) {
         guard let user = Auth.auth().currentUser else {

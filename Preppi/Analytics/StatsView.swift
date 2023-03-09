@@ -11,8 +11,8 @@ struct StatsView: View {
     
     @State var progressValueBehavioral: Float = 0.0
     @ObservedObject var questionModel = QuestionModel()
-    @State var statsForMasteredQuestions = [Stats]()
-    @State var masteredQuestions = [Question]()
+    //@State var statsForMasteredQuestions = [Stats]()
+    //@State var masteredQuestions = [Question]()
     @State var totalQuestions: Int = 0
     @State var totalMastered: Int = 0
     
@@ -97,14 +97,14 @@ struct StatsView: View {
                         }
                         
                         
-                        ForEach(statsForMasteredQuestions) { item in
+                        ForEach(questionModel.statsForMasteredQuestions) { item in
                                 ProgressCircleView(category: item.category, mastered: item.mastered, total: item.total)
                         } .onAppear() {
-                            self.totalQuestions = self.statsForMasteredQuestions.reduce(0) { $0 + $1.total }
-                            self.totalMastered = self.statsForMasteredQuestions.reduce(0) { $0 + $1.mastered }
+                            self.totalQuestions = questionModel.statsForMasteredQuestions.reduce(0) { $0 + $1.total }
+                            self.totalMastered = questionModel.statsForMasteredQuestions.reduce(0) { $0 + $1.mastered }
                         } .frame(height: 100)
                     } .padding(.bottom, 20)
-                } .onAppear(perform: getMasteredQuestionsArray)
+                } .onAppear(perform: questionModel.getMasteredQuestionsArray)
             } .navigationTitle("Progress")
         }
     }
@@ -113,26 +113,26 @@ struct StatsView: View {
         questionModel.getData()
     }
     
-    func getMasteredQuestionsArray() {
-        questionModel.getMasteredQuestionsArray { (masteredQuestions) in
-            self.masteredQuestions = masteredQuestions
-            fetchMasteredQuestions()
-        }
-    }
+//    func getMasteredQuestionsArray() {
+//        questionModel.getMasteredQuestionsArray { (masteredQuestions) in
+//            questionModel.masteredQuestions = masteredQuestions
+//            fetchMasteredQuestions()
+//        }
+//    }
     
-    func fetchMasteredQuestions() {
-        questionModel.getStatsObjects(masteredQuestions: masteredQuestions) { (masteredQQuestions) in
-            self.statsForMasteredQuestions = masteredQQuestions
-            //print("DEBUG: Mastered array from func: \(self.statsForMasteredQuestions)")
-        }
-    }
+//    func fetchMasteredQuestions() {
+//        questionModel.getStatsObjects(masteredQuestions: questionModel.masteredQuestions) { (masteredQQuestions) in
+//            questionModel.statsForMasteredQuestions = masteredQQuestions
+//            //print("DEBUG: Mastered array from func: \(self.statsForMasteredQuestions)")
+//        }
+//    }
     
 }
 
 struct AnalyticsView_Previews: PreviewProvider {
     static var previews: some View {
         StatsView().onAppear(perform: {
-            StatsView().getMasteredQuestionsArray()
+            //questionModel.getMasteredQuestionsArray()
         })
     }
 }
