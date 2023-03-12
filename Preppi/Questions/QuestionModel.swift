@@ -185,6 +185,35 @@ class QuestionModel: ObservableObject {
             }
     }
     
+    func newCheckSavedQuestion(questionID: String) -> Bool {
+        guard let user = Auth.auth().currentUser else {
+            //handle error
+            return false
+        }
+
+        let db = Firestore.firestore()
+        var isItSaved = false
+
+        db.collection("users").document(user.uid)
+            .collection("saved_questions")
+            .addSnapshotListener{ (querySnapshot, error) in
+                if let error = error {
+                    print("DEBUG: Error: \(error.localizedDescription)")
+                    return
+                }
+
+                for document in querySnapshot!.documents {
+                    let savedID = document.data()["question_id"] as! String
+                    if questionID == savedID {
+                        isItSaved = true
+                    } else {
+                        isItSaved = false
+                    }
+                }
+            }
+        return isItSaved
+    }
+    
     //Mastered questions functions
     func masterQuestion(questionId: String) {
         guard let userId = Auth.auth().currentUser?.uid else { return }

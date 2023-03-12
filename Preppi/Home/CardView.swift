@@ -12,7 +12,7 @@ import StoreKit
 struct CardView: View {
     
     //@ObservedObject var questionModel = QuestionModel()
-    @ObservedObject var questionModel = QuestionModel()
+    @EnvironmentObject var questionModel: QuestionModel
     @State var firstCard: Bool
     @State var isSaved: Bool = false
     @State var isMastered: Bool = false
@@ -21,12 +21,9 @@ struct CardView: View {
     @State private var showPremiumOffer = false
     @State var masteredPerSession = 0
     @State public var animationForSaved = false
-    @State var masteredQuestions = [Question]()
-    @State var savedQuestions = [Question]()
     @Environment(\.requestReview) var requestReview
     
     let question: Question
-    //var saveQuestion: (Question) -> ()
     
     var body: some View {
         ZStack {
@@ -43,10 +40,7 @@ struct CardView: View {
                 //Tag
                 HStack (alignment: .top) {
                     Text(question.category)
-                    //.padding(.leading, 40)
-                    //.padding(.top, 40)
                         .padding(.bottom, 10)
-                        //.underline()
                         .foregroundColor(Color.text_500)
                     Spacer()
                 }
@@ -61,7 +55,6 @@ struct CardView: View {
                     Spacer()
                 }
                 .padding(.leading, 20)
-                //.offset(y: 20)
                 Spacer()
                 
                 if firstCard == true {
@@ -74,12 +67,14 @@ struct CardView: View {
                         Button {
                             
                             if isSaved == true {
-                                deleteFromSaved()
+                                questionModel.deleteSavedQuestion(questionId: question.id)
                                 animationForSaved.toggle()
+                                isSaved.toggle()
                             } else {
-                                saveQuestionButton()
+                                questionModel.saveQuestion(questionId: question.id)
+                                isSaved.toggle()
                                 
-                                if savedQuestions.count == 5 {
+                                if questionModel.savedQuestions.count == 5 {
                                     requestReview()
                                 } else {
                                     if savedCounter < 3 {
@@ -116,14 +111,15 @@ struct CardView: View {
                         //Mastered button
                         Button {
                             if isMastered == true {
-                                deleteFromMastered()
+                                questionModel.deleteMasteredQuestion(questionId: question.id)
+                                isMastered.toggle()
                             } else {
-                                masterQuestionButton()
+                                questionModel.masterQuestion(questionId: question.id)
+                                isMastered.toggle()
                                 masteredCounter += 1
                                 masteredPerSession += 1
-                                //getMasteredQuestionsArray()
                                 
-                                if masteredQuestions.count == 3 {
+                                if questionModel.masteredQuestions.count == 3 {
                                     requestReview()
                                 }
                             }
@@ -162,6 +158,9 @@ struct CardView: View {
                 }
                 
             } .frame(minWidth: 320, idealWidth: 340, maxWidth: 340, minHeight: 310, idealHeight: 310, maxHeight: 350, alignment: .leading)
+        } .onAppear() {
+            checkIFTheFirstItemSaved()
+            checkIfTheFirstItemMastered()
         } .onChange(of: question.id) { newValue in
             questionModel.checkSavedQuestion(questionID: newValue) { isSavedModel in
                 isSaved = isSavedModel
@@ -173,27 +172,23 @@ struct CardView: View {
         }
     }
     
-    func saveQuestionButton() {
-        questionModel.saveQuestion(questionId: question.id)
-    }
-    
-    func masterQuestionButton() {
-        questionModel.masterQuestion(questionId: question.id)
-    }
-    
-    func deleteFromSaved() {
-        questionModel.deleteSavedQuestion(questionId: question.id)
-    }
-    
-    func deleteFromMastered() {
-        questionModel.deleteMasteredQuestion(questionId: question.id)
-    }
-    
     func savedCounterUpdate() {
         if savedCounter < 3 {
             savedCounter += 1
         } else {
             savedCounter = 0
+        }
+    }
+    
+    func checkIFTheFirstItemSaved() {
+        if let item = questionModel.savedQuestions.first(where: { $0.id == question.id}) {
+            isSaved = true
+        }
+    }
+    
+    func checkIfTheFirstItemMastered() {
+        if let item = questionModel.masteredQuestions.first(where: {$0.id == question.id}) {
+            isMastered = true
         }
     }
 }
