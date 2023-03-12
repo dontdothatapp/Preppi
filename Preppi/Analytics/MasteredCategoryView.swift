@@ -9,10 +9,8 @@ import SwiftUI
 
 struct MasteredCategoryView: View {
     
-    //@StateObject var questionModel = QuestionModel()
     @State var selectedCategory: String
     @State var tempHaveSomeItems = false
-    @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var questionModel: QuestionModel
     
     var body: some View {
@@ -72,9 +70,8 @@ struct MasteredCategoryView: View {
 
 //struct MasteredCategoryView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        MasteredCategoryView(selectedCategory: "product design").onAppear(perform: {
-//            MasteredCategoryView(selectedCategory: "product design").getMasteredQuestionsArray()
-//        })
+//        MasteredCategoryView(selectedCategory: "product strategy")
+//            .environmentObject(QuestionModel())
 //    }
 //}
 

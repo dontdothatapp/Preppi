@@ -31,7 +31,6 @@
 		7FA0910329943F410006F5D8 /* MasteredStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA0910229943F410006F5D8 /* MasteredStats.swift */; };
 		7FA5843F29A1031D00F410CE /* QuestionForAnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA5843E29A1031D00F410CE /* QuestionForAnalyticsView.swift */; };
 		7FA9FB1E29A40B9F0079059B /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 7FA9FB1D29A40B9F0079059B /* ConfettiSwiftUI */; };
-		7FABE21A29BA713C00DEDA5F /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABE21929BA713C00DEDA5F /* QuestionManager.swift */; };
 		7FABE21C29BE149600DEDA5F /* TempEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FABE21B29BE149600DEDA5F /* TempEnvironment.swift */; };
 		7FB5E4B0297BF32500A2482B /* SignupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4AF297BF32500A2482B /* SignupView.swift */; };
 		7FB5E4B2297C022100A2482B /* SignInWithAppleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */; };
@@ -80,7 +79,6 @@
 		7F9BCE552985D3EB0073BE23 /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		7FA0910229943F410006F5D8 /* MasteredStats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasteredStats.swift; sourceTree = "<group>"; };
 		7FA5843E29A1031D00F410CE /* QuestionForAnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionForAnalyticsView.swift; sourceTree = "<group>"; };
-		7FABE21929BA713C00DEDA5F /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
 		7FABE21B29BE149600DEDA5F /* TempEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempEnvironment.swift; sourceTree = "<group>"; };
 		7FB5E4AF297BF32500A2482B /* SignupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupView.swift; sourceTree = "<group>"; };
 		7FB5E4B1297C022100A2482B /* SignInWithAppleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInWithAppleButton.swift; sourceTree = "<group>"; };
@@ -256,7 +254,6 @@
 				7FE4832F2989AC750008212A /* Question.swift */,
 				7FE483332989B60F0008212A /* Categories.swift */,
 				7FA0910229943F410006F5D8 /* MasteredStats.swift */,
-				7FABE21929BA713C00DEDA5F /* QuestionManager.swift */,
 			);
 			path = Questions;
 			sourceTree = "<group>";
@@ -369,7 +366,6 @@
 				7FABE21C29BE149600DEDA5F /* TempEnvironment.swift in Sources */,
 				7F6F76CA2975E68D00FF7871 /* PreppiApp.swift in Sources */,
 				7F6F76DA2975F09E00FF7871 /* OnboardingPageView.swift in Sources */,
-				7FABE21A29BA713C00DEDA5F /* QuestionManager.swift in Sources */,
 				7F855ACB2999116100F55116 /* ProgressCircleView.swift in Sources */,
 				7F6F76D82975EF1900FF7871 /* OnboardingPageModel.swift in Sources */,
 				7FE4832E2989AC6D0008212A /* QuestionModel.swift in Sources */,

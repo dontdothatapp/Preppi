@@ -10,8 +10,7 @@ import Firebase
 
 struct SavedView: View {
     
-    @ObservedObject var questionModel = QuestionModel()
-    @State private var questions = [Question]()
+    @EnvironmentObject var questionModel: QuestionModel
     
     var body: some View {
         NavigationView {
@@ -28,7 +27,7 @@ struct SavedView: View {
                         
                         VStack{
                             
-                            if questions.isEmpty {
+                            if questionModel.savedQuestions.isEmpty {
                                 VStack{
                                     Spacer()
                                     Image("empty_state")
@@ -53,7 +52,7 @@ struct SavedView: View {
                                 }
                             } else {
                                 //All questions
-                                ForEach(questions) { question in
+                                ForEach(questionModel.savedQuestions) { question in
                                     QuestionView(category: question.category, question: question.question, id: question.id, timestamp: question.timestamp)
                                 }
                             }
@@ -63,24 +62,14 @@ struct SavedView: View {
                     
                     Spacer()
                 }
-                .onAppear(perform: fetchSavedQuestions)
                 
             } .navigationTitle("Saved")
         }
     }
-    
-    func fetchSavedQuestions() {
-        questionModel.getSavedQuestions { (questions) in
-        self.questions = questions
-      }
-    }
-    
 }
 
 struct SavedView_Previews: PreviewProvider {
     static var previews: some View {
-        SavedView().onAppear(perform: {
-              SavedView().fetchSavedQuestions()
-            })
+        SavedView()
     }
 }

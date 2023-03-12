@@ -14,13 +14,13 @@ struct PreppiApp: App {
     
     @StateObject var viewModel = AuthViewModel()
     @ObservedObject var questionModel = QuestionModel()
-    @ObservedObject var questionManager = QuestionManager()
     let mixpanel = Mixpanel.initialize(token: Config.mixpanelProjectToken, trackAutomaticEvents: true)
     
     init() {
         FirebaseApp.configure()
         questionModel.getData()
-        questionModel.newLoadMasteredQuestions()
+        questionModel.loadMasteredQuestions()
+        questionModel.loadSavedQuestions()
     }
     
     var body: some Scene {
@@ -28,7 +28,6 @@ struct PreppiApp: App {
             ContentView()
                 .environmentObject(viewModel)
                 .environmentObject(questionModel)
-                .environmentObject(questionManager)
         }
     }
 }

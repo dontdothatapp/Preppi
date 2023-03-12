@@ -78,7 +78,6 @@ struct CardView: View {
                                 animationForSaved.toggle()
                             } else {
                                 saveQuestionButton()
-                                fetchSavedQuestions()
                                 
                                 if savedQuestions.count == 5 {
                                     requestReview()
@@ -197,13 +196,6 @@ struct CardView: View {
             savedCounter = 0
         }
     }
-    
-    func fetchSavedQuestions() {
-        questionModel.getSavedQuestions { (questions) in
-        self.savedQuestions = questions
-      }
-    }
-    
 }
 
 

@@ -12,7 +12,6 @@ struct StatsView: View {
     @State var progressValueBehavioral: Float = 0.0
     @State var totalQuestions: Int = 0
     @State var totalMastered: Int = 0
-    @EnvironmentObject var questionManager: QuestionManager
     @EnvironmentObject var questionModel: QuestionModel
     
     var body: some View {
@@ -120,7 +119,6 @@ struct StatsView: View {
 struct AnalyticsView_Previews: PreviewProvider {
     static var previews: some View {
         StatsView()
-            .environmentObject(QuestionManager())
             .environmentObject(QuestionModel())
     }
 }

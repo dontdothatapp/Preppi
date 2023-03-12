@@ -16,6 +16,7 @@ class QuestionModel: ObservableObject {
     @Published var questionList = [Question]()
     @Published var selectedCategory: String = ""
     @Published var savedByCategory = [Question]()
+    @Published var savedQuestions = [Question]()
     @Published var masteredQuestions = [Question]()
     @Published var statsForMasteredQuestions = [Stats]()
     @Published var filteredMasteredQuestions = [Question]()
@@ -70,7 +71,8 @@ class QuestionModel: ObservableObject {
     
     
     //Saved questions functions
-    func getSavedQuestions(completion: @escaping ([Question]) -> Void) {
+    
+    func loadSavedQuestions() {
         guard let user = Auth.auth().currentUser else {
             // handle error: no user is logged in
             return
@@ -86,7 +88,7 @@ class QuestionModel: ObservableObject {
                     return
                 }
                 
-                var questions = [Question]()
+                //var questions = [Question]()
                 for document in querySnapshot!.documents {
                     let questionId = document.data()["question_id"] as! String
                     db.collection("questions").document(questionId)
@@ -103,12 +105,28 @@ class QuestionModel: ObservableObject {
                                                           question: question["question"] as? String ?? "",
                                                           type: question["type"] as? String ?? "",
                                                           timestamp: question["timestamp"] as? Date ?? Date())
-                            questions.append(questionObject)
-                            
-                            if questions.count == querySnapshot!.documents.count {
-                                completion(questions)
+                            if self.savedQuestions.contains(where: {$0.id == questionObject.id}) {
+                                //item exist –> do nothing
+                            } else {
+                                self.savedQuestions.append(questionObject)
                             }
                         })
+                }
+                
+                for change in querySnapshot!.documentChanges {
+                    switch change.type {
+                    case .added:
+                        _ = "Test value"
+                    case .modified:
+                        _ = Question(id: change.document.documentID,
+                                                category: change.document.data()["category"] as? String ?? "",
+                                                question: change.document.data()["question"] as? String ?? "",
+                                                type: change.document.data()["type"] as? String ?? "",
+                                                timestamp: change.document.data()["timestamp"] as? Date ?? Date())
+                    case .removed:
+                        let id = change.document.documentID
+                        self.savedQuestions.removeAll { $0.id == id}
+                    }
                 }
             }
     }
@@ -193,7 +211,7 @@ class QuestionModel: ObservableObject {
         }
     }
     
-    func newLoadMasteredQuestions() {
+    func loadMasteredQuestions() {
         guard let user = Auth.auth().currentUser else {
             //handle error
             return
@@ -235,7 +253,6 @@ class QuestionModel: ObservableObject {
                                 //item could not be found
                                 self.masteredQuestions.append(masteredQuestionObject)
                             }
-                            //masteredQuestions.append(masteredQuestionObject)
                         })
                 }
                 
@@ -245,14 +262,9 @@ class QuestionModel: ObservableObject {
                         let id = change.document.documentID
                         self.masteredQuestions.removeAll { $0.id == id}
                     case .added:
-                        let something = "Test Value"
-//                        let question = Question(id: change.document.documentID,
-//                                                category: change.document.data()["category"] as? String ?? "",
-//                                                question: change.document.data()["question"] as? String ?? "",
-//                                                type: change.document.data()["type"] as? String ?? "",
-//                                                timestamp: change.document.data()["timestamp"] as? Date ?? Date())
+                        _ = "Test Value"
                     case .modified:
-                        let question = Question(id: change.document.documentID,
+                        _ = Question(id: change.document.documentID,
                                                 category: change.document.data()["category"] as? String ?? "",
                                                 question: change.document.data()["question"] as? String ?? "",
                                                 type: change.document.data()["type"] as? String ?? "",
@@ -280,13 +292,6 @@ class QuestionModel: ObservableObject {
             statsList.append(stats)
         }
         completion(statsList.sorted { $0.category < $1.category})
-    }
-    
-    func getSavedQuestionsByCategory(completion: @escaping ([Question]) -> Void) {
-        getSavedQuestions { savedQuestions in
-            let savedQuestionsByCategory = savedQuestions.filter { $0.category == self.selectedCategory }
-            completion(savedQuestionsByCategory)
-        }
     }
     
     func fetchMasteredQuestions() {

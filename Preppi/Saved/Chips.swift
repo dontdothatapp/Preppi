@@ -20,9 +20,9 @@ struct Chips: View {
                 Button {
                     questionModel.selectedCategory = chipsName
                     print("DEBUG: selected category: \(questionModel.selectedCategory)")
-                    questionModel.getSavedQuestionsByCategory { items in
-                        questionModel.savedByCategory = items
-                    }
+//                    questionModel.getSavedQuestionsByCategory { items in
+//                        questionModel.savedByCategory = items
+//                    }
                     print("DEBUG: saved by category items: \(questionModel.savedByCategory)")
                 } label: {
                     Text(chipsName)
