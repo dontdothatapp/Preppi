@@ -193,19 +193,17 @@ class QuestionModel: ObservableObject {
         }
     }
     
-    func getMasteredQuestionsArray(completion: @escaping ([Question]) -> Void) {
+    func newLoadMasteredQuestions() {
         guard let user = Auth.auth().currentUser else {
             //handle error
             return
         }
-        //Array of mastererd questions
-        var masteredQuestions = [Question]()
         
         let db = Firestore.firestore()
         
         //get access to mastered_questions collection inside users
         db.collection("users").document(user.uid)
-            .collection("mastered_questions")
+            .collection("mastered_questions").order(by: "timestamp", descending: false)
             .addSnapshotListener { (querySnapshot, error) in
                 if let error = error {
                     //handle error
@@ -216,7 +214,7 @@ class QuestionModel: ObservableObject {
                 for document in querySnapshot!.documents {
                     
                     let questionId = document.data()["question_id"] as! String
-                    //Go to collection questions and take a question with question_if from users->mastered_questions–>question_id
+                    //Go to collection questions and take a question with question_id from users->mastered_questions–>question_id
                     db.collection("questions").document(questionId)
                         .getDocument(completion: { (questionSnapshot, error) in
                             if let error = error {
@@ -231,12 +229,36 @@ class QuestionModel: ObservableObject {
                                                                    question: masteredQuestion["question"] as? String ?? "",
                                                                    type: masteredQuestion["type"] as? String ?? "",
                                                                    timestamp: masteredQuestion["timestamp"] as? Date ?? Date())
-                            masteredQuestions.append(masteredQuestionObject)
-                            
-                            if masteredQuestions.count == querySnapshot!.documents.count {
-                                completion(masteredQuestions)
+                            if self.masteredQuestions.contains(where: {$0.id == masteredQuestionObject.id}) {
+                                // item exists
+                            } else {
+                                //item could not be found
+                                self.masteredQuestions.append(masteredQuestionObject)
                             }
+                            //masteredQuestions.append(masteredQuestionObject)
                         })
+                }
+                
+                for change in querySnapshot!.documentChanges {
+                    switch change.type {
+                    case .removed:
+                        let id = change.document.documentID
+                        self.masteredQuestions.removeAll { $0.id == id}
+                    case .added:
+                        let something = "Test Value"
+//                        let question = Question(id: change.document.documentID,
+//                                                category: change.document.data()["category"] as? String ?? "",
+//                                                question: change.document.data()["question"] as? String ?? "",
+//                                                type: change.document.data()["type"] as? String ?? "",
+//                                                timestamp: change.document.data()["timestamp"] as? Date ?? Date())
+                    case .modified:
+                        let question = Question(id: change.document.documentID,
+                                                category: change.document.data()["category"] as? String ?? "",
+                                                question: change.document.data()["question"] as? String ?? "",
+                                                type: change.document.data()["type"] as? String ?? "",
+                                                timestamp: change.document.data()["timestamp"] as? Date ?? Date())
+                    }
+                    
                 }
             }
     }
@@ -264,13 +286,6 @@ class QuestionModel: ObservableObject {
         getSavedQuestions { savedQuestions in
             let savedQuestionsByCategory = savedQuestions.filter { $0.category == self.selectedCategory }
             completion(savedQuestionsByCategory)
-        }
-    }
-    
-    func getMasteredQuestionsArray() {
-        self.getMasteredQuestionsArray { (masteredQuestions) in
-            self.masteredQuestions = masteredQuestions
-            self.fetchMasteredQuestions()
         }
     }
     

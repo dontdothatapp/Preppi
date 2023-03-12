@@ -11,7 +11,7 @@ struct QuestionForAnalyticsView: View {
     
     @State var question: String
     @State var id: String
-    @ObservedObject var questionModel = QuestionModel()
+    @EnvironmentObject var questionModel: QuestionModel
     
     var body: some View {
         VStack {

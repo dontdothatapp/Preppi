@@ -122,7 +122,7 @@ struct CardView: View {
                                 masterQuestionButton()
                                 masteredCounter += 1
                                 masteredPerSession += 1
-                                getMasteredQuestionsArray()
+                                //getMasteredQuestionsArray()
                                 
                                 if masteredQuestions.count == 3 {
                                     requestReview()
@@ -195,12 +195,6 @@ struct CardView: View {
             savedCounter += 1
         } else {
             savedCounter = 0
-        }
-    }
-    
-    func getMasteredQuestionsArray() {
-        questionModel.getMasteredQuestionsArray { (masteredQuestions) in
-            self.masteredQuestions = masteredQuestions
         }
     }
     

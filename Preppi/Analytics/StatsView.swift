@@ -10,11 +10,10 @@ import SwiftUI
 struct StatsView: View {
     
     @State var progressValueBehavioral: Float = 0.0
-    @ObservedObject var questionModel = QuestionModel()
-    //@State var statsForMasteredQuestions = [Stats]()
-    //@State var masteredQuestions = [Question]()
     @State var totalQuestions: Int = 0
     @State var totalMastered: Int = 0
+    @EnvironmentObject var questionManager: QuestionManager
+    @EnvironmentObject var questionModel: QuestionModel
     
     var body: some View {
         NavigationView {
@@ -104,35 +103,24 @@ struct StatsView: View {
                             self.totalMastered = questionModel.statsForMasteredQuestions.reduce(0) { $0 + $1.mastered }
                         } .frame(height: 100)
                     } .padding(.bottom, 20)
-                } .onAppear(perform: questionModel.getMasteredQuestionsArray)
-            } .navigationTitle("Progress")
+                } .onAppear(perform: fetchMasteredQuestions)
+            }
+            .navigationTitle("Progress")
         }
     }
     
-    init() {
-        questionModel.getData()
+    func fetchMasteredQuestions() {
+        questionModel.getStatsObjects(masteredQuestions: questionModel.masteredQuestions) { (masteredQQuestions) in
+            questionModel.statsForMasteredQuestions = masteredQQuestions
+        }
     }
-    
-//    func getMasteredQuestionsArray() {
-//        questionModel.getMasteredQuestionsArray { (masteredQuestions) in
-//            questionModel.masteredQuestions = masteredQuestions
-//            fetchMasteredQuestions()
-//        }
-//    }
-    
-//    func fetchMasteredQuestions() {
-//        questionModel.getStatsObjects(masteredQuestions: questionModel.masteredQuestions) { (masteredQQuestions) in
-//            questionModel.statsForMasteredQuestions = masteredQQuestions
-//            //print("DEBUG: Mastered array from func: \(self.statsForMasteredQuestions)")
-//        }
-//    }
     
 }
 
 struct AnalyticsView_Previews: PreviewProvider {
     static var previews: some View {
-        StatsView().onAppear(perform: {
-            //questionModel.getMasteredQuestionsArray()
-        })
+        StatsView()
+            .environmentObject(QuestionManager())
+            .environmentObject(QuestionModel())
     }
 }

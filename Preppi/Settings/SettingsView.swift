@@ -34,6 +34,10 @@ struct SettingsView: View {
                     
                     Spacer()
                     
+                    NavigationLink("New way") {
+                        TempEnvironment()
+                    }
+                    
                     Button {
                         viewModel.signOut()
                     } label: {
