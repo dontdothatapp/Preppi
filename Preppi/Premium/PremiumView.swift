@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct PremiumView: View {
 
@@ -39,6 +40,11 @@ struct PremiumView: View {
                 HStack {
                     Button {
                         presentationMode.wrappedValue.dismiss()
+                        Mixpanel.mainInstance().track(event: "Close Premium offer", properties: [
+                            "Type": "Button",
+                            "Category": "Premium",
+                            "Screen": "Premium"
+                        ])
                     } label: {
                         Image(systemName: "xmark")
                             .font(.title2)
@@ -136,6 +142,12 @@ struct PremiumView: View {
                 //Subscription Button
                 Button(action: {
                     presentationMode.wrappedValue.dismiss()
+                    Mixpanel.mainInstance().track(event: "Buy Premium offer", properties: [
+                        "Type": "Button",
+                        "Category": "Premium",
+                        "Screen": "Premium",
+                        "Plan": selectedOption
+                    ])
                 }) {
                     HStack {
                         Text("Subscribe for € 19,99 / one-time")
@@ -154,6 +166,11 @@ struct PremiumView: View {
                     )
                 }
             }
+        } .onAppear {
+            Mixpanel.mainInstance().track(event: "Premium screen viewed", properties: [
+                "Type": "Screen",
+                "Category": "Premium"
+            ])
         }
     }
 }

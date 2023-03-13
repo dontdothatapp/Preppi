@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct MasteredCategoryView: View {
     
@@ -64,7 +65,11 @@ struct MasteredCategoryView: View {
                 
                 Spacer()
             }
-        } .navigationTitle(selectedCategory)
+        } .navigationTitle(selectedCategory) .onAppear {
+            Mixpanel.mainInstance().track(event: "Mastered category screen viewed", properties: [
+                "Type": "Screen"
+            ])
+        }
     }
 }
 

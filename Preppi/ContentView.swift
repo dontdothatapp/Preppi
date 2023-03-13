@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import Mixpanel
 
 struct ContentView: View {
     @State var selectedTab: Tabs = .home
@@ -53,6 +54,8 @@ struct ContentView: View {
                     }
                     CustomTabBar(selectedTab: $selectedTab)
                 }
+            } .onAppear {
+                Mixpanel.mainInstance().registerSuperProperties(["Email": viewModel.currentUser?.email])
             }
         }
     }
@@ -97,9 +100,13 @@ struct ContentView: View {
                             //Circle Button on the first two steps
                             Button {
                                 incrementPage()
+                                Mixpanel.mainInstance().track(event: "Onboarding button", properties: [
+                                    "Step": pageIndex
+                                ])
                             } label: {
                                 Circle()
                                     .frame(width: 68)
+                                    .foregroundColor(.primary_900)
                                     .shadow(color: Color.black.opacity(0.2), radius: 8, x: 2, y:4)
                                     .overlay(
                                         Image(systemName: "arrow.right")
@@ -120,6 +127,11 @@ struct ContentView: View {
                 dotAppearance.currentPageIndicatorTintColor = UIColor(Color.primary_900)
                 dotAppearance.pageIndicatorTintColor = UIColor(Color.text_300)
             }
+//            .onChange(of: pageIndex, perform: { newValue in
+//                Mixpanel.mainInstance().track(event: "Onboarding button", properties: [
+//                    "Step": pageIndex
+//                ])
+//            })
             .background(Color.additional_50)
         }
         //Check if we have user session/id or not
@@ -135,6 +147,7 @@ struct ContentView: View {
     
     func incrementPage() {
         pageIndex += 1
+        print("Page index: \(pageIndex)")
     }
     
     func goToZero() {

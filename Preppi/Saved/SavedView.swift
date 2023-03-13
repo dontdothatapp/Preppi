@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import Mixpanel
 
 struct SavedView: View {
     
@@ -49,11 +50,23 @@ struct SavedView: View {
                                         .multilineTextAlignment(.center)
                                         .padding(.horizontal, 20)
                                     Spacer()
+                                } .onAppear {
+                                    Mixpanel.mainInstance().track(event: "Saved screen viewed", properties: [
+                                        "Type": "Screen",
+                                        "Category": "Saved",
+                                        "State": 0
+                                    ])
                                 }
                             } else {
                                 //All questions
                                 ForEach(questionModel.savedQuestions) { question in
                                     QuestionView(category: question.category, question: question.question, id: question.id, timestamp: question.timestamp)
+                                } .onAppear {
+                                    Mixpanel.mainInstance().track(event: "Saved screen viewed", properties: [
+                                        "Type": "Screen",
+                                        "Category": "Saved",
+                                        "State": questionModel.savedQuestions.count
+                                    ])
                                 }
                             }
                         } .padding(.top, 20)
@@ -63,7 +76,11 @@ struct SavedView: View {
                     Spacer()
                 }
                 
-            } .navigationTitle("Saved")
+            } .navigationTitle("Saved") .onAppear {
+                Mixpanel.mainInstance().track(event: "Saved screen viewed", properties: [
+                    "Type": "Screen"
+                ])
+            }
         }
     }
 }

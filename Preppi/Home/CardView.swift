@@ -8,6 +8,7 @@
 import SwiftUI
 import ConfettiSwiftUI
 import StoreKit
+import Mixpanel
 
 struct CardView: View {
     
@@ -70,9 +71,20 @@ struct CardView: View {
                                 questionModel.deleteSavedQuestion(questionId: question.id)
                                 animationForSaved.toggle()
                                 isSaved.toggle()
+                                Mixpanel.mainInstance().track(event: "Delete from saved", properties: [
+                                    "Type": "Button",
+                                    "Category": "Saved",
+                                    "Screen": "Home"
+                                ])
                             } else {
                                 questionModel.saveQuestion(questionId: question.id)
                                 isSaved.toggle()
+                                Mixpanel.mainInstance().track(event: "Add to saved", properties: [
+                                    "Type": "Button",
+                                    "Category": "Saved",
+                                    "Screen": "Home",
+                                    "Question": question.question
+                                ])
                                 
                                 if questionModel.savedQuestions.count == 5 {
                                     requestReview()
@@ -113,9 +125,20 @@ struct CardView: View {
                             if isMastered == true {
                                 questionModel.deleteMasteredQuestion(questionId: question.id)
                                 isMastered.toggle()
+                                Mixpanel.mainInstance().track(event: "Delete from mastered", properties: [
+                                    "Type": "Button",
+                                    "Category": "Mastered",
+                                    "Screen": "Home"
+                                ])
                             } else {
                                 questionModel.masterQuestion(questionId: question.id)
                                 isMastered.toggle()
+                                Mixpanel.mainInstance().track(event: "Add to mastered", properties: [
+                                    "Type": "Button",
+                                    "Category": "Mastered",
+                                    "Screen": "Home",
+                                    "Question": question.question
+                                ])
                                 masteredCounter += 1
                                 masteredPerSession += 1
                                 

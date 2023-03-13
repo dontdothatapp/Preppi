@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct QuestionView: View {
     
@@ -25,6 +26,11 @@ struct QuestionView: View {
                     
                     Button{
                         questionModel.deleteSavedQuestion(questionId: id)
+                        Mixpanel.mainInstance().track(event: "Delete from saved", properties: [
+                            "Type": "Button",
+                            "Category": "Saved",
+                            "Screen": "Saved"
+                        ])
                     } label: {
                         Image(systemName: "heart.fill")
                     }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct ResetPasswordView: View {
     
@@ -62,6 +63,10 @@ struct ResetPasswordView: View {
                     //Reset password button
                     Button{
                         viewModel.resetPassword(withEmail: email)
+                        Mixpanel.mainInstance().track(event: "reset password", properties: [
+                            "Type": "Button",
+                            "Category": "Auth"
+                        ])
                     } label: {
                         HStack {
                             Text("Reset password")
@@ -86,6 +91,11 @@ struct ResetPasswordView: View {
             } message: {
                 Text("We have sent a password reset instructions to your email")
             }
+        } .onAppear {
+            Mixpanel.mainInstance().track(event: "Reset password screen viewed", properties: [
+                "Type": "Screen",
+                "Category": "Auth"
+            ])
         }
         .navigationBarHidden(true)
     }

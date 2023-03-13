@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct StatsView: View {
     
@@ -103,6 +104,12 @@ struct StatsView: View {
                         } .frame(height: 100)
                     } .padding(.bottom, 20)
                 } .onAppear(perform: fetchMasteredQuestions)
+            } .onAppear {
+                Mixpanel.mainInstance().track(event: "Mastered screen viewed", properties: [
+                    "Type": "Screen",
+                    "Category": "Mastered",
+                    "State": "Items: \(questionModel.masteredQuestions.count)"
+                ])
             }
             .navigationTitle("Progress")
         }

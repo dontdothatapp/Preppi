@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import Mixpanel
 
 struct LoginView: View {
     @State private var name: String = ""
@@ -88,6 +89,10 @@ struct LoginView: View {
                     //Login - Log in button
                     Button{
                         viewModel.login(withEmail: email, password: password)
+                        Mixpanel.mainInstance().track(event: "Login", properties: [
+                            "Type": "Button",
+                            "Category": "Auth"
+                        ])
                     } label: {
                         HStack {
                             Text("Log in")
@@ -137,6 +142,11 @@ struct LoginView: View {
             } message: {
                 Text(viewModel.errorMessage)
             }
+        } .onAppear {
+            Mixpanel.mainInstance().track(event: "Login screen viewed", properties: [
+                "Type": "Screen",
+                "Category": "Auth"
+            ])
         }
         .navigationBarHidden(true)
     }

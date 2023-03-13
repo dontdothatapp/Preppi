@@ -45,8 +45,11 @@ struct HomeView: View {
                 
                 Button(action: {
                     self.currentQuestion = questionModel.questionList.randomElement()
-                    print("DEBUG: Current question: \(String(describing: currentQuestion))")
-                    Mixpanel.mainInstance().track(event: "New question button")
+                    Mixpanel.mainInstance().track(event: "New question button", properties: [
+                        "Type": "Button",
+                        "Category": "Home",
+                        "Screen": "Home"
+                    ])
                 }) {
                     HStack {
                         Image(systemName: "arrow.triangle.2.circlepath")
@@ -65,7 +68,12 @@ struct HomeView: View {
                 Spacer()
                 
             }
-            .background(Color.additional_50)
+            .background(Color.additional_50) .onAppear {
+                Mixpanel.mainInstance().track(event: "Home screen viewed", properties: [
+                    "Type": "Screen",
+                    "Category": "Home"
+                ])
+            } 
         }
     }
     

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import Mixpanel
 
 struct SignupView: View {
     @State private var name: String = ""
@@ -87,6 +88,10 @@ struct SignupView: View {
                         viewModel.register(withEmail: email,
                                            password: password,
                                            name: name)
+                        Mixpanel.mainInstance().track(event: "Signup", properties: [
+                            "Type": "Button",
+                            "Category": "Auth"
+                        ])
                     } label: {
                         HStack {
                             Text("Create account")
@@ -144,6 +149,11 @@ struct SignupView: View {
             } message: {
                 Text(viewModel.errorMessage)
             }
+        } .onAppear {
+            Mixpanel.mainInstance().track(event: "Signup screen viewed", properties: [
+                "Type": "Screen",
+                "Category": "Auth"
+            ])
         }
     }
 }

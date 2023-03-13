@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct SettingsView: View {
     @EnvironmentObject var viewModel: AuthViewModel
@@ -40,6 +41,9 @@ struct SettingsView: View {
                     
                     Button {
                         viewModel.signOut()
+                        Mixpanel.mainInstance().track(event: "Logout", properties: [
+                            "Type": "Button"
+                        ])
                     } label: {
                         HStack {
                             Text("Log out")
@@ -69,6 +73,10 @@ struct SettingsView: View {
                     }
                 }
             }
+        } .onAppear {
+            Mixpanel.mainInstance().track(event: "Settings screen viewed", properties: [
+                "Type": "Screen"
+            ])
         }
         
     }

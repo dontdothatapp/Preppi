@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct QuestionForAnalyticsView: View {
     
@@ -25,6 +26,11 @@ struct QuestionForAnalyticsView: View {
                     Spacer()
                     Button{
                         questionModel.deleteMasteredQuestion(questionId: id)
+                        Mixpanel.mainInstance().track(event: "Delete from mastered", properties: [
+                            "Type": "Button",
+                            "Category": "Mastered",
+                            "Screen": "Mastered"
+                        ])
                     } label: {
                         Image(systemName: "trash.fill")
                     }

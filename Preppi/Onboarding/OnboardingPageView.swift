@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Mixpanel
 
 struct OnboardingPageView: View {
     var page: Page
@@ -42,6 +43,12 @@ struct OnboardingPageView: View {
                 Spacer()
             }
             Spacer()
+        } .onAppear {
+            Mixpanel.mainInstance().track(event: "Onboarding screen viewed", properties: [
+                "Type": "Screen",
+                "Title": page.name,
+                "Step": page.tag
+            ])
         }
     }
 }
